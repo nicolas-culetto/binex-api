@@ -8,11 +8,6 @@ import { Public } from 'src/public/public.decorator';
 export class UsersController {
     constructor(private userService: UsersService){}
 
-    @Post("create")
-    async create(@Body() createUserDto: CreateUserDto) {
-        return await this.userService.create(createUserDto);
-    }
-
     @Delete("remove")
     async remove(@Query('id') id: number) {
         return await this.userService.remove(id);
