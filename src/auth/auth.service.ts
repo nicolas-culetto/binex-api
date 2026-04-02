@@ -22,8 +22,7 @@ export class AuthService {
         }
 
         // hash password
-        const passwordHash = await this.getHash(signInDto.password);
-        const validation = await bcrypt.compare(passwordHash, user.password)
+        const validation = await bcrypt.compare(signInDto.password, user.password)
 
         if(!validation) {
             throw new UnauthorizedException();
@@ -37,7 +36,7 @@ export class AuthService {
         const user = await this.usersService.findByEmail(createUserDto.email);
 
         if(user){
-            throw ConflictException;
+            throw new ConflictException;
         }
 
         // hash password

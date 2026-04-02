@@ -1,10 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create.user.dto';
 import { DeleteResult } from 'typeorm/browser';
 import { UpdateUserDto } from './dto/update.user.dto';
+import { NotFoundError } from 'rxjs';
+import { GetUserDto } from './dto/get.user.dto';
 
 @Injectable()
 export class UsersService {
@@ -19,12 +21,30 @@ export class UsersService {
         return this.usersRepository.save(newUser);
     }
 
-    public findAll(): Promise<User[]> {
-        return this.usersRepository.find();
+    public async findAll(): Promise<GetUserDto[]> {
+        const users = await  this.usersRepository.find();
+
+        return users.map(user => {
+            const { password, ...rest } = user;
+            return rest;
+        })
     }
 
-    public findOne(id: number): Promise<User | null> {
-        return this.usersRepository.findOneBy({ id });
+    public async findOne(id: number): Promise<GetUserDto> {
+        const user = await this.usersRepository.findOneBy({ id });
+
+        if(!user){
+            throw new NotFoundException;
+        }
+
+        const { password, ...rest } = user;
+        return rest;
+    }
+
+    public async getPassword(id: number): Promise<string | null> {
+        const user = await this.usersRepository.findOneBy({id});
+
+        return user?.password ?? null;
     }
 
     public findByEmail(email: string): Promise<User | null> {

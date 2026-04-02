@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
 import { Public } from 'src/public/public.decorator';
+import { User } from './entities/user.entity';
 
 @Controller('users')
 export class UsersController {
@@ -25,7 +26,7 @@ export class UsersController {
     }
 
     @Get(":id")
-    async findOne(@Param('id') id: number): Promise<any> {
+    async findOne(@Param('id') id: number): Promise<User | any> {
         return await this.userService.findOne(id);
     }
 }
