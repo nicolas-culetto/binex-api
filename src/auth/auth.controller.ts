@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { SignInDto } from './dto/sign_in.dto';
 import { AuthGuard } from './auth.guard';
 import { Public } from 'src/public/public.decorator';
+import { CreateUserDto } from 'src/users/dto/create.user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -19,5 +20,12 @@ export class AuthController {
     @Get('profile')
     getProfile(@Request() req) {
         return req.email;
+    }
+
+    @HttpCode(HttpStatus.OK)
+    @Public()
+    @Post('sign-up')
+    async signUp(@Body() createUserDto: CreateUserDto) {
+        return await this.authService.register(createUserDto);
     }
 }
