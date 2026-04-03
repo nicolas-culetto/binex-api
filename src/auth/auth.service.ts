@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { SignInDto } from './dto/sign_in.dto';
 import { JwtService } from '@nestjs/jwt';
@@ -18,7 +18,7 @@ export class AuthService {
         const user = await this.usersService.findByEmail(signInDto.email);
 
         if(!user) {
-            throw NotFoundError;
+            throw new NotFoundException;
         }
 
         // hash password
