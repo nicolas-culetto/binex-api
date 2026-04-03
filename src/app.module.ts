@@ -7,6 +7,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { AuthModule } from './auth/auth.module';
 import { CaslModule } from './casl/casl.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { CloudinaryProvider } from './cloudinary/cloudinary.provider';
 
 @Module({
   imports: [
@@ -32,9 +34,10 @@ import { CaslModule } from './casl/casl.module';
     }),
     UsersModule,
     AuthModule,
-    CaslModule
+    CaslModule,
+    CloudinaryModule
   ],
   controllers: [AppController],
-  providers: [AppService ],
+  providers: [AppService, CloudinaryProvider ],
 })
 export class AppModule {}
