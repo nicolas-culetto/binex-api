@@ -49,7 +49,7 @@ export class AuthService {
     }
 
     async genJwt(user: User) {
-        const payload = { sub: user.id, email: user.email };
+        const payload = { sub: user.id, email: user.email, isAdmin: user.isAdmin };
 
         return {
             access_token: await this.jwtService.signAsync(payload),

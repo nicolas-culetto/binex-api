@@ -1,6 +1,8 @@
 import { IsEmail, IsNotEmpty } from "class-validator";
 
 export class GetUserDto {
+    id: number;
+
     @IsEmail()
     email:string;
 
@@ -9,4 +11,6 @@ export class GetUserDto {
 
     @IsNotEmpty()
     lastName: string;
+
+    isAdmin: boolean;
 }
