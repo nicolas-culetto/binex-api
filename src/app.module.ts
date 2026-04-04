@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { CaslModule } from './casl/casl.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { CloudinaryProvider } from './cloudinary/cloudinary.provider';
+import { CatalogModule } from './catalog/catalog.module';
 
 @Module({
   imports: [
@@ -35,7 +36,8 @@ import { CloudinaryProvider } from './cloudinary/cloudinary.provider';
     UsersModule,
     AuthModule,
     CaslModule,
-    CloudinaryModule
+    CloudinaryModule,
+    CatalogModule
   ],
   controllers: [AppController],
   providers: [AppService, CloudinaryProvider ],
