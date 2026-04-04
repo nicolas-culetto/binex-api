@@ -1,9 +1,7 @@
-import { Body, Controller, Delete, ForbiddenException, Get, Param, Post, Put, Query, Req, UseGuards} from '@nestjs/common';
+import { Body, Controller, Delete, ForbiddenException, Get, Param, Put, Query, Req, UseGuards} from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create.user.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
-import { Public } from 'src/public/public.decorator';
-import { User } from './entities/user.entity';
+import { User } from './models/user.model';
 import { CheckPolicies } from 'src/casl/decorators/check-policies.decorator';
 import { AppAbility, CaslAbilityFactory } from 'src/casl/casl-ability.factory/casl-ability.factory';
 import { PoliciesGuard } from 'src/casl/guards/policies/policies.guard';
