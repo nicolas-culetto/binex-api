@@ -1,3 +1,7 @@
 export enum Categories{
-    URBAN, RUNNING, TRAINING, BOOT, FLIP_FLOP
+    Urban = 'URBAN', 
+    Running = 'RUNNING', 
+    Training = 'TRAINING', 
+    Boot = 'BOOT', 
+    FlipFlop = 'FLIP_FLOP'
 }

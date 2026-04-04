@@ -4,8 +4,9 @@ import { Action } from "../models/action.enum";
 import { Injectable } from "@nestjs/common";
 import { GetUserDto } from "src/users/dto/get.user.dto";
 import { Brand } from "src/catalog/brands/models/brand.model";
+import { Model } from "src/catalog/models/models/model.model";
 
-type Subjects = InferSubjects<typeof User| typeof Brand> | "all";
+type Subjects = InferSubjects<typeof User| typeof Brand | typeof Model> | "all";
 
 export type AppAbility = MongoAbility<[Action, Subjects]>;
 

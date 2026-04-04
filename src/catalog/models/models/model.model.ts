@@ -1,5 +1,6 @@
 import { Brand } from "src/catalog/brands/models/brand.model";
 import { Categories } from "src/catalog/enums/categories.enum";
+import { text } from "stream/consumers";
 import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -10,9 +11,9 @@ export class Model{
     @Column({unique: true})
     name: string;
 
-    @Column()
+    @Column({type: 'enum', enum: Categories})
     category: Categories;
     
-    @ManyToOne(() => Brand)
+    @ManyToOne(() => Brand, brand => brand.models)
     brand: Brand;
 }

@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Categories } from "../../enums/categories.enum";
+import { Model } from "src/catalog/models/models/model.model";
 
 @Entity()
 export class Brand{
@@ -12,6 +13,6 @@ export class Brand{
     @Column()
     logoUrl: string;
 
-    @Column('text', {default: [], array: true})
-    categories: Categories[];
+    @OneToMany(() => Model, model => model.brand)
+    models: Model[];
 }

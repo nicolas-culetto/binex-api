@@ -9,16 +9,17 @@ import { CheckPolicies } from 'src/casl/decorators/check-policies.decorator';
 import { PoliciesGuard } from 'src/casl/guards/policies/policies.guard';
 import { DeleteResult } from 'typeorm';
 import { UpdateBrandDto } from './dtos/update.brand.dto';
+import { Categories } from '../enums/categories.enum';
 
 @Controller('brands')
 export class BrandsController {
-    constructor(private brandService: BrandsService) {}
+    constructor(private brandService: BrandsService) { }
 
     @Post('create')
     @UseInterceptors(FileInterceptor('file'))
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Create, Brand))
-    async create(@Body() createBrandDto: CreateBrandDto, @UploadedFile() file: Express.Multer.File): Promise<Brand>{
+    async create(@Body() createBrandDto: CreateBrandDto, @UploadedFile() file: Express.Multer.File): Promise<Brand> {
         return await this.brandService.create(createBrandDto, file);
     }
 
@@ -26,7 +27,7 @@ export class BrandsController {
     @UseInterceptors(FileInterceptor('file'))
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Brand))
-    async update(@Param('id') id: number, @Body() updateBrandDto: UpdateBrandDto, @UploadedFile() file: Express.Multer.File): Promise<Brand>{
+    async update(@Param('id') id: number, @Body() updateBrandDto: UpdateBrandDto, @UploadedFile() file: Express.Multer.File): Promise<Brand> {
         return await this.brandService.update(id, updateBrandDto, file);
     }
 
@@ -44,11 +45,17 @@ export class BrandsController {
         return await this.brandService.findOne(id);
     }
 
-    
+    @Get('categories/:id')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Brand))
+    async findCategories(@Param('id') id: number): Promise<Categories[]> {
+        return await this.brandService.findCategories(id);
+    }
+
     @Delete('delete/:id')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Brand))
-    async delete(@Param('id') id: number): Promise<DeleteResult>{
+    async delete(@Param('id') id: number): Promise<DeleteResult> {
         return await this.brandService.remove(id);
     }
 }

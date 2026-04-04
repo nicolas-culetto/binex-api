@@ -6,6 +6,7 @@ import { CreateBrandDto } from './dtos/create.brand.dto';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { DeleteResult } from 'typeorm/browser';
 import { UpdateBrandDto } from './dtos/update.brand.dto';
+import { Categories } from '../enums/categories.enum';
 
 @Injectable()
 export class BrandsService {
@@ -30,7 +31,7 @@ export class BrandsService {
         return this.brandsRepository.save(newBrand);
     }
 
-        public async findAll(): Promise<Brand[]> {
+    public async findAll(): Promise<Brand[]> {
         return await this.brandsRepository.find();
     }
 
@@ -40,6 +41,16 @@ export class BrandsService {
         if(!brand) throw new NotFoundException;
 
         return brand;
+    }
+
+    public async findCategories(id: number): Promise<Categories[]>{
+        const result = await this.brandsRepository.createQueryBuilder('brand')
+        .leftJoin('brand.models', 'model')
+        .where({id})
+        .select('DISTINCT model.category', 'category')
+        .getRawMany();
+
+        return result.map(item => item.category);
     }
 
     public async update(id: number, updateBrandDto: UpdateBrandDto, newLogo: Express.Multer.File | null): Promise<Brand>{
