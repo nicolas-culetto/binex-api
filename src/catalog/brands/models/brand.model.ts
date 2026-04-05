@@ -5,14 +5,14 @@ import { Model } from "src/catalog/models/models/model.model";
 @Entity()
 export class Brand{
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column({unique: true})
-    name: string;
+    name!: string;
 
     @Column()
-    logoUrl: string;
+    logoUrl!: string;
 
     @OneToMany(() => Model, model => model.brand)
-    models: Model[];
+    models!: Model[];
 }

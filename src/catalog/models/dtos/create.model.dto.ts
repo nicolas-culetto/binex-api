@@ -3,11 +3,11 @@ import { Categories } from "src/catalog/enums/categories.enum";
 
 export class CreateModelDto{
     @IsNotEmpty()
-    name: string;
+    name!: string;
 
     @IsNotEmpty()
-    category: Categories
+    category!: Categories
 
     @IsNotEmpty()
-    brandId: number
+    brandId!: number
 }

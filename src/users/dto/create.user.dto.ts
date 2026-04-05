@@ -2,17 +2,17 @@ import { IsEmail, IsNotEmpty, IsStrongPassword } from "class-validator";
 
 export class CreateUserDto {
     @IsEmail()
-    email:string;
+    email!:string;
 
     @IsStrongPassword()
     @IsNotEmpty()
-    password: string;
+    password!: string;
 
     @IsNotEmpty()
-    firstName: string;
+    firstName!: string;
 
     @IsNotEmpty()
-    lastName: string;
+    lastName!: string;
 
     isAdmin?: boolean;
 }

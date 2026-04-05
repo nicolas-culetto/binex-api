@@ -6,14 +6,14 @@ import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typ
 @Entity()
 export class Model{
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column({unique: true})
-    name: string;
+    name!: string;
 
     @Column({type: 'enum', enum: Categories})
-    category: Categories;
+    category!: Categories;
     
     @ManyToOne(() => Brand, brand => brand.models)
-    brand: Brand;
+    brand!: Brand;
 }

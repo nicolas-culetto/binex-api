@@ -5,20 +5,20 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Product{
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column()
-    color: Colors;
+    color!: Colors;
 
     @Column('text', {array: true})
-    images_url: string[];
+    images_url!: string[];
 
     @Column()
-    price: number;
+    price!: number;
 
     @Column({default: 0})
-    discount: number;
+    discount!: number;
 
     @ManyToOne(() => Model)
-    model: Model;
+    model!: Model;
 }
