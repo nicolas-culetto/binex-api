@@ -32,7 +32,7 @@ export class ModelsService {
     }
 
     public async findOne(id: number): Promise<Model> {
-        const model = await this.modelsRepository.findOneBy({id});
+        const model = await this.modelsRepository.findOne({where: {id}, relations: ['brand']});
 
         if(!model) throw new NotFoundException;
 

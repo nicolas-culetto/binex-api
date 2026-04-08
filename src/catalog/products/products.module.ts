@@ -4,9 +4,11 @@ import { ProductsService } from './products.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from './models/product.model';
 import { CaslModule } from 'src/casl/casl.module';
+import { ModelsModule } from '../models/models.module';
+import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Product]), CaslModule],
+  imports: [TypeOrmModule.forFeature([Product]), CaslModule, ModelsModule, CloudinaryModule],
   controllers: [ProductsController],
   providers: [ProductsService],
 })

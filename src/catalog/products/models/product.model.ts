@@ -1,4 +1,5 @@
 import { Colors } from "src/catalog/enums/colors.enum";
+import { Segments } from "src/catalog/enums/segments.enum";
 import { Model } from "src/catalog/models/models/model.model";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -10,7 +11,7 @@ export class Product{
     @Column()
     color!: Colors;
 
-    @Column('text', {array: true})
+    @Column('text', {array: true, default:[]})
     images_url!: string[];
 
     @Column()
@@ -18,6 +19,9 @@ export class Product{
 
     @Column({default: 0})
     discount!: number;
+
+    @Column({type: 'enum', enum: Segments})
+    segment!: Segments;
 
     @ManyToOne(() => Model)
     model!: Model;

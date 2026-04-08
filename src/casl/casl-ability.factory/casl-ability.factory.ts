@@ -5,8 +5,9 @@ import { Injectable } from "@nestjs/common";
 import { GetUserDto } from "src/users/dto/get.user.dto";
 import { Brand } from "src/catalog/brands/models/brand.model";
 import { Model } from "src/catalog/models/models/model.model";
+import { Product } from "src/catalog/products/models/product.model";
 
-type Subjects = InferSubjects<typeof User| typeof Brand | typeof Model> | "all";
+type Subjects = InferSubjects<typeof User| typeof Brand | typeof Model | typeof Product> | "all";
 
 export type AppAbility = MongoAbility<[Action, Subjects]>;
 
