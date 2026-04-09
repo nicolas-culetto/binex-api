@@ -6,9 +6,10 @@ import { Product } from './models/product.model';
 import { CaslModule } from 'src/casl/casl.module';
 import { ModelsModule } from '../models/models.module';
 import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
+import { ModelSegmentsModule } from '../model-segments/model-segments.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Product]), CaslModule, ModelsModule, CloudinaryModule],
+  imports: [TypeOrmModule.forFeature([Product]), CaslModule, ModelsModule, CloudinaryModule, ModelSegmentsModule],
   controllers: [ProductsController],
   providers: [ProductsService],
 })
