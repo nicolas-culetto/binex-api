@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { PoliciesGuard } from 'src/casl/guards/policies/policies.guard';
 import { CheckPolicies } from 'src/casl/decorators/check-policies.decorator';
@@ -9,6 +9,8 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import { CreateProductDto } from './dtos/create.product.dto';
 import { DeleteResult } from 'typeorm';
 import { UpdateProductDto } from './dtos/update.product.dto';
+import { DeleteProductsDto } from './dtos/delete.products.dto';
+import { RestoreProductsDto } from './dtos/restore.products.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -25,15 +27,15 @@ export class ProductsController {
     @Get('all')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Product))
-    async findAll(): Promise<Product[]> {
-        return await this.productService.findAll();
+    async findAll(@Query('isActive') isActive: boolean = true): Promise<Product[]> {
+        return await this.productService.findAll(isActive);
     }
 
     @Get('by-id/:id')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Product))
-    async findOne(@Param('id') id: number): Promise<Product> {
-        return await this.productService.findOne(id);
+    async findOne(@Param('id') id: number, @Query('isActive') isActive: boolean = true): Promise<Product> {
+        return await this.productService.findOne(id, isActive);
     }
 
     @Put('update/:id')
@@ -44,10 +46,17 @@ export class ProductsController {
         return await this.productService.update(id, updateProductDto, files);
     }
 
-    @Delete('delete/:id')
+    @Delete('delete')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Product))
-    async remove(@Param('id') id: number): Promise<DeleteResult> {
-        return await this.productService.remove(id);
+    async remove(@Body() deleteProductsDto: DeleteProductsDto): Promise<DeleteResult> {
+        return await this.productService.remove(deleteProductsDto.ids);
+    }
+
+    @Put('restore')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Product))
+    async restore(@Body() restoreProductsDto: RestoreProductsDto): Promise<boolean> {
+        return await this.productService.restore(restoreProductsDto.ids);
     }
 }

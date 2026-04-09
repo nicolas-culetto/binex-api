@@ -22,4 +22,7 @@ export class Product{
 
     @ManyToOne(() => ModelSegment, modelSegment => modelSegment.products)
     modelSegment!: ModelSegment;
+
+    @Column({default: true})
+    isActive!: boolean;
 }
