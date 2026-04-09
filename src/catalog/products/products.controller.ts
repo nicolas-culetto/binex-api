@@ -11,6 +11,7 @@ import { DeleteResult } from 'typeorm';
 import { UpdateProductDto } from './dtos/update.product.dto';
 import { DeleteProductsDto } from './dtos/delete.products.dto';
 import { RestoreProductsDto } from './dtos/restore.products.dto';
+import { DeleteReasons } from '../enums/delete-reasons.enum';
 
 @Controller('products')
 export class ProductsController {
@@ -49,14 +50,14 @@ export class ProductsController {
     @Delete('delete')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Product))
-    async remove(@Body() deleteProductsDto: DeleteProductsDto): Promise<DeleteResult> {
-        return await this.productService.remove(deleteProductsDto.ids);
+    async remove(@Body() deleteProductsDto: DeleteProductsDto, @Query('deleteReason') deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<DeleteResult> {
+        return await this.productService.remove(deleteProductsDto.ids, deleteReason);
     }
 
     @Put('restore')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Product))
-    async restore(@Body() restoreProductsDto: RestoreProductsDto): Promise<boolean> {
-        return await this.productService.restore(restoreProductsDto.ids);
+    async restore(@Body() restoreProductsDto: RestoreProductsDto, @Query('deleteReason') deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<boolean> {
+        return await this.productService.restore(restoreProductsDto.ids, deleteReason);
     }
 }

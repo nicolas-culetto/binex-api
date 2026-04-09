@@ -10,6 +10,8 @@ import { CaslModule } from './casl/casl.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { CloudinaryProvider } from './cloudinary/cloudinary.provider';
 import { CatalogModule } from './catalog/catalog.module';
+import { EventEmitter } from 'stream';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -37,7 +39,8 @@ import { CatalogModule } from './catalog/catalog.module';
     AuthModule,
     CaslModule,
     CloudinaryModule,
-    CatalogModule
+    CatalogModule,
+    EventEmitterModule.forRoot()
   ],
   controllers: [AppController],
   providers: [AppService, CloudinaryProvider ],

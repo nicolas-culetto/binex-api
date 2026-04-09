@@ -1,4 +1,5 @@
 import { Colors } from "src/catalog/enums/colors.enum";
+import { DeleteReasons } from "src/catalog/enums/delete-reasons.enum";
 import { ModelSegment } from "src/catalog/model-segments/models/model-segment.model";
 import { Model } from "src/catalog/models/models/model.model";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
@@ -25,4 +26,7 @@ export class Product{
 
     @Column({default: true})
     isActive!: boolean;
+
+    @Column({type: 'enum', enum: DeleteReasons, default: DeleteReasons.None})
+    deleteReason!: DeleteReasons;
 }

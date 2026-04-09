@@ -8,6 +8,9 @@ import { DeleteResult } from 'typeorm/browser';
 import { UpdateProductDto } from './dtos/update.product.dto';
 import { ModelSegmentsService } from '../model-segments/model-segments.service';
 import { UpdateResult } from 'typeorm/browser';
+import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
+import { ModelSegment } from '../model-segments/models/model-segment.model';
+import { DeleteReasons } from '../enums/delete-reasons.enum';
 
 @Injectable()
 export class ProductsService {
@@ -81,17 +84,50 @@ export class ProductsService {
         })));
     }
 
-    public async remove(ids: number[]): Promise<DeleteResult> {
+    public async remove(ids: number[], deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<DeleteResult> {
         const deletedProducts = await this.productsRepository.findBy({id: In(ids)});
-        deletedProducts.forEach(product => product.isActive = false);
+        deletedProducts.forEach(product => {
+            product.isActive = false;
+            product.deleteReason = deleteReason;
+        });
         const result = await this.productsRepository.save(deletedProducts);
         return { affected: result.length, raw: [] };
     }
 
-    public async restore(ids: number[]): Promise<boolean> {
-        const deletedProducts = await this.productsRepository.findBy({id: In(ids)});
-        deletedProducts.forEach(product => product.isActive = true);
+    private async removePermanently(ids: number[]): Promise<DeleteResult> {
+        const result = await this.productsRepository.delete(ids);
+        return result;
+    }
+
+    public async restore(ids: number[], deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<boolean> {
+        const deletedProducts = await this.productsRepository.findBy({id: In(ids), isActive: false, deleteReason});
+        deletedProducts.forEach(product => {
+            product.isActive = true;
+            product.deleteReason = DeleteReasons.None;
+        });
         const result = await this.productsRepository.save(deletedProducts);
         return  result.length > 0;
     }  
+    
+    @OnEvent('modelSegment.deleted')
+    async handleModelSegmentDeleted(deletedModelSegments: ModelSegment) {
+        const productsIds = await this.getIdsByModelSegment(deletedModelSegments);
+        this.remove(productsIds, DeleteReasons.Cascade);
+    }
+
+    @OnEvent('modelSegment.restored')
+    async handleModelSegmentRestored(restoredModelSegments: ModelSegment, deleteAll: boolean = false) {
+        const productsIds = await this.getIdsByModelSegment(restoredModelSegments);
+
+        if(deleteAll) {
+            this.removePermanently(productsIds);
+        } else {    
+            this.restore(productsIds, DeleteReasons.Cascade);
+        }
+    }
+
+    private async getIdsByModelSegment(modelSegment: ModelSegment): Promise<number[]> {
+        const products = await this.productsRepository.findBy({ modelSegment: modelSegment });
+        return products.map(product => product.id);
+    }
 }
