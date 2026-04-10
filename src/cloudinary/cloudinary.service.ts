@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { v2 as cloudinary } from "cloudinary";
-import { CloudinaryResponse } from './cloudinary-response';
+import { extractPublicId } from 'cloudinary-build-url';
 const streamifier = require('streamifier');
 
 @Injectable()
@@ -22,6 +22,16 @@ export class CloudinaryService {
             );
 
             streamifier.createReadStream(file.buffer).pipe(uploadStream);
+        });
+    }
+
+    removeFile(url: string): Promise<void> {
+        const publicId = extractPublicId(url);
+        return new Promise<void>((resolve, reject) => {
+            cloudinary.uploader.destroy(publicId, (error, result) => {
+                if (error) return reject(error);
+                if (result) resolve(result);
+            });
         });
     }
 }
