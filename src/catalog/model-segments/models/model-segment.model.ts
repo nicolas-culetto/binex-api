@@ -9,7 +9,7 @@ export class ModelSegment {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @ManyToOne(() => Model, model => model.id, {cascade: true})
+    @ManyToOne(() => Model, model => model.id, {onDelete: 'CASCADE'})
     model!: Model;
 
     @Column({ type: 'enum', enum: Segments })
