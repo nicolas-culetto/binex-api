@@ -15,4 +15,7 @@ export class Brand{
 
     @OneToMany(() => Model, model => model.brand)
     models!: Model[];
+
+    @Column({default: true})
+    isActive!: boolean;
 }

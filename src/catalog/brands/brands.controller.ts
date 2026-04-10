@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Request, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Request, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { BrandsService } from './brands.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateBrandDto } from './dtos/create.brand.dto';
@@ -34,15 +34,20 @@ export class BrandsController {
     @Get('all')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Brand))
-    async findAll(): Promise<Brand[]> {
-        return await this.brandService.findAll();
+    async findAll(
+        @Query('isActive') isActive: boolean = true
+    ): Promise<Brand[]> {
+        return await this.brandService.findAll(isActive);
     }
 
     @Get('by-id/:id')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Brand))
-    async findOne(@Param('id') id: number): Promise<Brand> {
-        return await this.brandService.findOne(id);
+    async findOne(
+        @Param('id') id: number,
+        @Query('isActive') isActive: boolean = true
+    ): Promise<Brand> {
+        return await this.brandService.findOne(id, isActive);
     }
 
     @Get('categories/:id')
@@ -52,10 +57,17 @@ export class BrandsController {
         return await this.brandService.findCategories(id);
     }
 
-    @Delete('delete/:id')
+    @Delete('delete')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Brand))
-    async delete(@Param('id') id: number): Promise<DeleteResult> {
+    async delete(@Query('id') id: number): Promise<DeleteResult> {
         return await this.brandService.remove(id);
+    }
+
+    @Put('restore')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Brand))
+    async restore(@Query('id') id: number, @Query('deleteAll') deleteAll: boolean = false): Promise<boolean> {
+        return await this.brandService.restore(id, deleteAll);
     }
 }

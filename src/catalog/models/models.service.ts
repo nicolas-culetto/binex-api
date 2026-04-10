@@ -6,8 +6,9 @@ import { CreateModelDto } from './dtos/create.model.dto';
 import { BrandsService } from '../brands/brands.service';
 import { DeleteResult } from 'typeorm/browser';
 import { UpdateModelDto } from './dtos/update.model.dto';
-import { EventEmitter2 } from '@nestjs/event-emitter';
+import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { DeleteReasons } from '../enums/delete-reasons.enum';
+import { Brand } from '../brands/models/brand.model';
 
 @Injectable()
 export class ModelsService {
@@ -20,7 +21,7 @@ export class ModelsService {
 
     public async create(createModelDto: CreateModelDto): Promise<Model> {
         const validate = await this.modelsRepository.findOneBy({ name: createModelDto.name });
-        
+
         if (validate) {
             throw new ConflictException({
                 id: validate.id,
@@ -78,13 +79,18 @@ export class ModelsService {
         return { affected: result.length, raw: [] };
     }
 
+    private async removePermanently(ids: number[]): Promise<DeleteResult> {
+        const result = await this.modelsRepository.delete({ id: In(ids) });
+        return result;
+    }
+
     public async restore(
         ids: number[],
         deleteAll: Boolean = false,
         deleteReason: DeleteReasons = DeleteReasons.None
     ): Promise<boolean> {
         const restoredModels = await this.modelsRepository.findBy({ id: In(ids), isActive: false, deleteReason });
-        
+
         // change state to active
         restoredModels.forEach(model => {
             model.isActive = true;
@@ -95,5 +101,30 @@ export class ModelsService {
         // emit event to delete model-segments with the recovered model
         this.eventEmitter.emit('model.restored', restoredModels, deleteAll);
         return true;
+    }
+
+    @OnEvent('brand.deleted')
+    async handleModelDeleted(deletedBrand: Brand) {
+        const modelsIds = await this.getIdsByBrand(deletedBrand);
+        this.remove(modelsIds, DeleteReasons.Cascade);
+    }
+
+    @OnEvent('brand.restored')
+    async handleModelRestored(restoredBrand: Brand, deleteAll: boolean = false) {
+        const modelsIds = await this.getIdsByBrand(restoredBrand);
+
+        if (deleteAll) {
+            this.removePermanently(modelsIds);
+        } else {
+            this.restore(modelsIds, false, DeleteReasons.Cascade);
+        }
+    }
+
+    private async getIdsByBrand(brand: Brand): Promise<number[]> {
+        const models = await this.modelsRepository.findBy({
+            brand: brand,
+        });
+
+        return models.map(model => model.id);
     }
 }
