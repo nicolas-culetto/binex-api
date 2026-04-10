@@ -127,7 +127,7 @@ export class ProductsService {
     }
 
     private async getIdsByModelSegment(modelSegment: ModelSegment): Promise<number[]> {
-        const products = await this.productsRepository.findBy({ modelSegment: modelSegment });
+        const products = await this.productsRepository.findBy({ modelSegment });
         return products.map(product => product.id);
     }
 }

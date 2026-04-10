@@ -21,7 +21,7 @@ export class Product{
     @Column({default: 0})
     discount!: number;
 
-    @ManyToOne(() => ModelSegment, modelSegment => modelSegment.products)
+    @ManyToOne(() => ModelSegment, modelSegment => modelSegment.products, {onDelete: 'CASCADE'})
     modelSegment!: ModelSegment;
 
     @Column({default: true})
