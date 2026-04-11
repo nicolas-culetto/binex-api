@@ -13,7 +13,7 @@ export class UsersService {
     constructor(
         @InjectRepository(User)
         private usersRepository: Repository<User>,
-    ){}
+    ) { }
 
     public create(createUserDto: CreateUserDto): Promise<User> {
         const newUser = this.usersRepository.create(createUserDto);
@@ -27,7 +27,7 @@ export class UsersService {
 
 
     public async findAll(isActive: boolean = true): Promise<GetUserDto[]> {
-        const users = await  this.usersRepository.find({ where: { isActive } });
+        const users = await this.usersRepository.find({ where: { isActive } });
 
         return users.map(user => {
             const { password, ...rest } = user;
@@ -38,7 +38,7 @@ export class UsersService {
     public async findOne(id: number, isActive: boolean = true): Promise<GetUserDto> {
         const user = await this.usersRepository.findOneBy({ id, isActive });
 
-        if(!user){
+        if (!user) {
             throw new NotFoundException;
         }
 
@@ -47,7 +47,7 @@ export class UsersService {
     }
 
     public async getPassword(id: number): Promise<string | null> {
-        const user = await this.usersRepository.findOneBy({id});
+        const user = await this.usersRepository.findOneBy({ id });
 
         return user?.password ?? null;
     }
@@ -59,7 +59,7 @@ export class UsersService {
     public async findById(id: number): Promise<User> {
         const user = await this.usersRepository.findOneBy({ id });
 
-        if(!user){
+        if (!user) {
             throw new NotFoundException;
         }
 
@@ -68,7 +68,7 @@ export class UsersService {
 
     public async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
         const user = await this.findOne(id);
-        const updatedUser = {...user, ...updateUserDto};
+        const updatedUser = { ...user, ...updateUserDto };
 
         return this.usersRepository.save(updatedUser);
     }
@@ -77,7 +77,7 @@ export class UsersService {
         const user = await this.usersRepository.findOneBy({ id });
 
         // validate
-        if(!user){
+        if (!user) {
             throw new NotFoundException("User not found");
         }
 
@@ -86,5 +86,22 @@ export class UsersService {
         const result = await this.usersRepository.save(user);
 
         return { affected: result ? 1 : 0, raw: [] };
+    }
+
+    public async restore(
+        id: number,
+    ): Promise<boolean> {
+        const restoredUser = await this.usersRepository.findOneBy({ id: id, isActive: false });
+
+        // validate
+        if(!restoredUser) {
+            throw new NotFoundException("User not found");
+        }
+
+        // change state to active
+        restoredUser.isActive = true;
+        await this.usersRepository.save(restoredUser);
+
+        return true;
     }
 }
