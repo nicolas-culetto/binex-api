@@ -18,14 +18,14 @@ export class AuthService {
         const user = await this.usersService.findByEmail(signInDto.email);
 
         if(!user) {
-            throw new NotFoundException;
+            throw new NotFoundException("User not found");
         }
 
         // hash password
         const validation = await bcrypt.compare(signInDto.password, user.password)
 
         if(!validation) {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException("Wrong password");
         }
 
         return await this.genJwt(user);
@@ -38,7 +38,7 @@ export class AuthService {
         const user = await this.usersService.findByEmail(createUserDto.email);
 
         if(user){
-            throw new ConflictException;
+            throw new ConflictException("Email is used");
         }
 
         // hash password

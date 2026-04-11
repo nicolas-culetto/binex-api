@@ -39,7 +39,7 @@ export class UsersService {
         const user = await this.usersRepository.findOneBy({ id, isActive });
 
         if (!user) {
-            throw new NotFoundException;
+            throw new NotFoundException("User not found");
         }
 
         const { password, ...rest } = user;
@@ -60,7 +60,7 @@ export class UsersService {
         const user = await this.usersRepository.findOneBy({ id });
 
         if (!user) {
-            throw new NotFoundException;
+            throw new NotFoundException("User not found");
         }
 
         return user;

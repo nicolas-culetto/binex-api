@@ -20,7 +20,7 @@ export class UsersController {
         const ability = this.castAbilityFcatory.createForUser(req.user);
 
         if (!ability.can(Action.Delete, targetUser)) {
-            throw new ForbiddenException();
+            throw new ForbiddenException("You are not allowed to delete this user");
         }
 
         return await this.userService.remove(id);
@@ -35,7 +35,7 @@ export class UsersController {
         const ability = this.castAbilityFcatory.createForUser(req.user);
 
         if (!ability.can(Action.Update, targetUser)) {
-            throw new ForbiddenException();
+            throw new ForbiddenException("You are not allowed to restore this user");
         }
 
         return await this.userService.restore(id);
@@ -50,7 +50,7 @@ export class UsersController {
         const ability = this.castAbilityFcatory.createForUser(req.user);
 
         if (!ability.can(Action.Update, targetUser)) {
-            throw new ForbiddenException();
+            throw new ForbiddenException("You are not allowed to update this user");
         }
 
         return await this.userService.update(id, updateUserDto);

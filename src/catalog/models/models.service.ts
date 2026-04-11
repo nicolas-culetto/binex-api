@@ -24,6 +24,7 @@ export class ModelsService {
 
         if (validate) {
             throw new ConflictException({
+                message: "Model already exists",
                 id: validate.id,
                 canRestore: !validate.isActive
             });
@@ -42,15 +43,13 @@ export class ModelsService {
     public async findOne(id: number, isActive: boolean = true): Promise<Model> {
         const model = await this.modelsRepository.findOne({ where: { id, isActive }, relations: ['brand'] });
 
-        if (!model) throw new NotFoundException;
+        if (!model) throw new NotFoundException("Model not found");
 
         return model;
     }
 
     public async update(id: number, updateModelDto: UpdateModelDto): Promise<Model> {
-        const model = await this.modelsRepository.findOneBy({ id });
-
-        if (!model) throw new NotFoundException;
+        const model = await this.findOne(id);
 
         if (updateModelDto.brandId) {
             const brand = await this.brandService.findOne(updateModelDto.brandId);

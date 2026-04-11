@@ -49,7 +49,7 @@ export class ProductsService {
     public async findOne(id: number, isActive: boolean = true): Promise<Product> {
         const product = await this.productsRepository.findOne({ where: { id, isActive }, relations: ['modelSegment', 'modelSegment.model', 'modelSegment.model.brand'] });
 
-        if (!product) throw new NotFoundException;
+        if (!product) throw new NotFoundException("Product not found");
 
         return product;
     }
@@ -72,7 +72,7 @@ export class ProductsService {
 
     private async updateImages(product: Product, newImages: Express.Multer.File[], imagesIndex: number[]): Promise<void> {
         if (imagesIndex.length !== newImages.length) {
-            throw new BadRequestException;
+            throw new BadRequestException("Files array lenght does not match index array");
         }
 
         await Promise.all(newImages.map((async (img, index) => {

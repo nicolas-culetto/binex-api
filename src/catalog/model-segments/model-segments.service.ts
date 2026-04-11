@@ -23,6 +23,7 @@ export class ModelSegmentsService {
 
         if (validate) {
             throw new ConflictException({
+                message: "ModelSegment already exists",
                 id: validate.id,
                 canRestore: !validate.isActive
             });
@@ -41,7 +42,7 @@ export class ModelSegmentsService {
     public async findOne(id: number, isActive: boolean = true): Promise<ModelSegment> {
         const modelSegment = await this.modelSegmentsRepository.findOne({ where: { id, isActive }, relations: ['model'] });
 
-        if (!modelSegment) throw new NotFoundException;
+        if (!modelSegment) throw new NotFoundException("ModelSegment not found");
 
         return modelSegment;
     }
@@ -67,7 +68,7 @@ export class ModelSegmentsService {
     public async restore(id: number, deleteAll: boolean = false, deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<boolean> {
         const restoredModelSegment = await this.modelSegmentsRepository.findOneBy({ id, isActive: false, deleteReason });
 
-        if (!restoredModelSegment) throw new NotFoundException();
+        if (!restoredModelSegment) throw new NotFoundException("ModelSegment not found");
 
         // change state to active
         restoredModelSegment.isActive = true;

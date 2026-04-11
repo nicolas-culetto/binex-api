@@ -21,7 +21,7 @@ export class BrandsService {
     public async create(createBrandDto: CreateBrandDto, brandImg: Express.Multer.File): Promise<Brand> {
         // validate
         const validate = await this.brandsRepository.findOneBy({ name: createBrandDto.name });
-        if (validate) throw new ConflictException;
+        if (validate) throw new ConflictException("Brand already exists");
 
         // upload brand image
         const logoFileName = `logo_${createBrandDto.name.toLowerCase()}`;
@@ -40,7 +40,7 @@ export class BrandsService {
     public async findOne(id: number, isActive: boolean = true): Promise<Brand> {
         const brand = await this.brandsRepository.findOneBy({ id, isActive });
 
-        if (!brand) throw new NotFoundException;
+        if (!brand) throw new NotFoundException("Brand not found");
 
         return brand;
     }
@@ -58,10 +58,6 @@ export class BrandsService {
     public async update(id: number, updateBrandDto: UpdateBrandDto, newLogo: Express.Multer.File | null): Promise<Brand> {
         // validate
         const brand = await this.findOne(id);
-
-        if (!brand) {
-            throw new NotFoundException;
-        }
 
         if (newLogo) {
             // upload brand image
@@ -91,7 +87,7 @@ export class BrandsService {
     public async restore(id: number, deleteAll: boolean = false): Promise<boolean> {
         const restoredBrand = await this.brandsRepository.findOneBy({ id, isActive: false});
 
-        if (!restoredBrand) throw new NotFoundException();
+        if (!restoredBrand) throw new NotFoundException("Brand not found");
 
         // change state to active
         restoredBrand.isActive = true;
