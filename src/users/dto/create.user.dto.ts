@@ -13,6 +13,4 @@ export class CreateUserDto {
 
     @IsNotEmpty()
     lastName!: string;
-
-    isAdmin?: boolean;
 }

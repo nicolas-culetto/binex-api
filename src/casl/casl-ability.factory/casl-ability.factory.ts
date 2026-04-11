@@ -8,7 +8,7 @@ import { Model } from "src/catalog/models/models/model.model";
 import { Product } from "src/catalog/products/models/product.model";
 import { ModelSegment } from "src/catalog/model-segments/models/model-segment.model";
 
-type Subjects = InferSubjects<typeof User| typeof Brand | typeof ModelSegment | typeof Model | typeof Product> | "all";
+type Subjects = InferSubjects<typeof User| typeof Brand | typeof ModelSegment | typeof Model | typeof Product> | "admin" | "all";
 
 export type AppAbility = MongoAbility<[Action, Subjects]>;
 

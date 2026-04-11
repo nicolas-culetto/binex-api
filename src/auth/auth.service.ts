@@ -31,7 +31,9 @@ export class AuthService {
         return await this.genJwt(user);
     }
 
-    async register(createUserDto: CreateUserDto): Promise<any> {
+    async register(createUserDto: CreateUserDto, isAdmin: boolean = false): Promise<any> {
+        let registeredUser: User;
+        
         // validate used email
         const user = await this.usersService.findByEmail(createUserDto.email);
 
@@ -43,7 +45,10 @@ export class AuthService {
         const passwordHash = await this.getHash(createUserDto.password);
         createUserDto.password = passwordHash;
 
-        const registeredUser = await this.usersService.create(createUserDto);
+        // create user
+        registeredUser = (isAdmin)? 
+        await this.usersService.createAdmin(createUserDto) : 
+        await this.usersService.create(createUserDto);
 
         return await this.genJwt(registeredUser);
     }

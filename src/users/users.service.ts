@@ -17,9 +17,14 @@ export class UsersService {
 
     public create(createUserDto: CreateUserDto): Promise<User> {
         const newUser = this.usersRepository.create(createUserDto);
-
         return this.usersRepository.save(newUser);
     }
+
+    public createAdmin(createUserDto: CreateUserDto): Promise<User> {
+        const newUser = this.usersRepository.create({ ...createUserDto, isAdmin: true });
+        return this.usersRepository.save(newUser);
+    }
+
 
     public async findAll(isActive: boolean = true): Promise<GetUserDto[]> {
         const users = await  this.usersRepository.find({ where: { isActive } });
