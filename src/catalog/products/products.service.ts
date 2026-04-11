@@ -37,7 +37,6 @@ export class ProductsService {
             return await this.cloudinaryService.uploadFile(img, path, name);
         }));
 
-        console.log(productImages);
         newProduct.images_url = productImages;
 
         return await this.productsRepository.save(newProduct);
@@ -86,6 +85,7 @@ export class ProductsService {
 
     public async remove(ids: number[], deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<DeleteResult> {
         const deletedProducts = await this.productsRepository.findBy({id: In(ids)});
+
         deletedProducts.forEach(product => {
             product.isActive = false;
             product.deleteReason = deleteReason;
@@ -95,8 +95,19 @@ export class ProductsService {
     }
 
     private async removePermanently(ids: number[]): Promise<DeleteResult> {
-        const result = await this.productsRepository.delete(ids);
-        return result;
+        const products = await this.productsRepository.findBy({id: In(ids)})
+
+        // delete images from cloudinary
+        await Promise.all(products.map(async product => {
+            // for each product remove its images
+            await Promise.all(product.images_url.map(async img => {
+                await this.cloudinaryService.removeFile(img);
+            }))
+        }))
+
+        const result = await this.productsRepository.remove(products);
+
+        return {affected: result.length, raw: []};
     }
 
     public async restore(ids: number[], deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<boolean> {
