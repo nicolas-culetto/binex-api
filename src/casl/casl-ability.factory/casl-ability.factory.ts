@@ -24,6 +24,7 @@ export class CaslAbilityFactory {
         }
 
         can(Action.Update, User, { id: user.sub });
+        can(Action.Delete, User, { id: user.sub });
     
         return build({
             detectSubjectType: (item) => 
