@@ -6,10 +6,15 @@ import { Public } from 'src/public/public.decorator';
 import { CreateUserDto } from 'src/users/dto/create.user.dto';
 import { CheckPolicies } from 'src/casl/decorators/check-policies.decorator';
 import { Action } from 'src/casl/models/action.enum';
+import { UsersService } from 'src/users/users.service';
+import { GetUserDto } from 'src/users/dto/get.user.dto';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private authService: AuthService) { }
+    constructor(
+        private authService: AuthService,
+        private usersService: UsersService
+    ) { }
 
     @HttpCode(HttpStatus.OK)
     @Public()
@@ -18,10 +23,12 @@ export class AuthController {
         return this.authService.signIn(signInDto);
     }
 
-    @UseGuards(AuthGuard)
     @Get('profile')
-    getProfile(@Request() req) {
-        return req.email;
+    async getProfile(@Request() req): Promise<GetUserDto> {
+        const {user} = req;
+        const profile = await this.usersService.findOne(user.sub);
+
+        return profile;
     }
 
     @HttpCode(HttpStatus.OK)
