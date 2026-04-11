@@ -37,7 +37,6 @@ export class ProductsService {
             return await this.cloudinaryService.uploadFile(img, path, name);
         }));
 
-        console.log(productImages);
         newProduct.images_url = productImages;
 
         return await this.productsRepository.save(newProduct);
