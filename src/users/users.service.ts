@@ -21,8 +21,8 @@ export class UsersService {
         return this.usersRepository.save(newUser);
     }
 
-    public async findAll(): Promise<GetUserDto[]> {
-        const users = await  this.usersRepository.find();
+    public async findAll(isActive: boolean = true): Promise<GetUserDto[]> {
+        const users = await  this.usersRepository.find({ where: { isActive } });
 
         return users.map(user => {
             const { password, ...rest } = user;
@@ -30,8 +30,8 @@ export class UsersService {
         })
     }
 
-    public async findOne(id: number): Promise<GetUserDto> {
-        const user = await this.usersRepository.findOneBy({ id });
+    public async findOne(id: number, isActive: boolean = true): Promise<GetUserDto> {
+        const user = await this.usersRepository.findOneBy({ id, isActive });
 
         if(!user){
             throw new NotFoundException;
@@ -69,6 +69,17 @@ export class UsersService {
     }
 
     public async remove(id: number): Promise<DeleteResult> {
-        return this.usersRepository.delete(id);
+        const user = await this.usersRepository.findOneBy({ id });
+
+        // validate
+        if(!user){
+            throw new NotFoundException("User not found");
+        }
+
+        // change state
+        user.isActive = false;
+        const result = await this.usersRepository.save(user);
+
+        return { affected: result ? 1 : 0, raw: [] };
     }
 }

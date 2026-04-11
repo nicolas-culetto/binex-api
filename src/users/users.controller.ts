@@ -36,14 +36,19 @@ export class UsersController {
     @Get("all")
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, User))
-    async findAll(): Promise<any> {
-        return await this.userService.findAll();
+    async findAll(
+        @Query('isActive') isActive: boolean = true
+    ): Promise<any> {
+        return await this.userService.findAll(isActive);
     }
 
     @Get(":id")
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, User))
-    async findOne(@Param('id') id: number): Promise<User | any> {
-        return await this.userService.findOne(id);
+    async findOne(
+        @Param('id') id: number,
+        @Query('isActive') isActive: boolean = true
+    ): Promise<User | any> {
+        return await this.userService.findOne(id, isActive);
     }
 }
