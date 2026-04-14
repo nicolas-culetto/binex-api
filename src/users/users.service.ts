@@ -1,30 +1,39 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './models/user.model';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create.user.dto';
 import { DeleteResult } from 'typeorm/browser';
 import { UpdateUserDto } from './dto/update.user.dto';
-import { NotFoundError } from 'rxjs';
 import { GetUserDto } from './dto/get.user.dto';
+import { LoggerService } from 'src/logger/logger.service';
 
 @Injectable()
 export class UsersService {
+    
     constructor(
         @InjectRepository(User)
         private usersRepository: Repository<User>,
+        private loggerService: LoggerService
     ) { }
 
-    public create(createUserDto: CreateUserDto): Promise<User> {
+    public async create(createUserDto: CreateUserDto): Promise<User> {
         const newUser = this.usersRepository.create(createUserDto);
-        return this.usersRepository.save(newUser);
+        const savedUser = await this.usersRepository.save(newUser);
+        
+        // logger
+        this.loggerService.create(savedUser);
+        return savedUser;
     }
 
-    public createAdmin(createUserDto: CreateUserDto): Promise<User> {
+    public async createAdmin(createUserDto: CreateUserDto): Promise<User> {
         const newUser = this.usersRepository.create({ ...createUserDto, isAdmin: true });
-        return this.usersRepository.save(newUser);
-    }
+        const savedAdmin = await this.usersRepository.save(newUser);
 
+        // logger
+        this.loggerService.create(savedAdmin, "Admin");
+        return savedAdmin;
+    }
 
     public async findAll(isActive: boolean = true): Promise<GetUserDto[]> {
         const users = await this.usersRepository.find({ where: { isActive } });
@@ -67,10 +76,21 @@ export class UsersService {
     }
 
     public async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-        const user = await this.findOne(id);
-        const updatedUser = { ...user, ...updateUserDto };
+        const user = await this.usersRepository.findOneBy({id});
 
-        return this.usersRepository.save(updatedUser);
+        if(!user) {
+            throw new NotFoundException('User not found');
+        }
+        
+        const prev = structuredClone(user);
+
+        // change
+        const updatedUser = Object.assign(user, updateUserDto);
+        const result = await this.usersRepository.save(updatedUser);
+
+        // logger
+        this.loggerService.update(prev, result);
+        return result;
     }
 
     public async remove(id: number): Promise<DeleteResult> {
@@ -85,6 +105,9 @@ export class UsersService {
         user.isActive = false;
         const result = await this.usersRepository.save(user);
 
+
+        // logger
+        this.loggerService.deleteOne(result);
         return { affected: result ? 1 : 0, raw: [] };
     }
 
@@ -94,14 +117,16 @@ export class UsersService {
         const restoredUser = await this.usersRepository.findOneBy({ id: id, isActive: false });
 
         // validate
-        if(!restoredUser) {
+        if (!restoredUser) {
             throw new NotFoundException("User not found");
         }
 
         // change state to active
         restoredUser.isActive = true;
-        await this.usersRepository.save(restoredUser);
+        const result = await this.usersRepository.save(restoredUser);
 
+        // logger
+        this.loggerService.restoreOne(result);
         return true;
     }
 }
