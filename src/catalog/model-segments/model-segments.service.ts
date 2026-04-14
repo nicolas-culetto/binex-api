@@ -11,11 +11,12 @@ import { Model } from '../models/models/model.model';
 
 @Injectable()
 export class ModelSegmentsService {
+
     constructor(
         @InjectRepository(ModelSegment)
         private modelSegmentsRepository: Repository<ModelSegment>,
         private modelService: ModelsService,
-        private eventEmitter: EventEmitter2
+        private eventEmitter: EventEmitter2,
     ) { }
 
     public async create(modelSegmentDto: CreateModelSegmentDto): Promise<ModelSegment> {
@@ -32,7 +33,9 @@ export class ModelSegmentsService {
         const model = await this.modelService.findOne(modelSegmentDto.modelId);
 
         const newModelSegment = this.modelSegmentsRepository.create({ model, ...modelSegmentDto });
-        return this.modelSegmentsRepository.save(newModelSegment);
+        const result = await this.modelSegmentsRepository.save(newModelSegment);
+
+        return result;
     }
 
     public async findAll(isActive: boolean = true): Promise<ModelSegment[]> {
@@ -53,16 +56,19 @@ export class ModelSegmentsService {
         // change state to inactive
         deletedModelSegment.isActive = false;
         deletedModelSegment.deleteReason = deleteReason;
-        await this.modelSegmentsRepository.save(deletedModelSegment);
+        const result = await this.modelSegmentsRepository.save(deletedModelSegment);
 
         // emit event to delete products with the deleted model segment
         this.eventEmitter.emit('modelSegment.deleted', deletedModelSegment);
-        return { affected: 1, raw: [] };
+
+        return { affected: result? 1 : 0, raw: [] };
     }
 
     private async removePermanently(id: number): Promise<DeleteResult> {
-        const result = await this.modelSegmentsRepository.delete(id);
-        return result;
+        const modelSegment = await this.modelSegmentsRepository.findBy({id});
+
+        const result = await this.modelSegmentsRepository.remove(modelSegment);
+        return { affected: result? 1 : 0, raw: [] };
     }
 
     public async restore(id: number, deleteAll: boolean = false, deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<boolean> {
@@ -73,10 +79,11 @@ export class ModelSegmentsService {
         // change state to active
         restoredModelSegment.isActive = true;
         restoredModelSegment.deleteReason = DeleteReasons.None;
-        await this.modelSegmentsRepository.save(restoredModelSegment);
+        const result = await this.modelSegmentsRepository.save(restoredModelSegment);
 
         // emit event to delete products with the recovered model segment
         this.eventEmitter.emit('modelSegment.restored', restoredModelSegment, deleteAll);
+
         return true;
     }
 
