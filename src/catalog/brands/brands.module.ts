@@ -5,9 +5,15 @@ import { CaslModule } from 'src/casl/casl.module';
 import { Brand } from './models/brand.model';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
+import { LoggerModule } from 'src/logger/logger.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Brand]), CaslModule, CloudinaryModule],
+  imports: [
+    TypeOrmModule.forFeature([Brand]), 
+    CaslModule, 
+    CloudinaryModule,
+    LoggerModule
+],
   providers: [BrandsService],
   controllers: [BrandsController],
   exports: [BrandsService]

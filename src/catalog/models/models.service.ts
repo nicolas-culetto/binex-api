@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Model } from './models/model.model';
 import { In, Repository } from 'typeorm';
@@ -9,14 +9,17 @@ import { UpdateModelDto } from './dtos/update.model.dto';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { DeleteReasons } from '../enums/delete-reasons.enum';
 import { Brand } from '../brands/models/brand.model';
+import { LoggerService } from 'src/logger/logger.service';
 
 @Injectable()
 export class ModelsService {
+
     constructor(
         @InjectRepository(Model)
         private modelsRepository: Repository<Model>,
         private brandService: BrandsService,
-        private eventEmitter: EventEmitter2
+        private eventEmitter: EventEmitter2,
+        private loggerService: LoggerService
     ) { }
 
     public async create(createModelDto: CreateModelDto): Promise<Model> {
@@ -30,10 +33,16 @@ export class ModelsService {
             });
         }
 
+        // set brand
         const brand = await this.brandService.findOne(createModelDto.brandId);
-
         const newModel = this.modelsRepository.create({ brand, ...createModelDto });
-        return this.modelsRepository.save(newModel);
+
+        const result = await this.modelsRepository.save(newModel);
+
+        // logger
+        this.loggerService.create(result);
+
+        return result;
     }
 
     public async findAll(isActive: boolean = true): Promise<Model[]> {
@@ -50,14 +59,19 @@ export class ModelsService {
 
     public async update(id: number, updateModelDto: UpdateModelDto): Promise<Model> {
         const model = await this.findOne(id);
+        const prev = structuredClone(model);
 
         if (updateModelDto.brandId) {
             const brand = await this.brandService.findOne(updateModelDto.brandId);
             updateModelDto["brand"] = brand;
         }
 
-        const updatedModel = { ...model, ...updateModelDto };
-        return await this.modelsRepository.save(updatedModel);
+        const updatedModel = Object.assign(model, updateModelDto);
+        const result = await this.modelsRepository.save(updatedModel);
+
+        // logger
+        this.loggerService.update(prev, result);
+        return result;
     }
 
     public async remove(
@@ -75,12 +89,20 @@ export class ModelsService {
 
         // emit event to delete model-segments with the deleted model
         this.eventEmitter.emit('model.deleted', result);
+
+        // logger
+        this.loggerService.deleteMany(result, deleteReason);
         return { affected: result.length, raw: [] };
     }
 
     private async removePermanently(ids: number[]): Promise<DeleteResult> {
-        const result = await this.modelsRepository.delete({ id: In(ids) });
-        return result;
+        const models = await this.modelsRepository.findBy({id: In(ids)});
+
+        // logger
+        this.loggerService.deletePermanentlyMany(models);
+        
+        const result = await this.modelsRepository.remove(models);
+        return {affected: result.length, raw: []};
     }
 
     public async restore(
@@ -95,10 +117,13 @@ export class ModelsService {
             model.isActive = true;
             model.deleteReason = DeleteReasons.None;
         });
-        await this.modelsRepository.save(restoredModels);
+        const result = await this.modelsRepository.save(restoredModels);
 
         // emit event to delete model-segments with the recovered model
         this.eventEmitter.emit('model.restored', restoredModels, deleteAll);
+
+        // logger
+        this.loggerService.restoreMany(result, deleteAll, deleteReason);
         return true;
     }
 

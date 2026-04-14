@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { CreateProductDto } from './dtos/create.product.dto';
 import { Product } from './models/product.model';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,10 +7,10 @@ import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { DeleteResult } from 'typeorm/browser';
 import { UpdateProductDto } from './dtos/update.product.dto';
 import { ModelSegmentsService } from '../model-segments/model-segments.service';
-import { UpdateResult } from 'typeorm/browser';
-import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
+import { OnEvent } from '@nestjs/event-emitter';
 import { ModelSegment } from '../model-segments/models/model-segment.model';
 import { DeleteReasons } from '../enums/delete-reasons.enum';
+import { LoggerService } from 'src/logger/logger.service';
 
 @Injectable()
 export class ProductsService {
@@ -19,6 +19,7 @@ export class ProductsService {
         private productsRepository: Repository<Product>,
         private modelSegmentService: ModelSegmentsService,
         private cloudinaryService: CloudinaryService,
+        private loggerService: LoggerService
     ) { }
 
     public async create(createProductDto: CreateProductDto, productImgs: Express.Multer.File[]): Promise<Product> {
@@ -38,8 +39,11 @@ export class ProductsService {
         }));
 
         newProduct.images_url = productImages;
-
-        return await this.productsRepository.save(newProduct);
+        const result = await this.productsRepository.save(newProduct);
+        
+        // logger
+        this.loggerService.create(result);
+        return result;
     }
 
     public async findAll(isActive: boolean = true): Promise<Product[]> {
@@ -57,6 +61,8 @@ export class ProductsService {
     public async update(id: number, updateProductDto: UpdateProductDto, newImages: Express.Multer.File[] = []): Promise<Product> {
         const product = await this.findOne(id);
 
+        const prev = structuredClone(product);
+
         if (newImages.length > 0) {
             this.updateImages(product, newImages, updateProductDto.imagesIndex);
         }
@@ -66,8 +72,12 @@ export class ProductsService {
             product.modelSegment = modelSegment;
         }
 
-        const updatedProduct = { ...product, ...updateProductDto };
-        return await this.productsRepository.save(updatedProduct);
+        const updatedProduct = Object.assign(product, updateProductDto);
+        const result = await this.productsRepository.save(updatedProduct);
+
+        // logger
+        this.loggerService.update(prev, result);
+        return result;
     }
 
     private async updateImages(product: Product, newImages: Express.Multer.File[], imagesIndex: number[]): Promise<void> {
@@ -91,6 +101,9 @@ export class ProductsService {
             product.deleteReason = deleteReason;
         });
         const result = await this.productsRepository.save(deletedProducts);
+
+        // logger
+        this.loggerService.deleteMany(result, deleteReason);
         return { affected: result.length, raw: [] };
     }
 
@@ -105,8 +118,10 @@ export class ProductsService {
             }))
         }))
 
-        const result = await this.productsRepository.remove(products);
+        // logger
+        this.loggerService.deletePermanentlyMany(products);
 
+        const result = await this.productsRepository.remove(products);
         return {affected: result.length, raw: []};
     }
 
@@ -117,6 +132,9 @@ export class ProductsService {
             product.deleteReason = DeleteReasons.None;
         });
         const result = await this.productsRepository.save(deletedProducts);
+
+        // logger
+        this.loggerService.restoreMany(result, false, deleteReason);
         return  result.length > 0;
     }  
     

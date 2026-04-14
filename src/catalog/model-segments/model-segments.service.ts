@@ -8,6 +8,7 @@ import { DeleteResult } from 'typeorm/browser';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { DeleteReasons } from '../enums/delete-reasons.enum';
 import { Model } from '../models/models/model.model';
+import { LoggerService } from 'src/logger/logger.service';
 
 @Injectable()
 export class ModelSegmentsService {
@@ -17,6 +18,7 @@ export class ModelSegmentsService {
         private modelSegmentsRepository: Repository<ModelSegment>,
         private modelService: ModelsService,
         private eventEmitter: EventEmitter2,
+        private loggerService: LoggerService
     ) { }
 
     public async create(modelSegmentDto: CreateModelSegmentDto): Promise<ModelSegment> {
@@ -34,6 +36,9 @@ export class ModelSegmentsService {
 
         const newModelSegment = this.modelSegmentsRepository.create({ model, ...modelSegmentDto });
         const result = await this.modelSegmentsRepository.save(newModelSegment);
+
+        // logger
+        this.loggerService.create(result);
 
         return result;
     }
@@ -61,11 +66,16 @@ export class ModelSegmentsService {
         // emit event to delete products with the deleted model segment
         this.eventEmitter.emit('modelSegment.deleted', deletedModelSegment);
 
+        // logger
+        this.loggerService.deleteOne(result, deleteReason);
         return { affected: result? 1 : 0, raw: [] };
     }
 
     private async removePermanently(id: number): Promise<DeleteResult> {
         const modelSegment = await this.modelSegmentsRepository.findBy({id});
+        
+        // logger
+        this.loggerService.deletePermanentlyMany(modelSegment);
 
         const result = await this.modelSegmentsRepository.remove(modelSegment);
         return { affected: result? 1 : 0, raw: [] };
@@ -84,6 +94,8 @@ export class ModelSegmentsService {
         // emit event to delete products with the recovered model segment
         this.eventEmitter.emit('modelSegment.restored', restoredModelSegment, deleteAll);
 
+        // logger
+        this.loggerService.restoreOne(result, deleteAll);
         return true;
     }
 

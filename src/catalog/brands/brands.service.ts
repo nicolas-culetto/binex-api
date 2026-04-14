@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Brand } from './models/brand.model';
@@ -8,14 +8,17 @@ import { DeleteResult } from 'typeorm/browser';
 import { UpdateBrandDto } from './dtos/update.brand.dto';
 import { Categories } from '../enums/categories.enum';
 import { EventEmitter2 } from 'eventemitter2';
+import { LoggerService } from 'src/logger/logger.service';
 
 @Injectable()
 export class BrandsService {
+
     constructor(
         @InjectRepository(Brand)
         private brandsRepository: Repository<Brand>,
         private cloudinaryService: CloudinaryService,
-        private eventEmitter: EventEmitter2
+        private eventEmitter: EventEmitter2,
+        private loggerService: LoggerService
     ) { }
 
     public async create(createBrandDto: CreateBrandDto, brandImg: Express.Multer.File): Promise<Brand> {
@@ -29,8 +32,11 @@ export class BrandsService {
         createBrandDto["logoUrl"] = logoUrl;
 
         const newBrand = this.brandsRepository.create(createBrandDto);
+        const result = await this.brandsRepository.save(newBrand);
 
-        return this.brandsRepository.save(newBrand);
+        // logger
+        this.loggerService.create(result);
+        return result;
     }
 
     public async findAll(isActive: boolean = true): Promise<Brand[]> {
@@ -58,6 +64,7 @@ export class BrandsService {
     public async update(id: number, updateBrandDto: UpdateBrandDto, newLogo: Express.Multer.File | null): Promise<Brand> {
         // validate
         const brand = await this.findOne(id);
+        const prev = structuredClone(brand);
 
         if (newLogo) {
             // upload brand image
@@ -69,7 +76,11 @@ export class BrandsService {
             brand.name = updateBrandDto.name;
         }
 
-        return this.brandsRepository.save(brand);
+        const result = await this.brandsRepository.save(brand);
+
+        // logger
+        this.loggerService.update(prev, result);
+        return result;
     }
 
     public async remove(id: number): Promise<DeleteResult> {
@@ -77,11 +88,14 @@ export class BrandsService {
 
         // change state to inactive
         deletedBrand.isActive = false;
-        await this.brandsRepository.save(deletedBrand);
+        const result = await this.brandsRepository.save(deletedBrand);
 
         // emit event to delete models with the deleted brand
         this.eventEmitter.emit('brand.deleted', deletedBrand);
-        return { affected: 1, raw: [] };
+
+        // logger
+        this.loggerService.deleteOne(result);
+        return { affected: result? 1 : 0, raw: [] };
     }
 
     public async restore(id: number, deleteAll: boolean = false): Promise<boolean> {
@@ -91,10 +105,13 @@ export class BrandsService {
 
         // change state to active
         restoredBrand.isActive = true;
-        await this.brandsRepository.save(restoredBrand);
+        const result = await this.brandsRepository.save(restoredBrand);
 
         // emit event to delete modelswith the recovered brand
         this.eventEmitter.emit('brand.restored', restoredBrand, deleteAll);
+
+        // logger
+        this.loggerService.restoreOne(result, deleteAll);
         return true;
     }
 }
