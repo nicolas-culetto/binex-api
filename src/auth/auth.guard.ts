@@ -2,12 +2,17 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException} from 
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
+import { ClsService } from 'nestjs-cls';
 import { IS_PUBLIC_KEY } from 'src/public/public.decorator';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private jwtService: JwtService, private reflector: Reflector, private userService: UsersService) {}
+  constructor(private jwtService: JwtService, 
+    private reflector: Reflector, 
+    private userService: UsersService,
+    private cls: ClsService
+  ) {}
 
   async canActivate(
     context: ExecutionContext,
@@ -35,6 +40,9 @@ export class AuthGuard implements CanActivate {
       await this.userService.findOne(payload.sub);
 
       request['user'] = payload;
+
+      //save id in memory to logger
+      this.cls.set('user', payload);
     } catch {
       throw new UnauthorizedException("Invalid token");
     }

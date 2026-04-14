@@ -12,6 +12,8 @@ import { CloudinaryProvider } from './cloudinary/cloudinary.provider';
 import { CatalogModule } from './catalog/catalog.module';
 import { EventEmitter } from 'stream';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { LoggerModule } from './logger/logger.module';
+import { ClsModule } from 'nestjs-cls';
 
 @Module({
   imports: [
@@ -40,7 +42,12 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
     CaslModule,
     CloudinaryModule,
     CatalogModule,
-    EventEmitterModule.forRoot()
+    EventEmitterModule.forRoot(),
+    LoggerModule,
+    ClsModule.forRoot({
+      global: true,
+      middleware: {mount: true}
+    })
   ],
   controllers: [AppController],
   providers: [AppService, CloudinaryProvider ],
