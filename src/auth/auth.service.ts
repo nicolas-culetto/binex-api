@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, OnApplicationBootstrap, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { SignInDto } from './dto/sign_in.dto';
 import { JwtService } from '@nestjs/jwt';
@@ -6,13 +6,30 @@ import * as bcrypt from 'bcrypt';
 import { NotFoundError } from 'rxjs';
 import { CreateUserDto } from 'src/users/dto/create.user.dto';
 import { User } from 'src/users/models/user.model';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnApplicationBootstrap {
     constructor(
         private usersService: UsersService,
-        private jwtService: JwtService
+        private jwtService: JwtService,
+        private configService: ConfigService
     ) {}
+
+    onApplicationBootstrap() {
+        this.createRootAdmin()
+    }
+
+    private async createRootAdmin(): Promise<void>{
+        const adminDto = {    
+            email: this.configService.getOrThrow('rootAdminEmail'),
+            password: this.configService.getOrThrow('rootAdminPassword'),
+            firstName: this.configService.getOrThrow('rootAdminFirstName'),
+            lastName: this.configService.getOrThrow('rootAdminLastName'),
+        }
+
+        await this.register(adminDto, true);
+    }
 
     async signIn(signInDto: SignInDto): Promise<any> {
         const user = await this.usersService.findByEmail(signInDto.email);

@@ -10,5 +10,9 @@ export default () => ({
     password: process.env.DATABASE_PASSWORD as string,
     database: process.env.DATABASE as string,
   },
-  cloudinaryUrl: process.env.CLOUDINARY_URL as string
+  cloudinaryUrl: process.env.CLOUDINARY_URL as string,
+  rootAdminEmail: process.env.ROOT_ADMIN_EMAIL as string,
+  rootAdminPassword: process.env.ROOT_ADMIN_PASSWORD as string,
+  rootAdminFirstName: process.env.ROOT_ADMIN_FIRST_NAME as string,
+  rootAdminLastName: process.env.ROOT_ADMIN_LAST_NAME as string
 });
