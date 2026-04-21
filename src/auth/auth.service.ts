@@ -13,7 +13,7 @@ export class AuthService implements OnApplicationBootstrap {
     constructor(
         private usersService: UsersService,
         private jwtService: JwtService,
-        private configService: ConfigService
+        private configService: ConfigService,
     ) {}
 
     onApplicationBootstrap() {
@@ -28,7 +28,14 @@ export class AuthService implements OnApplicationBootstrap {
             lastName: this.configService.getOrThrow('rootAdminLastName'),
         }
 
-        await this.register(adminDto, true);
+        const validation = await this.usersService.findByEmail(adminDto.email);
+
+        if(validation){
+            return;
+        }
+
+        // create admin
+        this.register(adminDto, true);
     }
 
     async signIn(signInDto: SignInDto): Promise<any> {
