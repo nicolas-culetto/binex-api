@@ -1,4 +1,5 @@
 export default () => ({
+  nodeEnv: process.env.NODE_ENV as string || "production",
   port: parseInt(process.env.PORT as string, 10) || 3000,
   jwtSecret: process.env.JWT_SECRET as string,
   database: {
