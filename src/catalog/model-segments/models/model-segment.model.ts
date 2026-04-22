@@ -2,14 +2,14 @@ import { DeleteReasons } from "src/catalog/enums/delete-reasons.enum";
 import { Segments } from "src/catalog/enums/segments.enum";
 import { Model } from "src/catalog/models/models/model.model";
 import { Product } from "src/catalog/products/models/product.model";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class ModelSegment {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @ManyToOne(() => Model, model => model.id, {onDelete: 'CASCADE'})
+    @ManyToOne(() => Model, model => model.id, { onDelete: 'CASCADE' })
     model!: Model;
 
     @Column({ type: 'enum', enum: Segments })
@@ -23,4 +23,10 @@ export class ModelSegment {
 
     @Column({ type: 'enum', enum: DeleteReasons, default: DeleteReasons.None })
     deleteReason!: DeleteReasons;
+
+    @CreateDateColumn()
+    createdAt!: Date;
+
+    @UpdateDateColumn()
+    updatedAt!: Date;
 }

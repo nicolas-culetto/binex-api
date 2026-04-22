@@ -5,7 +5,7 @@ export class UpdateModelDto {
     @IsOptional()
     @IsString()
     @MinLength(2)
-    @MaxLength(20)
+    @MaxLength(60)
     name!: string;
 
     @IsOptional()

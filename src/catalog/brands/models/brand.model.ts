@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Categories } from "../../enums/categories.enum";
 import { Model } from "src/catalog/models/models/model.model";
 
@@ -18,4 +18,10 @@ export class Brand{
 
     @Column({default: true})
     isActive!: boolean;
+
+    @CreateDateColumn()
+    createdAt!: Date;
+
+    @UpdateDateColumn()
+    updatedAt!: Date;
 }
