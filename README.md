@@ -23,6 +23,18 @@ Order management
 $ npm install
 ```
 
+## Local Postgres Database
+```bash
+# Docker restart (delete all)
+$ docker-compose down -v
+
+# Docker up
+$ docker-compose up --build
+
+# Database seed
+$ npx ts-node src/database/seeds/seed.ts
+```
+
 ## Compile and run the project
 
 ```bash
