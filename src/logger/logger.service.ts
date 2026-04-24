@@ -213,7 +213,7 @@ export class LoggerService {
 
         const changedKeys = Object.keys({ ...plainPrev, ...plainResult })
             .filter(key => {
-                return !isEqual(String(plainPrev[key]), String(plainResult[key]));
+                return plainResult[key] != undefined && !isEqual(String(plainPrev[key]), String(plainResult[key]));
             })
 
         return changedKeys.map(changeKey => {
