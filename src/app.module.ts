@@ -14,6 +14,7 @@ import { EventEmitter } from 'stream';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { LoggerModule } from './logger/logger.module';
 import { ClsModule } from 'nestjs-cls';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -47,7 +48,8 @@ import { ClsModule } from 'nestjs-cls';
     ClsModule.forRoot({
       global: true,
       middleware: {mount: true}
-    })
+    }),
+    SearchModule
   ],
   controllers: [AppController],
   providers: [AppService, CloudinaryProvider ],
