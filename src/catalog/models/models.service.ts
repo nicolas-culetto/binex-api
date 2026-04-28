@@ -145,9 +145,10 @@ export class ModelsService {
     }
 
     private async getIdsByBrand(brand: Brand): Promise<number[]> {
-        const models = await this.modelsRepository.findBy({
-            brand: brand,
-        });
+        const models = await this.modelsRepository.createQueryBuilder("models")
+        .innerJoinAndSelect("models.brand", "brand")
+        .where("brand.id = :brandId", {brandId: brand.id})
+        .getMany();
 
         return models.map(model => model.id);
     }

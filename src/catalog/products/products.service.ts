@@ -156,7 +156,10 @@ export class ProductsService {
     }
 
     private async getIdsByModelSegment(modelSegment: ModelSegment): Promise<number[]> {
-        const products = await this.productsRepository.findBy({ modelSegment });
+        const products = await this.productsRepository.createQueryBuilder("products")
+        .innerJoinAndSelect("products.modelSegment", "modelSegment")
+        .where("modelSegment.id = :modelSegmentId", {modelSegmentId: modelSegment.id})
+        .getMany();
         return products.map(product => product.id);
     }
 }
