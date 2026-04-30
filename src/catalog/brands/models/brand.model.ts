@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Categories } from "../../enums/categories.enum";
 import { Model } from "src/catalog/models/models/model.model";
+import { Size } from "src/catalog/sizes/models/size.model";
 
 @Entity()
 export class Brand{
@@ -15,6 +16,9 @@ export class Brand{
 
     @OneToMany(() => Model, model => model.brand)
     models!: Model[];
+
+    @OneToMany(() => Size, size => size.brand)
+    sizes!: Size[];
 
     @Column({default: true})
     isActive!: boolean;

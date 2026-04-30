@@ -2,6 +2,7 @@ import { loadBrands } from "./brands.seed"
 import { loadModelsSegments } from "./models-segments.seed";
 import { loadModels } from "./models.seed";
 import { loadProducts } from "./products.seed";
+import { loadSizes } from "./sizes.seed";
 import { config } from "dotenv";
 
 config();
@@ -9,6 +10,7 @@ config();
 async function loadSeed() {
     const jwtToken = await getJwtToken();
     await loadBrands(jwtToken);
+    await loadSizes(jwtToken);
     await loadModels(jwtToken);
     await loadModelsSegments(jwtToken);
     await loadProducts(jwtToken);

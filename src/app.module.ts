@@ -15,6 +15,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { LoggerModule } from './logger/logger.module';
 import { ClsModule } from 'nestjs-cls';
 import { SearchModule } from './search/search.module';
+import { SizesModule } from './catalog/sizes/sizes.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { SearchModule } from './search/search.module';
     }),
     UsersModule,
     AuthModule,
+    SizesModule,
     CaslModule,
     CloudinaryModule,
     CatalogModule,
