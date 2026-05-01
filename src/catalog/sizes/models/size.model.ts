@@ -1,6 +1,8 @@
 import { Brand } from "src/catalog/brands/models/brand.model";
 import { Segments } from "src/catalog/enums/segments.enum";
-import { Column, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Product } from "src/catalog/products/models/product.model";
+import { Stock } from "src/stock/models/stock.model";
+import { Column, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Size{
@@ -27,4 +29,7 @@ export class Size{
 
     @DeleteDateColumn()
     deletedAt!: Date;
+
+    @OneToMany(() => Stock, Product => Product.size)
+    stocks!: Stock[];
 }

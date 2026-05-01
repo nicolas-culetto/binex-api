@@ -16,6 +16,7 @@ import { CaslModule } from 'src/casl/casl.module';
     CaslModule
   ],
   providers: [SizesService],
-  controllers: [SizesController]
+  controllers: [SizesController],
+  exports: [SizesService]
 })
 export class SizesModule {}

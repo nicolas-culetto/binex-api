@@ -15,6 +15,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { LoggerModule } from './logger/logger.module';
 import { ClsModule } from 'nestjs-cls';
 import { SearchModule } from './search/search.module';
+import { StockModule } from './stock/stock.module';
 import { SizesModule } from './catalog/sizes/sizes.module';
 
 @Module({
@@ -51,7 +52,8 @@ import { SizesModule } from './catalog/sizes/sizes.module';
       global: true,
       middleware: {mount: true}
     }),
-    SearchModule
+    SearchModule,
+    StockModule
   ],
   controllers: [AppController],
   providers: [AppService, CloudinaryProvider ],

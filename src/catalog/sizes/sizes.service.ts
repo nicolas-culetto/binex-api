@@ -57,6 +57,14 @@ export class SizesService {
         return result;
     }
 
+    public async findOne(id: number): Promise<Size> {
+        const size = await this.sizeRepository.findOne({ where: { id }});
+
+        if (!size) throw new NotFoundException("Size not found");
+
+        return size;        
+    }
+
     public async update(id: number, updateSizeDto: UpdateSizeDto): Promise<Size> {
         const size = await this.sizeRepository.findOneBy({id});
 

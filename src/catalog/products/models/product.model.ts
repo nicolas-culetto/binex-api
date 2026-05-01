@@ -2,7 +2,8 @@ import { Colors } from "src/catalog/enums/colors.enum";
 import { DeleteReasons } from "src/catalog/enums/delete-reasons.enum";
 import { ModelSegment } from "src/catalog/model-segments/models/model-segment.model";
 import { Model } from "src/catalog/models/models/model.model";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Stock } from "src/stock/models/stock.model";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Product {
@@ -23,6 +24,9 @@ export class Product {
 
     @ManyToOne(() => ModelSegment, modelSegment => modelSegment.products, { onDelete: 'CASCADE' })
     modelSegment!: ModelSegment;
+
+    @OneToMany(() => Stock, stock => stock.product)
+    stocks!: Stock[]
 
     @Column({ default: true })
     isActive!: boolean;
