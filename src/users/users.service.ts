@@ -1,7 +1,7 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './models/user.model';
-import { Repository } from 'typeorm';
+import { IsNull, Not, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create.user.dto';
 import { DeleteResult } from 'typeorm/browser';
 import { UpdateUserDto } from './dto/update.user.dto';
@@ -35,8 +35,8 @@ export class UsersService {
         return savedAdmin;
     }
 
-    public async findAll(isActive: boolean = true): Promise<GetUserDto[]> {
-        const users = await this.usersRepository.find({ where: { isActive } });
+    public async findAll(): Promise<GetUserDto[]> {
+        const users = await this.usersRepository.find();
 
         return users.map(user => {
             const { password, ...rest } = user;
@@ -44,8 +44,34 @@ export class UsersService {
         })
     }
 
-    public async findOne(id: number, isActive: boolean = true): Promise<GetUserDto> {
-        const user = await this.usersRepository.findOneBy({ id, isActive });
+    public async findOne(id: number): Promise<GetUserDto> {
+        const user = await this.usersRepository.findOneBy({ id });
+
+        if (!user) {
+            throw new NotFoundException("User not found");
+        }
+
+        const { password, ...rest } = user;
+        return rest;
+    }
+
+    public async findAllDeleted(): Promise<GetUserDto[]> {
+        const users = await this.usersRepository.find({
+            where: {deletedAt: Not(IsNull())},
+            withDeleted: true
+        });
+
+        return users.map(user => {
+            const { password, ...rest } = user;
+            return rest;
+        })
+    }
+
+    public async findOneDeleted(id: number): Promise<GetUserDto> {
+        const user = await this.usersRepository.findOne({ 
+            where: {id, deletedAt: Not(IsNull())},
+            withDeleted: true
+        });
 
         if (!user) {
             throw new NotFoundException("User not found");
@@ -93,7 +119,7 @@ export class UsersService {
         return result;
     }
 
-    public async remove(id: number): Promise<DeleteResult> {
+    public async remove(id: number): Promise<User> {
         const user = await this.usersRepository.findOneBy({ id });
 
         // validate
@@ -102,31 +128,27 @@ export class UsersService {
         }
 
         // change state
-        user.isActive = false;
-        const result = await this.usersRepository.save(user);
+        const result = await this.usersRepository.softRemove(user);
 
 
         // logger
         this.loggerService.deleteOne(result);
-        return { affected: result ? 1 : 0, raw: [] };
+        return result;
     }
 
     public async restore(
         id: number,
-    ): Promise<boolean> {
-        const restoredUser = await this.usersRepository.findOneBy({ id: id, isActive: false });
+    ): Promise<User> {
+        const result = await this.usersRepository.recover({id});
+        const restoredUser = await this.usersRepository.findOneBy({ id: id});
 
         // validate
         if (!restoredUser) {
             throw new NotFoundException("User not found");
         }
 
-        // change state to active
-        restoredUser.isActive = true;
-        const result = await this.usersRepository.save(restoredUser);
-
         // logger
         this.loggerService.restoreOne(result);
-        return true;
+        return restoredUser;
     }
 }

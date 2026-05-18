@@ -50,7 +50,7 @@ export class SizesController {
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, 'all'))
     async remove(
         @Param('id') id: number,
-    ): Promise<DeleteResult> {
+    ): Promise<Size> {
         return await this.sizesService.remove(id);
     }
 
@@ -59,7 +59,7 @@ export class SizesController {
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, 'all'))
     async restore(
         @Param('id') id: number,
-    ): Promise<UpdateResult> {
+    ): Promise<Size> {
         return await this.sizesService.restore(id);
     }
 }

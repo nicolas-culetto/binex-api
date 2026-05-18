@@ -84,35 +84,29 @@ export class SizesService {
         return result;
     }
 
-    public async remove(id: number): Promise<DeleteResult> {
-        const size = await this.sizeRepository.findBy({id});
-
-        // validation
-        if(size.length == 0){
-            throw new NotFoundException("Size not found")
-        }
-
+    public async remove(id: number): Promise<Size> {
+        const size = await this.findOne(id);
         const result = await this.sizeRepository.softRemove(size);
 
         // event
         this.eventEmitter.emit('size.removed', size);
 
         // logger
-        this.logger.deleteMany(result);
+        this.logger.deleteOne(result);
 
-        return { affected: result.length, raw: []};
+        return result;
     }
 
-    public async restore(id: number): Promise<UpdateResult> {
+    public async restore(id: number): Promise<Size> {
         const result = await this.sizeRepository.restore({id});
-        const restored = await this.sizeRepository.findBy({id});
+        const restored = await this.findOne(id);
 
         // event
         this.eventEmitter.emit('size.restored', restored);
 
         // logger
-        this.logger.restoreMany(restored);
+        this.logger.restoreOne(restored);
 
-        return result;
+        return restored;
     }
 }

@@ -34,10 +34,8 @@ export class BrandsController {
     @Get('all')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Brand))
-    async findAll(
-        @Query('isActive') isActive: boolean = true
-    ): Promise<Brand[]> {
-        return await this.brandService.findAll(isActive);
+    async findAll(): Promise<Brand[]> {
+        return await this.brandService.findAll();
     }
 
     @Get('by-id/:id')
@@ -45,9 +43,24 @@ export class BrandsController {
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Brand))
     async findOne(
         @Param('id') id: number,
-        @Query('isActive') isActive: boolean = true
     ): Promise<Brand> {
-        return await this.brandService.findOne(id, isActive);
+        return await this.brandService.findOne(id);
+    }
+
+    @Get('all-deleted')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.ReadDeleted, Brand))
+    async findAllDeleted(): Promise<Brand[]> {
+        return await this.brandService.findAllDeleted();
+    }
+
+    @Get('by-id-deleted/:id')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.ReadDeleted, Brand))
+    async findOneDeleted(
+        @Param('id') id: number,
+    ): Promise<Brand> {
+        return await this.brandService.findOneDeleted(id);
     }
 
     @Get('categories/:id')
@@ -57,17 +70,22 @@ export class BrandsController {
         return await this.brandService.findCategories(id);
     }
 
-    @Delete('delete')
+    @Delete('delete/:id')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Brand))
-    async delete(@Query('id') id: number): Promise<DeleteResult> {
+    async delete(
+        @Param('id') id: number
+    ): Promise<Brand> {
         return await this.brandService.remove(id);
     }
 
-    @Put('restore')
+    @Put('restore/:id')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Brand))
-    async restore(@Query('id') id: number, @Query('deleteAll') deleteAll: boolean = false): Promise<boolean> {
+    async restore(
+        @Param('id') id: number, 
+        @Query('deleteAll') deleteAll: boolean = false
+    ): Promise<Brand> {
         return await this.brandService.restore(id, deleteAll);
     }
 }

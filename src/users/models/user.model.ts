@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -17,9 +17,6 @@ export class User {
   @Column()
   lastName!: string;
 
-  @Column({ default: true })
-  isActive!: boolean;
-
   @Column({ default: false })
   isAdmin!: boolean;
 
@@ -28,4 +25,7 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt!: Date;
+
+  @DeleteDateColumn()
+  deletedAt?: Date;
 }

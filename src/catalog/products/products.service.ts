@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, Logger, NotFoundException } from '@nes
 import { CreateProductDto } from './dtos/create.product.dto';
 import { Product } from './models/product.model';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { In, IsNull, Not, Repository } from 'typeorm';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { DeleteResult } from 'typeorm/browser';
 import { UpdateProductDto } from './dtos/update.product.dto';
@@ -40,18 +40,43 @@ export class ProductsService {
 
         newProduct.images_url = productImages;
         const result = await this.productsRepository.save(newProduct);
-        
+
         // logger
         this.loggerService.create(result);
         return result;
     }
 
-    public async findAll(isActive: boolean = true): Promise<Product[]> {
-        return await this.productsRepository.find({ where: { isActive }, relations: ['modelSegment', 'modelSegment.model', 'modelSegment.model.brand'] });
+    public async findAll(): Promise<Product[]> {
+        return await this.productsRepository.find({
+            relations: ['modelSegment', 'modelSegment.model', 'modelSegment.model.brand']
+        });
     }
 
-    public async findOne(id: number, isActive: boolean = true): Promise<Product> {
-        const product = await this.productsRepository.findOne({ where: { id, isActive }, relations: ['modelSegment', 'modelSegment.model', 'modelSegment.model.brand'] });
+    public async findOne(id: number): Promise<Product> {
+        const product = await this.productsRepository.findOne({
+            where: { id },
+            relations: ['modelSegment', 'modelSegment.model', 'modelSegment.model.brand']
+        });
+
+        if (!product) throw new NotFoundException("Product not found");
+
+        return product;
+    }
+
+    public async findAllDeleted(): Promise<Product[]> {
+        return await this.productsRepository.find({
+            where: { deletedAt: Not(IsNull()) },
+            relations: ['modelSegment', 'modelSegment.model', 'modelSegment.model.brand'],
+            withDeleted: true
+        });
+    }
+
+    public async findOneDeleted(id: number): Promise<Product> {
+        const product = await this.productsRepository.findOne({
+            where: { id, deletedAt: Not(IsNull()) },
+            relations: ['modelSegment', 'modelSegment.model', 'modelSegment.model.brand'],
+            withDeleted: true
+        });
 
         if (!product) throw new NotFoundException("Product not found");
 
@@ -93,22 +118,21 @@ export class ProductsService {
         })));
     }
 
-    public async remove(ids: number[], deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<DeleteResult> {
-        const deletedProducts = await this.productsRepository.findBy({id: In(ids)});
-
-        deletedProducts.forEach(product => {
-            product.isActive = false;
-            product.deleteReason = deleteReason;
-        });
-        const result = await this.productsRepository.save(deletedProducts);
+    public async remove(ids: number[], deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<Product[]> {
+        await this.productsRepository.update({ id: In(ids) }, { deleteReason });
+        const deletedProducts = await this.productsRepository.findBy({ id: In(ids) });
+        const result = await this.productsRepository.softRemove(deletedProducts);
 
         // logger
         this.loggerService.deleteMany(result, deleteReason);
-        return { affected: result.length, raw: [] };
+        return result;
     }
 
     private async removePermanently(ids: number[]): Promise<DeleteResult> {
-        const products = await this.productsRepository.findBy({id: In(ids)})
+        const products = await this.productsRepository.find({
+            where: { id: In(ids) },
+            withDeleted: true
+        });
 
         // delete images from cloudinary
         await Promise.all(products.map(async product => {
@@ -122,22 +146,21 @@ export class ProductsService {
         this.loggerService.deletePermanentlyMany(products);
 
         const result = await this.productsRepository.remove(products);
-        return {affected: result.length, raw: []};
+        return { affected: result.length, raw: [] };
     }
 
-    public async restore(ids: number[], deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<boolean> {
-        const deletedProducts = await this.productsRepository.findBy({id: In(ids), isActive: false, deleteReason});
-        deletedProducts.forEach(product => {
-            product.isActive = true;
-            product.deleteReason = DeleteReasons.None;
+    public async restore(ids: number[], deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<Product[]> {
+        await this.productsRepository.restore({ id: In(ids) });
+        await this.productsRepository.update({ id: In(ids) }, { deleteReason: null });
+        const deletedProducts = await this.productsRepository.find({
+            where: { id: In(ids) }
         });
-        const result = await this.productsRepository.save(deletedProducts);
 
         // logger
-        this.loggerService.restoreMany(result, false, deleteReason);
-        return  result.length > 0;
-    }  
-    
+        this.loggerService.restoreMany(deletedProducts, false, deleteReason);
+        return deletedProducts;
+    }
+
     @OnEvent('modelSegment.deleted')
     async handleModelSegmentDeleted(deletedModelSegments: ModelSegment) {
         const productsIds = await this.getIdsByModelSegment(deletedModelSegments);
@@ -148,18 +171,19 @@ export class ProductsService {
     async handleModelSegmentRestored(restoredModelSegments: ModelSegment, deleteAll: boolean = false) {
         const productsIds = await this.getIdsByModelSegment(restoredModelSegments);
 
-        if(deleteAll) {
+        if (deleteAll) {
             this.removePermanently(productsIds);
-        } else {    
+        } else {
             this.restore(productsIds, DeleteReasons.Cascade);
         }
     }
 
     private async getIdsByModelSegment(modelSegment: ModelSegment): Promise<number[]> {
         const products = await this.productsRepository.createQueryBuilder("products")
-        .innerJoinAndSelect("products.modelSegment", "modelSegment")
-        .where("modelSegment.id = :modelSegmentId", {modelSegmentId: modelSegment.id})
-        .getMany();
+            .withDeleted()
+            .innerJoinAndSelect("products.modelSegment", "modelSegment")
+            .where("modelSegment.id = :modelSegmentId", { modelSegmentId: modelSegment.id })
+            .getMany();
         return products.map(product => product.id);
     }
 }

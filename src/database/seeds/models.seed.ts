@@ -23,7 +23,6 @@ export async function loadModels(jwtToken: string) {
     // await finish of stream
     await finished(stream);
     console.log("Raw Models Data:")
-    console.log(rawData);
 
     for (const data of rawData) {
         try {

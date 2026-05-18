@@ -1,7 +1,7 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ModelSegment } from './models/model-segment.model';
-import { In, Repository } from 'typeorm';
+import { In, IsNull, Not, Repository } from 'typeorm';
 import { CreateModelSegmentDto } from './dtos/create.model-segment.dto';
 import { ModelsService } from '../models/models.service';
 import { DeleteResult } from 'typeorm/browser';
@@ -28,12 +28,11 @@ export class ModelSegmentsService {
             throw new ConflictException({
                 message: "ModelSegment already exists",
                 id: validate.id,
-                canRestore: !validate.isActive
+                canRestore: validate.createdAt != null
             });
         }
 
         const model = await this.modelService.findOne(modelSegmentDto.modelId);
-
         const newModelSegment = this.modelSegmentsRepository.create({ model, ...modelSegmentDto });
         const result = await this.modelSegmentsRepository.save(newModelSegment);
 
@@ -43,60 +42,75 @@ export class ModelSegmentsService {
         return result;
     }
 
-    public async findAll(isActive: boolean = true): Promise<ModelSegment[]> {
-        return await this.modelSegmentsRepository.find({ where: { isActive }, relations: ['model'] });
+    public async findAll(): Promise<ModelSegment[]> {
+        return await this.modelSegmentsRepository.find({ relations: ['model'] });
     }
 
-    public async findOne(id: number, isActive: boolean = true): Promise<ModelSegment> {
-        const modelSegment = await this.modelSegmentsRepository.findOne({ where: { id, isActive }, relations: ['model'] });
+    public async findOne(id: number): Promise<ModelSegment> {
+        const modelSegment = await this.modelSegmentsRepository.findOne({ where: { id }, relations: ['model'], withDeleted: true });
 
         if (!modelSegment) throw new NotFoundException("ModelSegment not found");
 
         return modelSegment;
     }
 
-    public async remove(id: number, deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<DeleteResult> {
-        const deletedModelSegment = await this.findOne(id);
+    public async findAllDeleted(): Promise<ModelSegment[]> {
+        return await this.modelSegmentsRepository.find({
+            where: { deletedAt: Not(IsNull()) },
+            relations: ['model'],
+            withDeleted: true
+        });
+    }
 
-        // change state to inactive
-        deletedModelSegment.isActive = false;
-        deletedModelSegment.deleteReason = deleteReason;
-        const result = await this.modelSegmentsRepository.save(deletedModelSegment);
+    public async findOneDeleted(id: number): Promise<ModelSegment> {
+        const modelSegment = await this.modelSegmentsRepository.findOne({
+            where: { id, deletedAt: Not(IsNull()) },
+            relations: ['model'],
+            withDeleted: true
+        });
+
+        if (!modelSegment) throw new NotFoundException("ModelSegment not found");
+
+        return modelSegment;
+    }
+
+    public async remove(id: number, deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<ModelSegment> {
+        await this.modelSegmentsRepository.update({ id }, { deleteReason });
+        const deletedModelSegment = await this.findOne(id);
+        const result = await this.modelSegmentsRepository.softRemove(deletedModelSegment);
 
         // emit event to delete products with the deleted model segment
         this.eventEmitter.emit('modelSegment.deleted', deletedModelSegment);
 
         // logger
         this.loggerService.deleteOne(result, deleteReason);
-        return { affected: result? 1 : 0, raw: [] };
+        return result
     }
 
     private async removePermanently(id: number): Promise<DeleteResult> {
-        const modelSegment = await this.modelSegmentsRepository.findBy({id});
-        
+        const modelSegment = await this.modelSegmentsRepository.find({
+            where: { id },
+            withDeleted: true
+        });
+
         // logger
         this.loggerService.deletePermanentlyMany(modelSegment);
 
         const result = await this.modelSegmentsRepository.remove(modelSegment);
-        return { affected: result? 1 : 0, raw: [] };
+        return { affected: result ? 1 : 0, raw: [] };
     }
 
-    public async restore(id: number, deleteAll: boolean = false, deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<boolean> {
-        const restoredModelSegment = await this.modelSegmentsRepository.findOneBy({ id, isActive: false, deleteReason });
-
-        if (!restoredModelSegment) throw new NotFoundException("ModelSegment not found");
-
-        // change state to active
-        restoredModelSegment.isActive = true;
-        restoredModelSegment.deleteReason = DeleteReasons.None;
-        const result = await this.modelSegmentsRepository.save(restoredModelSegment);
+    public async restore(id: number, deleteAll: boolean = false, deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<ModelSegment> {
+        await this.modelSegmentsRepository.restore({ id });
+        await this.modelSegmentsRepository.update({id}, { deleteReason: null });
+        const restoredModelSegment = await this.findOne(id);
 
         // emit event to delete products with the recovered model segment
         this.eventEmitter.emit('modelSegment.restored', restoredModelSegment, deleteAll);
 
         // logger
-        this.loggerService.restoreOne(result, deleteAll);
-        return true;
+        this.loggerService.restoreOne(restoredModelSegment, deleteAll, deleteReason);
+        return restoredModelSegment;
     }
 
     @OnEvent('model.deleted')
@@ -119,8 +133,10 @@ export class ModelSegmentsService {
     private async getIdsByModels(models: Model[]): Promise<number[]> {
         const modelIds = models.map(m => m.id);
 
-        const modelSegments = await this.modelSegmentsRepository.findBy({
-            model: In(modelIds),
+        const modelSegments = await this.modelSegmentsRepository.find({
+            where: { model: In(modelIds) },
+            relations: ['model'],
+            withDeleted: true
         });
 
         return modelSegments.map(modelSegment => modelSegment.id);

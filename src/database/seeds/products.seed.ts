@@ -26,7 +26,6 @@ export async function loadProducts(jwtToken: string) {
     // await finish of stream
     await finished(stream);
     console.log("Raw Products Data:")
-    console.log(rawData);
 
     for (const data of rawData) {
         try {

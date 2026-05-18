@@ -28,15 +28,29 @@ export class ProductsController {
     @Get('all')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Product))
-    async findAll(@Query('isActive') isActive: boolean = true): Promise<Product[]> {
-        return await this.productService.findAll(isActive);
+    async findAll(): Promise<Product[]> {
+        return await this.productService.findAll();
     }
 
     @Get('by-id/:id')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Product))
-    async findOne(@Param('id') id: number, @Query('isActive') isActive: boolean = true): Promise<Product> {
-        return await this.productService.findOne(id, isActive);
+    async findOne(@Param('id') id: number): Promise<Product> {
+        return await this.productService.findOne(id);
+    }
+
+    @Get('all-deleted')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.ReadDeleted, Product))
+    async findAllDeleted(): Promise<Product[]> {
+        return await this.productService.findAllDeleted();
+    }
+
+    @Get('by-id-deleted/:id')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.ReadDeleted, Product))
+    async findOneDeleted(@Param('id') id: number): Promise<Product> {
+        return await this.productService.findOneDeleted(id);
     }
 
     @Put('update/:id')
@@ -50,14 +64,20 @@ export class ProductsController {
     @Delete('delete')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Product))
-    async remove(@Body() deleteProductsDto: DeleteProductsDto, @Query('deleteReason') deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<DeleteResult> {
-        return await this.productService.remove(deleteProductsDto.ids, deleteReason);
+    async remove(
+        @Query('ids') ids: number[], 
+        @Query('deleteReason') deleteReason: DeleteReasons = DeleteReasons.Manual
+    ): Promise<Product[]> {
+        return await this.productService.remove(ids, deleteReason);
     }
 
     @Put('restore')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Product))
-    async restore(@Body() restoreProductsDto: RestoreProductsDto, @Query('deleteReason') deleteReason: DeleteReasons = DeleteReasons.Manual): Promise<boolean> {
-        return await this.productService.restore(restoreProductsDto.ids, deleteReason);
+    async restore(
+        @Query('ids') ids: number[],
+        @Query('deleteReason') deleteReason: DeleteReasons = DeleteReasons.Manual
+    ): Promise<Product[]> {
+        return await this.productService.restore(ids, deleteReason);
     }
 }

@@ -8,9 +8,7 @@ import { CreateModelDto } from './dtos/create.model.dto';
 import { ModelsService } from './models.service';
 import { DeleteResult } from 'typeorm';
 import { UpdateModelDto } from './dtos/update.model.dto';
-import { DeleteModelsDto } from './dtos/delete.models.dto';
 import { DeleteReasons } from '../enums/delete-reasons.enum';
-import { RestoreModelsDto } from './dtos/restore.models.dot';
 import { Product } from '../products/models/product.model';
 
 @Controller('models')
@@ -29,10 +27,8 @@ export class ModelsController {
     @Get('all')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Model))
-    async findAll(
-        @Query('isActive') isActive: boolean = true
-    ): Promise<Model[]> {
-        return await this.modelsService.findAll(isActive);
+    async findAll(): Promise<Model[]> {
+        return await this.modelsService.findAll();
     }
 
     @Get('by-id/:id')
@@ -40,9 +36,24 @@ export class ModelsController {
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, Model))
     async findOne(
         @Param('id') id: number,
-        @Query('isActive') isActive: boolean = true
     ): Promise<Model> {
-        return await this.modelsService.findOne(id, isActive);
+        return await this.modelsService.findOne(id);
+    }
+
+    @Get('all-deleted')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.ReadDeleted, Model))
+    async findAllDeleted(): Promise<Model[]> {
+        return await this.modelsService.findAllDeleted();
+    }
+
+    @Get('by-id-deleted/:id')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.ReadDeleted, Model))
+    async findOneDeleted(
+        @Param('id') id: number,
+    ): Promise<Model> {
+        return await this.modelsService.findOneDeleted(id);
     }
 
     @Put('update/:id')
@@ -59,20 +70,20 @@ export class ModelsController {
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Model))
     async delete(
-        @Body() deleteModelDto: DeleteModelsDto,
+        @Query('ids') ids: number[],
         @Query('deleteReason') deleteReason: DeleteReasons = DeleteReasons.Manual
-    ): Promise<DeleteResult> {
-        return this.modelsService.remove(deleteModelDto.ids, deleteReason);
+    ): Promise<Model[]> {
+        return this.modelsService.remove(ids, deleteReason);
     }
 
     @Put('restore')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Product))
     async restore(
-        @Body() restoreModelsDto: RestoreModelsDto,
+        @Query('ids') ids: number[],
         @Query('deleteAll') deleteAll: boolean = false,
         @Query('deleteReason') deleteReason: DeleteReasons = DeleteReasons.Manual
-    ): Promise<boolean> {
-        return await this.modelsService.restore(restoreModelsDto.ids, deleteAll, deleteReason);
+    ): Promise<Model[]> {
+        return await this.modelsService.restore(ids, deleteAll, deleteReason);
     }
 }

@@ -3,7 +3,7 @@ import { DeleteReasons } from "src/catalog/enums/delete-reasons.enum";
 import { ModelSegment } from "src/catalog/model-segments/models/model-segment.model";
 import { Model } from "src/catalog/models/models/model.model";
 import { Stock } from "src/stock/models/stock.model";
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Product {
@@ -28,15 +28,15 @@ export class Product {
     @OneToMany(() => Stock, stock => stock.product)
     stocks!: Stock[]
 
-    @Column({ default: true })
-    isActive!: boolean;
-
-    @Column({ type: 'enum', enum: DeleteReasons, default: DeleteReasons.None })
-    deleteReason!: DeleteReasons;
+    @Column({ type: 'enum', enum: DeleteReasons, nullable: true})
+    deleteReason: DeleteReasons | null = null;
 
     @CreateDateColumn()
     createdAt!: Date;
 
     @UpdateDateColumn()
     updatedAt!: Date;
+
+    @DeleteDateColumn()
+    deletedAt!: Date;
 }

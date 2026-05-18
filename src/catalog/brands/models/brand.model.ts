@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Categories } from "../../enums/categories.enum";
 import { Model } from "src/catalog/models/models/model.model";
 import { Size } from "src/catalog/sizes/models/size.model";
@@ -20,12 +20,12 @@ export class Brand{
     @OneToMany(() => Size, size => size.brand)
     sizes!: Size[];
 
-    @Column({default: true})
-    isActive!: boolean;
-
     @CreateDateColumn()
     createdAt!: Date;
 
     @UpdateDateColumn()
     updatedAt!: Date;
+
+    @DeleteDateColumn()
+    deletedAt!: Date;
 }

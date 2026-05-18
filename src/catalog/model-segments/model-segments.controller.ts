@@ -27,10 +27,8 @@ export class ModelSegmentsController {
     @Get('all')
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, ModelSegment))
-    async findAll(
-        @Query('isActive') isActive: boolean = true
-    ): Promise<ModelSegment[]> {
-        return await this.modelSegmentsService.findAll(isActive);
+    async findAll(): Promise<ModelSegment[]> {
+        return await this.modelSegmentsService.findAll();
     }
 
     @Get('by-id/:id')
@@ -38,9 +36,24 @@ export class ModelSegmentsController {
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, ModelSegment))
     async findOne(
         @Param('id') id: number, 
-        @Query('isActive') isActive: boolean = true
     ): Promise<ModelSegment> {
-        return await this.modelSegmentsService.findOne(id, isActive);
+        return await this.modelSegmentsService.findOne(id);
+    }
+
+    @Get('all-deleted')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.ReadDeleted, ModelSegment))
+    async findAllDeleted(): Promise<ModelSegment[]> {
+        return await this.modelSegmentsService.findAllDeleted();
+    }
+
+    @Get('by-id-deleted/:id')
+    @UseGuards(PoliciesGuard)
+    @CheckPolicies((ability: AppAbility) => ability.can(Action.ReadDeleted, ModelSegment))
+    async findOneDeleted(
+        @Param('id') id: number, 
+    ): Promise<ModelSegment> {
+        return await this.modelSegmentsService.findOneDeleted(id);
     }
 
     @Delete('delete/:id')
@@ -49,7 +62,7 @@ export class ModelSegmentsController {
     async remove(
         @Param('id') id: number, 
         @Query('deleteReason') deleteReason: DeleteReasons = DeleteReasons.Manual
-    ): Promise<DeleteResult> {
+    ): Promise<ModelSegment> {
         return await this.modelSegmentsService.remove(id, deleteReason);
     }
 
@@ -60,7 +73,7 @@ export class ModelSegmentsController {
         @Param('id') id: number, 
         @Query('deleteAll') deleteAll: boolean = false, 
         @Query('deleteReason') deleteReason: DeleteReasons = DeleteReasons.Manual
-    ): Promise<boolean> {
+    ): Promise<ModelSegment> {
         return await this.modelSegmentsService.restore(id, deleteAll, deleteReason);
     }
 }

@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Not, Repository } from 'typeorm';
 import { Brand } from './models/brand.model';
 import { CreateBrandDto } from './dtos/create.brand.dto';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
@@ -39,12 +39,30 @@ export class BrandsService {
         return result;
     }
 
-    public async findAll(isActive: boolean = true): Promise<Brand[]> {
-        return await this.brandsRepository.find({where: { isActive }});
+    public async findAll(): Promise<Brand[]> {
+        return await this.brandsRepository.find();
     }
 
-    public async findOne(id: number, isActive: boolean = true): Promise<Brand> {
-        const brand = await this.brandsRepository.findOneBy({ id, isActive });
+    public async findOne(id: number): Promise<Brand> {
+        const brand = await this.brandsRepository.findOneBy({ id });
+
+        if (!brand) throw new NotFoundException("Brand not found");
+
+        return brand;
+    }
+
+    public async findAllDeleted(): Promise<Brand[]> {
+        return await this.brandsRepository.find({ 
+            where: {deletedAt: Not(IsNull())}, 
+            withDeleted: true
+        });
+    }
+
+    public async findOneDeleted(id: number): Promise<Brand> {
+        const brand = await this.brandsRepository.findOne({ 
+            where: { id, deletedAt: Not(IsNull()) }, 
+            withDeleted: true
+        });
 
         if (!brand) throw new NotFoundException("Brand not found");
 
@@ -83,35 +101,28 @@ export class BrandsService {
         return result;
     }
 
-    public async remove(id: number): Promise<DeleteResult> {
+    public async remove(id: number): Promise<Brand> {
         const deletedBrand = await this.findOne(id);
-
-        // change state to inactive
-        deletedBrand.isActive = false;
-        const result = await this.brandsRepository.save(deletedBrand);
+        const result = await this.brandsRepository.softRemove(deletedBrand);
 
         // emit event to delete models with the deleted brand
         this.eventEmitter.emit('brand.deleted', deletedBrand);
 
         // logger
         this.loggerService.deleteOne(result);
-        return { affected: result? 1 : 0, raw: [] };
+        return result;
     }
 
-    public async restore(id: number, deleteAll: boolean = false): Promise<boolean> {
-        const restoredBrand = await this.brandsRepository.findOneBy({ id, isActive: false});
-
-        if (!restoredBrand) throw new NotFoundException("Brand not found");
-
-        // change state to active
-        restoredBrand.isActive = true;
-        const result = await this.brandsRepository.save(restoredBrand);
+    public async restore(id: number, deleteAll: boolean = false): Promise<Brand> {
+        await this.brandsRepository.restore({ id });
+        const restoredBrand = await this.findOne(id);
 
         // emit event to delete modelswith the recovered brand
         this.eventEmitter.emit('brand.restored', restoredBrand, deleteAll);
 
         // logger
-        this.loggerService.restoreOne(result, deleteAll);
-        return true;
+        this.loggerService.restoreOne(restoredBrand, deleteAll);
+
+        return restoredBrand;
     }
 }

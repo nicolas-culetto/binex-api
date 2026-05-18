@@ -11,10 +11,10 @@ import { Action } from 'src/casl/models/action.enum';
 export class UsersController {
     constructor(private userService: UsersService, private castAbilityFcatory: CaslAbilityFactory){}
 
-    @Delete("remove")
+    @Delete("remove/:id")
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, User))
-    async remove(@Req() req, @Query('id') id: number) {
+    async remove(@Req() req, @Param('id') id: number) {
         // check authorization
         const targetUser = await this.userService.findById(id);
         const ability = this.castAbilityFcatory.createForUser(req.user);
@@ -26,10 +26,10 @@ export class UsersController {
         return await this.userService.remove(id);
     }
 
-    @Put("restore")
+    @Put("restore/:id")
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, User))
-    async restore(@Req() req, @Query('id') id: number) {
+    async restore(@Req() req, @Param('id') id: number) {
         // check authorization
         const targetUser = await this.userService.findById(id);
         const ability = this.castAbilityFcatory.createForUser(req.user);
@@ -59,10 +59,8 @@ export class UsersController {
     @Get("all")
     @UseGuards(PoliciesGuard)
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, User))
-    async findAll(
-        @Query('isActive') isActive: boolean = true
-    ): Promise<any> {
-        return await this.userService.findAll(isActive);
+    async findAll(): Promise<any> {
+        return await this.userService.findAll();
     }
 
     @Get(":id")
@@ -70,8 +68,7 @@ export class UsersController {
     @CheckPolicies((ability: AppAbility) => ability.can(Action.Read, User))
     async findOne(
         @Param('id') id: number,
-        @Query('isActive') isActive: boolean = true
     ): Promise<User | any> {
-        return await this.userService.findOne(id, isActive);
+        return await this.userService.findOne(id);
     }
 }

@@ -1,7 +1,7 @@
 import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Model } from './models/model.model';
-import { In, Repository } from 'typeorm';
+import { In, IsNull, Not, Repository } from 'typeorm';
 import { CreateModelDto } from './dtos/create.model.dto';
 import { BrandsService } from '../brands/brands.service';
 import { DeleteResult } from 'typeorm/browser';
@@ -29,7 +29,7 @@ export class ModelsService {
             throw new ConflictException({
                 message: "Model already exists",
                 id: validate.id,
-                canRestore: !validate.isActive
+                canRestore: validate.deletedAt != null
             });
         }
 
@@ -45,12 +45,32 @@ export class ModelsService {
         return result;
     }
 
-    public async findAll(isActive: boolean = true): Promise<Model[]> {
-        return await this.modelsRepository.find({ where: { isActive }, relations: ['brand'] });
+    public async findAll(): Promise<Model[]> {
+        return await this.modelsRepository.find({ relations: ['brand'] });
     }
 
-    public async findOne(id: number, isActive: boolean = true): Promise<Model> {
-        const model = await this.modelsRepository.findOne({ where: { id, isActive }, relations: ['brand'] });
+    public async findOne(id: number): Promise<Model> {
+        const model = await this.modelsRepository.findOne({ where: { id }, relations: ['brand'] });
+
+        if (!model) throw new NotFoundException("Model not found");
+
+        return model;
+    }
+
+    public async findAllDeleted(): Promise<Model[]> {
+        return await this.modelsRepository.find({ 
+            where:{ deletedAt: Not(IsNull()) }, 
+            relations: ['brand'],
+            withDeleted: true
+        });
+    }
+
+    public async findOneDeleted(id: number): Promise<Model> {
+        const model = await this.modelsRepository.findOne({ 
+            where: { id, deletedAt: Not(IsNull()) }, 
+            relations: ['brand'], 
+            withDeleted: true 
+        });
 
         if (!model) throw new NotFoundException("Model not found");
 
@@ -76,55 +96,50 @@ export class ModelsService {
 
     public async remove(
         ids: number[],
-        deleteReason: DeleteReasons = DeleteReasons.None
-    ): Promise<DeleteResult> {
+        deleteReason: DeleteReasons = DeleteReasons.Manual
+    ): Promise<Model[]> {
+        await this.modelsRepository.update({ id: In(ids) }, { deleteReason });
         const deletedModels = await this.modelsRepository.findBy({ id: In(ids) });
-
-        // change states to inactive
-        deletedModels.forEach(model => {
-            model.isActive = false;
-            model.deleteReason = deleteReason;
-        });
-        const result = await this.modelsRepository.save(deletedModels);
+        const result = await this.modelsRepository.softRemove(deletedModels);
 
         // emit event to delete model-segments with the deleted model
         this.eventEmitter.emit('model.deleted', result);
 
         // logger
         this.loggerService.deleteMany(result, deleteReason);
-        return { affected: result.length, raw: [] };
+        return result;
     }
 
     private async removePermanently(ids: number[]): Promise<DeleteResult> {
-        const models = await this.modelsRepository.findBy({id: In(ids)});
+        const models = await this.modelsRepository.find({ 
+            where: { id: In(ids) }, 
+            withDeleted: true 
+        });
 
         // logger
         this.loggerService.deletePermanentlyMany(models);
-        
+
         const result = await this.modelsRepository.remove(models);
-        return {affected: result.length, raw: []};
+        return { affected: result.length, raw: [] };
     }
 
     public async restore(
         ids: number[],
         deleteAll: Boolean = false,
-        deleteReason: DeleteReasons = DeleteReasons.None
-    ): Promise<boolean> {
-        const restoredModels = await this.modelsRepository.findBy({ id: In(ids), isActive: false, deleteReason });
-
-        // change state to active
-        restoredModels.forEach(model => {
-            model.isActive = true;
-            model.deleteReason = DeleteReasons.None;
+        deleteReason: DeleteReasons = DeleteReasons.Manual
+    ): Promise<Model[]> {
+        await this.modelsRepository.restore({ id: In(ids) });
+        await this.modelsRepository.update({ id: In(ids) }, { deleteReason: null });
+        const restoredModels = await this.modelsRepository.findBy({ 
+            id: In(ids), 
         });
-        const result = await this.modelsRepository.save(restoredModels);
 
         // emit event to delete model-segments with the recovered model
         this.eventEmitter.emit('model.restored', restoredModels, deleteAll);
 
         // logger
-        this.loggerService.restoreMany(result, deleteAll, deleteReason);
-        return true;
+        this.loggerService.restoreMany(restoredModels, deleteAll, deleteReason);
+        return restoredModels;
     }
 
     @OnEvent('brand.deleted')
@@ -146,9 +161,10 @@ export class ModelsService {
 
     private async getIdsByBrand(brand: Brand): Promise<number[]> {
         const models = await this.modelsRepository.createQueryBuilder("models")
-        .innerJoinAndSelect("models.brand", "brand")
-        .where("brand.id = :brandId", {brandId: brand.id})
-        .getMany();
+            .withDeleted()
+            .innerJoinAndSelect("models.brand", "brand")
+            .where("brand.id = :brandId", { brandId: brand.id })
+            .getMany();
 
         return models.map(model => model.id);
     }

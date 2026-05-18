@@ -22,7 +22,6 @@ export async function loadModelsSegments(jwtToken: string) {
     // await finish of stream
     await finished(stream);
     console.log("Raw Models Segments Data:")
-    console.log(rawData);
 
     for (const data of rawData) {
         try {

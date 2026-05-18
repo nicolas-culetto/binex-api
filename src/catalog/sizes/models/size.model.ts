@@ -34,7 +34,7 @@ export class Size{
     updatedAt!: Date;
 
     @DeleteDateColumn()
-    deletedAt!: Date;
+    deletedAt?: Date;
 
     @OneToMany(() => Stock, Product => Product.size)
     stocks!: Stock[];
