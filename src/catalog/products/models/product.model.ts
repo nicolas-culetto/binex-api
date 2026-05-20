@@ -22,7 +22,7 @@ export class Product {
     @Column({ default: 0 })
     discount!: number;
 
-    @ManyToOne(() => ModelSegment, modelSegment => modelSegment.products, { onDelete: 'CASCADE' })
+    @ManyToOne(() => ModelSegment, modelSegment => modelSegment.products)
     modelSegment!: ModelSegment;
 
     @OneToMany(() => Stock, stock => stock.product)

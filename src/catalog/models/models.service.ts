@@ -10,6 +10,7 @@ import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { DeleteReasons } from '../enums/delete-reasons.enum';
 import { Brand } from '../brands/models/brand.model';
 import { LoggerService } from 'src/logger/logger.service';
+import { ModelSegmentsService } from '../model-segments/model-segments.service';
 
 @Injectable()
 export class ModelsService {
@@ -17,9 +18,8 @@ export class ModelsService {
     constructor(
         @InjectRepository(Model)
         private modelsRepository: Repository<Model>,
-        private brandService: BrandsService,
-        private eventEmitter: EventEmitter2,
-        private loggerService: LoggerService
+        private loggerService: LoggerService,
+        private modelSegmentsService: ModelSegmentsService
     ) { }
 
     public async create(createModelDto: CreateModelDto): Promise<Model> {
@@ -34,8 +34,7 @@ export class ModelsService {
         }
 
         // set brand
-        const brand = await this.brandService.findOne(createModelDto.brandId);
-        const newModel = this.modelsRepository.create({ brand, ...createModelDto });
+        const newModel = this.modelsRepository.create({ brand: { id: createModelDto.brandId }, ...createModelDto });
 
         const result = await this.modelsRepository.save(newModel);
 
@@ -82,8 +81,7 @@ export class ModelsService {
         const prev = structuredClone(model);
 
         if (updateModelDto.brandId) {
-            const brand = await this.brandService.findOne(updateModelDto.brandId);
-            updateModelDto["brand"] = brand;
+            updateModelDto["brand"] = { id: updateModelDto.brandId };
         }
 
         const updatedModel = Object.assign(model, updateModelDto);
@@ -102,8 +100,8 @@ export class ModelsService {
         const deletedModels = await this.modelsRepository.findBy({ id: In(ids) });
         const result = await this.modelsRepository.softRemove(deletedModels);
 
-        // emit event to delete model-segments with the deleted model
-        this.eventEmitter.emit('model.deleted', result);
+        // cascade remove
+        await this.modelSegmentsService.handleModelDeleted(deletedModels);
 
         // logger
         this.loggerService.deleteMany(result, deleteReason);
@@ -116,8 +114,11 @@ export class ModelsService {
             withDeleted: true 
         });
 
+        // cascade remove
+        await this.modelSegmentsService.handleModelRestored(models, true);
+        
         // logger
-        this.loggerService.deletePermanentlyMany(models);
+        await this.loggerService.deletePermanentlyMany(models);
 
         const result = await this.modelsRepository.remove(models);
         return { affected: result.length, raw: [] };
@@ -125,7 +126,7 @@ export class ModelsService {
 
     public async restore(
         ids: number[],
-        deleteAll: Boolean = false,
+        deleteAll: boolean = false,
         deleteReason: DeleteReasons = DeleteReasons.Manual
     ): Promise<Model[]> {
         await this.modelsRepository.restore({ id: In(ids) });
@@ -134,28 +135,26 @@ export class ModelsService {
             id: In(ids), 
         });
 
-        // emit event to delete model-segments with the recovered model
-        this.eventEmitter.emit('model.restored', restoredModels, deleteAll);
+        // cascade restore
+        await this.modelSegmentsService.handleModelRestored(restoredModels, deleteAll);
 
         // logger
         this.loggerService.restoreMany(restoredModels, deleteAll, deleteReason);
         return restoredModels;
     }
 
-    @OnEvent('brand.deleted')
     async handleModelDeleted(deletedBrand: Brand) {
         const modelsIds = await this.getIdsByBrand(deletedBrand);
         this.remove(modelsIds, DeleteReasons.Cascade);
     }
 
-    @OnEvent('brand.restored')
     async handleModelRestored(restoredBrand: Brand, deleteAll: boolean = false) {
         const modelsIds = await this.getIdsByBrand(restoredBrand);
 
         if (deleteAll) {
-            this.removePermanently(modelsIds);
+            await this.removePermanently(modelsIds);
         } else {
-            this.restore(modelsIds, false, DeleteReasons.Cascade);
+            await this.restore(modelsIds, false, DeleteReasons.Cascade);
         }
     }
 

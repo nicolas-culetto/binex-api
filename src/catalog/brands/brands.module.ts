@@ -6,13 +6,15 @@ import { Brand } from './models/brand.model';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
 import { LoggerModule } from 'src/logger/logger.module';
+import { ModelsModule } from '../models/models.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Brand]), 
     CaslModule, 
     CloudinaryModule,
-    LoggerModule
+    LoggerModule,
+    ModelsModule
 ],
   providers: [BrandsService],
   controllers: [BrandsController],

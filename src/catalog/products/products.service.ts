@@ -6,7 +6,6 @@ import { In, IsNull, Not, Repository } from 'typeorm';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { DeleteResult } from 'typeorm/browser';
 import { UpdateProductDto } from './dtos/update.product.dto';
-import { ModelSegmentsService } from '../model-segments/model-segments.service';
 import { OnEvent } from '@nestjs/event-emitter';
 import { ModelSegment } from '../model-segments/models/model-segment.model';
 import { DeleteReasons } from '../enums/delete-reasons.enum';
@@ -17,18 +16,16 @@ export class ProductsService {
     constructor(
         @InjectRepository(Product)
         private productsRepository: Repository<Product>,
-        private modelSegmentService: ModelSegmentsService,
         private cloudinaryService: CloudinaryService,
         private loggerService: LoggerService
     ) { }
 
     public async create(createProductDto: CreateProductDto, productImgs: Express.Multer.File[]): Promise<Product> {
-        // get model
-        const modelSegment = await this.modelSegmentService.findOne(createProductDto.modelSegmentId);
-        createProductDto['modelSegment'] = modelSegment;
-
         // save product to get Id for cloudinary path
-        const newProduct = await this.productsRepository.create(createProductDto);
+        const newProduct = await this.productsRepository.create({
+            ...createProductDto,
+            modelSegment: { id: createProductDto.modelSegmentId }
+        });
         await this.productsRepository.save(newProduct)
 
         // load images
@@ -93,8 +90,7 @@ export class ProductsService {
         }
 
         if (updateProductDto.modelSegmentId) {
-            const modelSegment = await this.modelSegmentService.findOne(updateProductDto.modelSegmentId);
-            product.modelSegment = modelSegment;
+            product.modelSegment = { id: updateProductDto.modelSegmentId } as ModelSegment;
         }
 
         const updatedProduct = Object.assign(product, updateProductDto);
@@ -135,15 +131,14 @@ export class ProductsService {
         });
 
         // delete images from cloudinary
-        await Promise.all(products.map(async product => {
-            // for each product remove its images
-            await Promise.all(product.images_url.map(async img => {
-                await this.cloudinaryService.removeFile(img);
-            }))
+        const images = products.flatMap(prod => prod.images_url);
+        // for each product remove its images
+        await Promise.all(images.map(async img => {
+            await this.cloudinaryService.removeFile(img);
         }))
 
         // logger
-        this.loggerService.deletePermanentlyMany(products);
+        await this.loggerService.deletePermanentlyMany(products);
 
         const result = await this.productsRepository.remove(products);
         return { affected: result.length, raw: [] };
@@ -161,20 +156,18 @@ export class ProductsService {
         return deletedProducts;
     }
 
-    @OnEvent('modelSegment.deleted')
     async handleModelSegmentDeleted(deletedModelSegments: ModelSegment) {
         const productsIds = await this.getIdsByModelSegment(deletedModelSegments);
         this.remove(productsIds, DeleteReasons.Cascade);
     }
 
-    @OnEvent('modelSegment.restored')
     async handleModelSegmentRestored(restoredModelSegments: ModelSegment, deleteAll: boolean = false) {
         const productsIds = await this.getIdsByModelSegment(restoredModelSegments);
 
         if (deleteAll) {
-            this.removePermanently(productsIds);
+            await this.removePermanently(productsIds);
         } else {
-            this.restore(productsIds, DeleteReasons.Cascade);
+            await this.restore(productsIds, DeleteReasons.Cascade);
         }
     }
 

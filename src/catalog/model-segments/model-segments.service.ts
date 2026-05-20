@@ -9,6 +9,7 @@ import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 import { DeleteReasons } from '../enums/delete-reasons.enum';
 import { Model } from '../models/models/model.model';
 import { LoggerService } from 'src/logger/logger.service';
+import { ProductsService } from '../products/products.service';
 
 @Injectable()
 export class ModelSegmentsService {
@@ -16,9 +17,8 @@ export class ModelSegmentsService {
     constructor(
         @InjectRepository(ModelSegment)
         private modelSegmentsRepository: Repository<ModelSegment>,
-        private modelService: ModelsService,
-        private eventEmitter: EventEmitter2,
-        private loggerService: LoggerService
+        private loggerService: LoggerService,
+        private productService: ProductsService
     ) { }
 
     public async create(modelSegmentDto: CreateModelSegmentDto): Promise<ModelSegment> {
@@ -32,8 +32,10 @@ export class ModelSegmentsService {
             });
         }
 
-        const model = await this.modelService.findOne(modelSegmentDto.modelId);
-        const newModelSegment = this.modelSegmentsRepository.create({ model, ...modelSegmentDto });
+        const newModelSegment = this.modelSegmentsRepository.create({ 
+            model: { id: modelSegmentDto.modelId }, 
+            ...modelSegmentDto 
+        });
         const result = await this.modelSegmentsRepository.save(newModelSegment);
 
         // logger
@@ -79,8 +81,8 @@ export class ModelSegmentsService {
         const deletedModelSegment = await this.findOne(id);
         const result = await this.modelSegmentsRepository.softRemove(deletedModelSegment);
 
-        // emit event to delete products with the deleted model segment
-        this.eventEmitter.emit('modelSegment.deleted', deletedModelSegment);
+        // cascade remove
+        await this.productService.handleModelSegmentDeleted(deletedModelSegment);
 
         // logger
         this.loggerService.deleteOne(result, deleteReason);
@@ -93,8 +95,11 @@ export class ModelSegmentsService {
             withDeleted: true
         });
 
+        // cascade remove
+        await this.productService.handleModelSegmentRestored(modelSegment[0], true)
+
         // logger
-        this.loggerService.deletePermanentlyMany(modelSegment);
+        await this.loggerService.deletePermanentlyMany(modelSegment);
 
         const result = await this.modelSegmentsRepository.remove(modelSegment);
         return { affected: result ? 1 : 0, raw: [] };
@@ -105,28 +110,30 @@ export class ModelSegmentsService {
         await this.modelSegmentsRepository.update({id}, { deleteReason: null });
         const restoredModelSegment = await this.findOne(id);
 
-        // emit event to delete products with the recovered model segment
-        this.eventEmitter.emit('modelSegment.restored', restoredModelSegment, deleteAll);
+        // cascade restore
+        await this.productService.handleModelSegmentRestored(restoredModelSegment, deleteAll);
 
         // logger
         this.loggerService.restoreOne(restoredModelSegment, deleteAll, deleteReason);
         return restoredModelSegment;
     }
 
-    @OnEvent('model.deleted')
     async handleModelDeleted(deletedModels: Model[]) {
         const modelSegmentsIds = await this.getIdsByModels(deletedModels);
         modelSegmentsIds.forEach(id => this.remove(id, DeleteReasons.Cascade));
     }
 
-    @OnEvent('model.restored')
     async handleModelRestored(restoredModels: Model[], deleteAll: boolean = false) {
         const modelSegmentsIds = await this.getIdsByModels(restoredModels);
 
         if (deleteAll) {
-            modelSegmentsIds.forEach(id => this.removePermanently(id));
+            for(let id of modelSegmentsIds){
+                await this.removePermanently(id);
+            }
         } else {
-            modelSegmentsIds.forEach(id => this.restore(id, false, DeleteReasons.Cascade));
+            for(let id of modelSegmentsIds){
+                await this.restore(id, false, DeleteReasons.Cascade);
+            }
         }
     }
 

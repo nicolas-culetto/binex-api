@@ -4,11 +4,10 @@ import { IsNull, Not, Repository } from 'typeorm';
 import { Brand } from './models/brand.model';
 import { CreateBrandDto } from './dtos/create.brand.dto';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
-import { DeleteResult } from 'typeorm/browser';
 import { UpdateBrandDto } from './dtos/update.brand.dto';
 import { Categories } from '../enums/categories.enum';
-import { EventEmitter2 } from 'eventemitter2';
 import { LoggerService } from 'src/logger/logger.service';
+import { ModelsService } from '../models/models.service';
 
 @Injectable()
 export class BrandsService {
@@ -17,8 +16,8 @@ export class BrandsService {
         @InjectRepository(Brand)
         private brandsRepository: Repository<Brand>,
         private cloudinaryService: CloudinaryService,
-        private eventEmitter: EventEmitter2,
-        private loggerService: LoggerService
+        private loggerService: LoggerService,
+        private modelsService: ModelsService
     ) { }
 
     public async create(createBrandDto: CreateBrandDto, brandImg: Express.Multer.File): Promise<Brand> {
@@ -105,8 +104,8 @@ export class BrandsService {
         const deletedBrand = await this.findOne(id);
         const result = await this.brandsRepository.softRemove(deletedBrand);
 
-        // emit event to delete models with the deleted brand
-        this.eventEmitter.emit('brand.deleted', deletedBrand);
+        // cascade remove
+        await this.modelsService.handleModelDeleted(deletedBrand);
 
         // logger
         this.loggerService.deleteOne(result);
@@ -117,8 +116,8 @@ export class BrandsService {
         await this.brandsRepository.restore({ id });
         const restoredBrand = await this.findOne(id);
 
-        // emit event to delete modelswith the recovered brand
-        this.eventEmitter.emit('brand.restored', restoredBrand, deleteAll);
+        // cascade restore
+        await this.modelsService.handleModelRestored(restoredBrand, deleteAll);
 
         // logger
         this.loggerService.restoreOne(restoredBrand, deleteAll);
