@@ -30,9 +30,6 @@ $ docker-compose down -v
 
 # Docker up
 $ docker-compose up --build
-
-# Database seed
-$ npx ts-node src/database/seeds/seed.ts
 ```
 
 ## Compile and run the project
@@ -46,6 +43,9 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+# load seed
+$ npm run start:seed
 ```
 
 ## Run tests
