@@ -11,6 +11,6 @@ import { SizesModule } from './sizes/sizes.module';
   imports: [ProductsModule, BrandsModule, ModelsModule, CloudinaryModule, CaslModule, ModelSegmentsModule, SizesModule],
   providers: [],
   controllers: [],
-  exports: [ProductsModule, BrandsModule, ModelsModule, SizesModule]
+  exports: [ProductsModule, BrandsModule, ModelsModule, SizesModule, ModelSegmentsModule]
 })
 export class CatalogModule {}

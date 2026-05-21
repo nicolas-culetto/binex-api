@@ -7,7 +7,9 @@ const streamifier = require('streamifier');
 @Injectable()
 export class CloudinaryService {
     private rootFolder: string;
-    constructor (private configService: ConfigService) {
+    constructor (
+        private configService: ConfigService,
+    ) {
         this.rootFolder = this.configService.getOrThrow("nodeEnv");
     }
 
@@ -31,9 +33,10 @@ export class CloudinaryService {
         });
     }
 
-    removeFile(url: string): Promise<void> {
+    async removeFile(url: string): Promise<void> {
         const publicId = extractPublicId(url);
-        return new Promise<void>((resolve, reject) => {
+
+        return await new Promise<void>((resolve, reject) => {
             cloudinary.uploader.destroy(publicId, (error, result) => {
                 if (error) return reject(error);
                 if (result) resolve(result);

@@ -1,0 +1,145 @@
+[
+  {
+    "id": 1,
+    "model": {
+      "id": 1
+    },
+    "segment": "UNISEX",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.852Z",
+    "updatedAt": "2026-05-21T02:25:05.852Z",
+    "deletedAt": null
+  },
+  {
+    "id": 2,
+    "model": {
+      "id": 2
+    },
+    "segment": "MALE",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.857Z",
+    "updatedAt": "2026-05-21T02:25:05.857Z",
+    "deletedAt": null
+  },
+  {
+    "id": 3,
+    "model": {
+      "id": 2
+    },
+    "segment": "FEMALE",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.864Z",
+    "updatedAt": "2026-05-21T02:25:05.864Z",
+    "deletedAt": null
+  },
+  {
+    "id": 4,
+    "model": {
+      "id": 2
+    },
+    "segment": "UNISEX",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.869Z",
+    "updatedAt": "2026-05-21T02:25:05.869Z",
+    "deletedAt": null
+  },
+  {
+    "id": 5,
+    "model": {
+      "id": 3
+    },
+    "segment": "UNISEX",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.874Z",
+    "updatedAt": "2026-05-21T02:25:05.874Z",
+    "deletedAt": null
+  },
+  {
+    "id": 6,
+    "model": {
+      "id": 7
+    },
+    "segment": "MALE",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.880Z",
+    "updatedAt": "2026-05-21T02:25:05.880Z",
+    "deletedAt": null
+  },
+  {
+    "id": 7,
+    "model": {
+      "id": 4
+    },
+    "segment": "MALE",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.886Z",
+    "updatedAt": "2026-05-21T02:25:05.886Z",
+    "deletedAt": null
+  },
+  {
+    "id": 8,
+    "model": {
+      "id": 4
+    },
+    "segment": "FEMALE",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.891Z",
+    "updatedAt": "2026-05-21T02:25:05.891Z",
+    "deletedAt": null
+  },
+  {
+    "id": 9,
+    "model": {
+      "id": 5
+    },
+    "segment": "MALE",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.896Z",
+    "updatedAt": "2026-05-21T02:25:05.896Z",
+    "deletedAt": null
+  },
+  {
+    "id": 10,
+    "model": {
+      "id": 5
+    },
+    "segment": "FEMALE",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.902Z",
+    "updatedAt": "2026-05-21T02:25:05.902Z",
+    "deletedAt": null
+  },
+  {
+    "id": 11,
+    "model": {
+      "id": 6
+    },
+    "segment": "YOUTH",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.907Z",
+    "updatedAt": "2026-05-21T02:25:05.907Z",
+    "deletedAt": null
+  },
+  {
+    "id": 12,
+    "model": {
+      "id": 6
+    },
+    "segment": "MALE",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.912Z",
+    "updatedAt": "2026-05-21T02:25:05.912Z",
+    "deletedAt": null
+  },
+  {
+    "id": 13,
+    "model": {
+      "id": 6
+    },
+    "segment": "FEMALE",
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.918Z",
+    "updatedAt": "2026-05-21T02:25:05.918Z",
+    "deletedAt": null
+  }
+]

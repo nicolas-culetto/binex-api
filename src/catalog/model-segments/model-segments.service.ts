@@ -148,4 +148,8 @@ export class ModelSegmentsService {
 
         return modelSegments.map(modelSegment => modelSegment.id);
     }
+
+    public async uploadData(data: any[]): Promise<void> {
+        await this.modelSegmentsRepository.insert(data);
+    }
 }

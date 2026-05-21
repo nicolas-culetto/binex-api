@@ -1,0 +1,3012 @@
+[
+  {
+    "id": 1,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 22,
+    "eu": 36,
+    "us": "4",
+    "uk": "3.5",
+    "createdAt": "2026-05-21T02:25:04.253Z",
+    "updatedAt": "2026-05-21T02:25:04.253Z",
+    "deletedAt": null
+  },
+  {
+    "id": 2,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 22.5,
+    "eu": 36.5,
+    "us": "4.5",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:04.263Z",
+    "updatedAt": "2026-05-21T02:25:04.263Z",
+    "deletedAt": null
+  },
+  {
+    "id": 3,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 23,
+    "eu": 37.5,
+    "us": "5",
+    "uk": "4.5",
+    "createdAt": "2026-05-21T02:25:04.271Z",
+    "updatedAt": "2026-05-21T02:25:04.271Z",
+    "deletedAt": null
+  },
+  {
+    "id": 4,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 23.5,
+    "eu": 38,
+    "us": "5.5",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:04.278Z",
+    "updatedAt": "2026-05-21T02:25:04.278Z",
+    "deletedAt": null
+  },
+  {
+    "id": 5,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 24,
+    "eu": 38.5,
+    "us": "6",
+    "uk": "5.5",
+    "createdAt": "2026-05-21T02:25:04.286Z",
+    "updatedAt": "2026-05-21T02:25:04.286Z",
+    "deletedAt": null
+  },
+  {
+    "id": 6,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 24.5,
+    "eu": 39,
+    "us": "6.5",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:04.293Z",
+    "updatedAt": "2026-05-21T02:25:04.293Z",
+    "deletedAt": null
+  },
+  {
+    "id": 7,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 25,
+    "eu": 40,
+    "us": "7",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:04.301Z",
+    "updatedAt": "2026-05-21T02:25:04.301Z",
+    "deletedAt": null
+  },
+  {
+    "id": 8,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 25.5,
+    "eu": 40.5,
+    "us": "7.5",
+    "uk": "6.5",
+    "createdAt": "2026-05-21T02:25:04.308Z",
+    "updatedAt": "2026-05-21T02:25:04.308Z",
+    "deletedAt": null
+  },
+  {
+    "id": 9,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 26,
+    "eu": 41,
+    "us": "8",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:04.316Z",
+    "updatedAt": "2026-05-21T02:25:04.316Z",
+    "deletedAt": null
+  },
+  {
+    "id": 10,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 26.5,
+    "eu": 42,
+    "us": "8.5",
+    "uk": "7.5",
+    "createdAt": "2026-05-21T02:25:04.323Z",
+    "updatedAt": "2026-05-21T02:25:04.323Z",
+    "deletedAt": null
+  },
+  {
+    "id": 11,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 27,
+    "eu": 42.5,
+    "us": "9",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:04.330Z",
+    "updatedAt": "2026-05-21T02:25:04.330Z",
+    "deletedAt": null
+  },
+  {
+    "id": 12,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 27.5,
+    "eu": 43,
+    "us": "9.5",
+    "uk": "8.5",
+    "createdAt": "2026-05-21T02:25:04.353Z",
+    "updatedAt": "2026-05-21T02:25:04.353Z",
+    "deletedAt": null
+  },
+  {
+    "id": 13,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 28,
+    "eu": 44,
+    "us": "10",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:04.360Z",
+    "updatedAt": "2026-05-21T02:25:04.360Z",
+    "deletedAt": null
+  },
+  {
+    "id": 14,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 28.5,
+    "eu": 44.5,
+    "us": "10.5",
+    "uk": "9.5",
+    "createdAt": "2026-05-21T02:25:04.367Z",
+    "updatedAt": "2026-05-21T02:25:04.367Z",
+    "deletedAt": null
+  },
+  {
+    "id": 15,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 29,
+    "eu": 45,
+    "us": "11",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:04.373Z",
+    "updatedAt": "2026-05-21T02:25:04.373Z",
+    "deletedAt": null
+  },
+  {
+    "id": 16,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 29.5,
+    "eu": 45.5,
+    "us": "11.5",
+    "uk": "10.5",
+    "createdAt": "2026-05-21T02:25:04.381Z",
+    "updatedAt": "2026-05-21T02:25:04.381Z",
+    "deletedAt": null
+  },
+  {
+    "id": 17,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 30,
+    "eu": 46,
+    "us": "12",
+    "uk": "11",
+    "createdAt": "2026-05-21T02:25:04.388Z",
+    "updatedAt": "2026-05-21T02:25:04.388Z",
+    "deletedAt": null
+  },
+  {
+    "id": 18,
+    "segment": "MALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 31,
+    "eu": 47.5,
+    "us": "13",
+    "uk": "12",
+    "createdAt": "2026-05-21T02:25:04.394Z",
+    "updatedAt": "2026-05-21T02:25:04.394Z",
+    "deletedAt": null
+  },
+  {
+    "id": 19,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 22,
+    "eu": 36,
+    "us": "5.5",
+    "uk": "3.5",
+    "createdAt": "2026-05-21T02:25:04.402Z",
+    "updatedAt": "2026-05-21T02:25:04.402Z",
+    "deletedAt": null
+  },
+  {
+    "id": 20,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 22.5,
+    "eu": 36.5,
+    "us": "6",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:04.409Z",
+    "updatedAt": "2026-05-21T02:25:04.409Z",
+    "deletedAt": null
+  },
+  {
+    "id": 21,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 23,
+    "eu": 37.5,
+    "us": "6.5",
+    "uk": "4.5",
+    "createdAt": "2026-05-21T02:25:04.416Z",
+    "updatedAt": "2026-05-21T02:25:04.416Z",
+    "deletedAt": null
+  },
+  {
+    "id": 22,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 23.5,
+    "eu": 38,
+    "us": "7",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:04.423Z",
+    "updatedAt": "2026-05-21T02:25:04.423Z",
+    "deletedAt": null
+  },
+  {
+    "id": 23,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 24,
+    "eu": 38.5,
+    "us": "7.5",
+    "uk": "5.5",
+    "createdAt": "2026-05-21T02:25:04.429Z",
+    "updatedAt": "2026-05-21T02:25:04.429Z",
+    "deletedAt": null
+  },
+  {
+    "id": 24,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 24.5,
+    "eu": 39,
+    "us": "8",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:04.436Z",
+    "updatedAt": "2026-05-21T02:25:04.436Z",
+    "deletedAt": null
+  },
+  {
+    "id": 25,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 25,
+    "eu": 40,
+    "us": "8.5",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:04.443Z",
+    "updatedAt": "2026-05-21T02:25:04.443Z",
+    "deletedAt": null
+  },
+  {
+    "id": 26,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 25.5,
+    "eu": 40.5,
+    "us": "9",
+    "uk": "6.5",
+    "createdAt": "2026-05-21T02:25:04.450Z",
+    "updatedAt": "2026-05-21T02:25:04.450Z",
+    "deletedAt": null
+  },
+  {
+    "id": 27,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 26,
+    "eu": 41,
+    "us": "9.5",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:04.456Z",
+    "updatedAt": "2026-05-21T02:25:04.456Z",
+    "deletedAt": null
+  },
+  {
+    "id": 28,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 26.5,
+    "eu": 42,
+    "us": "10",
+    "uk": "7.5",
+    "createdAt": "2026-05-21T02:25:04.463Z",
+    "updatedAt": "2026-05-21T02:25:04.463Z",
+    "deletedAt": null
+  },
+  {
+    "id": 29,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 27,
+    "eu": 42.5,
+    "us": "10.5",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:04.470Z",
+    "updatedAt": "2026-05-21T02:25:04.470Z",
+    "deletedAt": null
+  },
+  {
+    "id": 30,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 27.5,
+    "eu": 43,
+    "us": "11",
+    "uk": "8.5",
+    "createdAt": "2026-05-21T02:25:04.476Z",
+    "updatedAt": "2026-05-21T02:25:04.476Z",
+    "deletedAt": null
+  },
+  {
+    "id": 31,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 28,
+    "eu": 44,
+    "us": "11.5",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:04.484Z",
+    "updatedAt": "2026-05-21T02:25:04.484Z",
+    "deletedAt": null
+  },
+  {
+    "id": 32,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 28.5,
+    "eu": 44.5,
+    "us": "12",
+    "uk": "9.5",
+    "createdAt": "2026-05-21T02:25:04.490Z",
+    "updatedAt": "2026-05-21T02:25:04.490Z",
+    "deletedAt": null
+  },
+  {
+    "id": 33,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 29,
+    "eu": 45,
+    "us": "12.5",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:04.497Z",
+    "updatedAt": "2026-05-21T02:25:04.497Z",
+    "deletedAt": null
+  },
+  {
+    "id": 34,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 29.5,
+    "eu": 45.5,
+    "us": "13",
+    "uk": "10.5",
+    "createdAt": "2026-05-21T02:25:04.504Z",
+    "updatedAt": "2026-05-21T02:25:04.504Z",
+    "deletedAt": null
+  },
+  {
+    "id": 35,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 30,
+    "eu": 46,
+    "us": "13.5",
+    "uk": "11",
+    "createdAt": "2026-05-21T02:25:04.510Z",
+    "updatedAt": "2026-05-21T02:25:04.510Z",
+    "deletedAt": null
+  },
+  {
+    "id": 36,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 1
+    },
+    "cm": 31,
+    "eu": 47.5,
+    "us": "14.5",
+    "uk": "12",
+    "createdAt": "2026-05-21T02:25:04.518Z",
+    "updatedAt": "2026-05-21T02:25:04.518Z",
+    "deletedAt": null
+  },
+  {
+    "id": 37,
+    "segment": "BABY",
+    "brand": {
+      "id": 1
+    },
+    "cm": 8,
+    "eu": 15,
+    "us": "0C",
+    "uk": "0",
+    "createdAt": "2026-05-21T02:25:04.524Z",
+    "updatedAt": "2026-05-21T02:25:04.524Z",
+    "deletedAt": null
+  },
+  {
+    "id": 38,
+    "segment": "BABY",
+    "brand": {
+      "id": 1
+    },
+    "cm": 9,
+    "eu": 16,
+    "us": "1C",
+    "uk": "0.5",
+    "createdAt": "2026-05-21T02:25:04.531Z",
+    "updatedAt": "2026-05-21T02:25:04.531Z",
+    "deletedAt": null
+  },
+  {
+    "id": 39,
+    "segment": "BABY",
+    "brand": {
+      "id": 1
+    },
+    "cm": 10,
+    "eu": 17,
+    "us": "2C",
+    "uk": "1",
+    "createdAt": "2026-05-21T02:25:04.537Z",
+    "updatedAt": "2026-05-21T02:25:04.537Z",
+    "deletedAt": null
+  },
+  {
+    "id": 40,
+    "segment": "BABY",
+    "brand": {
+      "id": 1
+    },
+    "cm": 11,
+    "eu": 18.5,
+    "us": "3C",
+    "uk": "2",
+    "createdAt": "2026-05-21T02:25:04.544Z",
+    "updatedAt": "2026-05-21T02:25:04.544Z",
+    "deletedAt": null
+  },
+  {
+    "id": 41,
+    "segment": "BABY",
+    "brand": {
+      "id": 1
+    },
+    "cm": 12,
+    "eu": 19.5,
+    "us": "4C",
+    "uk": "3",
+    "createdAt": "2026-05-21T02:25:04.551Z",
+    "updatedAt": "2026-05-21T02:25:04.551Z",
+    "deletedAt": null
+  },
+  {
+    "id": 42,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 1
+    },
+    "cm": 12,
+    "eu": 21,
+    "us": "5C",
+    "uk": "4.5",
+    "createdAt": "2026-05-21T02:25:04.558Z",
+    "updatedAt": "2026-05-21T02:25:04.558Z",
+    "deletedAt": null
+  },
+  {
+    "id": 43,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 1
+    },
+    "cm": 13,
+    "eu": 22,
+    "us": "6C",
+    "uk": "5.5",
+    "createdAt": "2026-05-21T02:25:04.565Z",
+    "updatedAt": "2026-05-21T02:25:04.565Z",
+    "deletedAt": null
+  },
+  {
+    "id": 44,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 1
+    },
+    "cm": 14,
+    "eu": 23.5,
+    "us": "7C",
+    "uk": "6.5",
+    "createdAt": "2026-05-21T02:25:04.572Z",
+    "updatedAt": "2026-05-21T02:25:04.572Z",
+    "deletedAt": null
+  },
+  {
+    "id": 45,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 1
+    },
+    "cm": 15,
+    "eu": 25,
+    "us": "8C",
+    "uk": "7.5",
+    "createdAt": "2026-05-21T02:25:04.578Z",
+    "updatedAt": "2026-05-21T02:25:04.578Z",
+    "deletedAt": null
+  },
+  {
+    "id": 46,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 1
+    },
+    "cm": 16,
+    "eu": 26,
+    "us": "9C",
+    "uk": "8.5",
+    "createdAt": "2026-05-21T02:25:04.586Z",
+    "updatedAt": "2026-05-21T02:25:04.586Z",
+    "deletedAt": null
+  },
+  {
+    "id": 47,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 1
+    },
+    "cm": 17,
+    "eu": 27,
+    "us": "10C",
+    "uk": "9.5",
+    "createdAt": "2026-05-21T02:25:04.596Z",
+    "updatedAt": "2026-05-21T02:25:04.596Z",
+    "deletedAt": null
+  },
+  {
+    "id": 48,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 16.5,
+    "eu": 27.5,
+    "us": "10.5C",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:04.603Z",
+    "updatedAt": "2026-05-21T02:25:04.603Z",
+    "deletedAt": null
+  },
+  {
+    "id": 49,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 17,
+    "eu": 28,
+    "us": "11C",
+    "uk": "10.5",
+    "createdAt": "2026-05-21T02:25:04.609Z",
+    "updatedAt": "2026-05-21T02:25:04.609Z",
+    "deletedAt": null
+  },
+  {
+    "id": 50,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 17.5,
+    "eu": 28.5,
+    "us": "11.5C",
+    "uk": "11",
+    "createdAt": "2026-05-21T02:25:04.616Z",
+    "updatedAt": "2026-05-21T02:25:04.616Z",
+    "deletedAt": null
+  },
+  {
+    "id": 51,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 18,
+    "eu": 29.5,
+    "us": "12C",
+    "uk": "11.5",
+    "createdAt": "2026-05-21T02:25:04.623Z",
+    "updatedAt": "2026-05-21T02:25:04.623Z",
+    "deletedAt": null
+  },
+  {
+    "id": 52,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 18.5,
+    "eu": 30,
+    "us": "12.5C",
+    "uk": "12",
+    "createdAt": "2026-05-21T02:25:04.629Z",
+    "updatedAt": "2026-05-21T02:25:04.629Z",
+    "deletedAt": null
+  },
+  {
+    "id": 53,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 19,
+    "eu": 31,
+    "us": "13C",
+    "uk": "12.5",
+    "createdAt": "2026-05-21T02:25:04.635Z",
+    "updatedAt": "2026-05-21T02:25:04.635Z",
+    "deletedAt": null
+  },
+  {
+    "id": 54,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 19.5,
+    "eu": 31.5,
+    "us": "13.5C",
+    "uk": "13",
+    "createdAt": "2026-05-21T02:25:04.642Z",
+    "updatedAt": "2026-05-21T02:25:04.642Z",
+    "deletedAt": null
+  },
+  {
+    "id": 55,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 20,
+    "eu": 32,
+    "us": "1Y",
+    "uk": "13.5",
+    "createdAt": "2026-05-21T02:25:04.648Z",
+    "updatedAt": "2026-05-21T02:25:04.648Z",
+    "deletedAt": null
+  },
+  {
+    "id": 56,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 20.5,
+    "eu": 33,
+    "us": "1.5Y",
+    "uk": "1",
+    "createdAt": "2026-05-21T02:25:04.655Z",
+    "updatedAt": "2026-05-21T02:25:04.655Z",
+    "deletedAt": null
+  },
+  {
+    "id": 57,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 21,
+    "eu": 33.5,
+    "us": "2Y",
+    "uk": "1.5",
+    "createdAt": "2026-05-21T02:25:04.662Z",
+    "updatedAt": "2026-05-21T02:25:04.662Z",
+    "deletedAt": null
+  },
+  {
+    "id": 58,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 21.5,
+    "eu": 34,
+    "us": "2.5Y",
+    "uk": "2",
+    "createdAt": "2026-05-21T02:25:04.669Z",
+    "updatedAt": "2026-05-21T02:25:04.669Z",
+    "deletedAt": null
+  },
+  {
+    "id": 59,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 1
+    },
+    "cm": 22,
+    "eu": 35,
+    "us": "3Y",
+    "uk": "2.5",
+    "createdAt": "2026-05-21T02:25:04.675Z",
+    "updatedAt": "2026-05-21T02:25:04.675Z",
+    "deletedAt": null
+  },
+  {
+    "id": 60,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 1
+    },
+    "cm": 22.5,
+    "eu": 35.5,
+    "us": "3.5Y",
+    "uk": "3",
+    "createdAt": "2026-05-21T02:25:04.682Z",
+    "updatedAt": "2026-05-21T02:25:04.682Z",
+    "deletedAt": null
+  },
+  {
+    "id": 61,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 1
+    },
+    "cm": 23,
+    "eu": 36,
+    "us": "4Y",
+    "uk": "3.5",
+    "createdAt": "2026-05-21T02:25:04.689Z",
+    "updatedAt": "2026-05-21T02:25:04.689Z",
+    "deletedAt": null
+  },
+  {
+    "id": 62,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 1
+    },
+    "cm": 23.5,
+    "eu": 36.5,
+    "us": "4.5Y",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:04.695Z",
+    "updatedAt": "2026-05-21T02:25:04.695Z",
+    "deletedAt": null
+  },
+  {
+    "id": 63,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 1
+    },
+    "cm": 24,
+    "eu": 37.5,
+    "us": "5Y",
+    "uk": "4.5",
+    "createdAt": "2026-05-21T02:25:04.701Z",
+    "updatedAt": "2026-05-21T02:25:04.701Z",
+    "deletedAt": null
+  },
+  {
+    "id": 64,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 1
+    },
+    "cm": 24.5,
+    "eu": 38.5,
+    "us": "6Y",
+    "uk": "5.5",
+    "createdAt": "2026-05-21T02:25:04.714Z",
+    "updatedAt": "2026-05-21T02:25:04.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": 65,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 1
+    },
+    "cm": 25,
+    "eu": 40,
+    "us": "7Y",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:04.724Z",
+    "updatedAt": "2026-05-21T02:25:04.724Z",
+    "deletedAt": null
+  },
+  {
+    "id": 66,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 22,
+    "eu": 36,
+    "us": "4",
+    "uk": "3.5",
+    "createdAt": "2026-05-21T02:25:04.731Z",
+    "updatedAt": "2026-05-21T02:25:04.731Z",
+    "deletedAt": null
+  },
+  {
+    "id": 67,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 22.5,
+    "eu": 36.67,
+    "us": "4.5",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:04.737Z",
+    "updatedAt": "2026-05-21T02:25:04.737Z",
+    "deletedAt": null
+  },
+  {
+    "id": 68,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 23,
+    "eu": 37.33,
+    "us": "5",
+    "uk": "4.5",
+    "createdAt": "2026-05-21T02:25:04.743Z",
+    "updatedAt": "2026-05-21T02:25:04.743Z",
+    "deletedAt": null
+  },
+  {
+    "id": 69,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 23.5,
+    "eu": 38,
+    "us": "5.5",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:04.764Z",
+    "updatedAt": "2026-05-21T02:25:04.764Z",
+    "deletedAt": null
+  },
+  {
+    "id": 70,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 24,
+    "eu": 38.67,
+    "us": "6",
+    "uk": "5.5",
+    "createdAt": "2026-05-21T02:25:04.771Z",
+    "updatedAt": "2026-05-21T02:25:04.771Z",
+    "deletedAt": null
+  },
+  {
+    "id": 71,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 24.5,
+    "eu": 39.33,
+    "us": "6.5",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:04.777Z",
+    "updatedAt": "2026-05-21T02:25:04.777Z",
+    "deletedAt": null
+  },
+  {
+    "id": 72,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 25,
+    "eu": 40,
+    "us": "7",
+    "uk": "6.5",
+    "createdAt": "2026-05-21T02:25:04.784Z",
+    "updatedAt": "2026-05-21T02:25:04.784Z",
+    "deletedAt": null
+  },
+  {
+    "id": 73,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 25.5,
+    "eu": 40.67,
+    "us": "7.5",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:04.790Z",
+    "updatedAt": "2026-05-21T02:25:04.790Z",
+    "deletedAt": null
+  },
+  {
+    "id": 74,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 26,
+    "eu": 41.33,
+    "us": "8",
+    "uk": "7.5",
+    "createdAt": "2026-05-21T02:25:04.796Z",
+    "updatedAt": "2026-05-21T02:25:04.796Z",
+    "deletedAt": null
+  },
+  {
+    "id": 75,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 26.5,
+    "eu": 42,
+    "us": "8.5",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:04.802Z",
+    "updatedAt": "2026-05-21T02:25:04.802Z",
+    "deletedAt": null
+  },
+  {
+    "id": 76,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 27,
+    "eu": 42.67,
+    "us": "9",
+    "uk": "8.5",
+    "createdAt": "2026-05-21T02:25:04.808Z",
+    "updatedAt": "2026-05-21T02:25:04.808Z",
+    "deletedAt": null
+  },
+  {
+    "id": 77,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 27.5,
+    "eu": 43.33,
+    "us": "9.5",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:04.815Z",
+    "updatedAt": "2026-05-21T02:25:04.815Z",
+    "deletedAt": null
+  },
+  {
+    "id": 78,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 28,
+    "eu": 44,
+    "us": "10",
+    "uk": "9.5",
+    "createdAt": "2026-05-21T02:25:04.821Z",
+    "updatedAt": "2026-05-21T02:25:04.821Z",
+    "deletedAt": null
+  },
+  {
+    "id": 79,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 28.5,
+    "eu": 44.67,
+    "us": "10.5",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:04.827Z",
+    "updatedAt": "2026-05-21T02:25:04.827Z",
+    "deletedAt": null
+  },
+  {
+    "id": 80,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 29,
+    "eu": 45.33,
+    "us": "11",
+    "uk": "10.5",
+    "createdAt": "2026-05-21T02:25:04.834Z",
+    "updatedAt": "2026-05-21T02:25:04.834Z",
+    "deletedAt": null
+  },
+  {
+    "id": 81,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 29.5,
+    "eu": 46,
+    "us": "11.5",
+    "uk": "11",
+    "createdAt": "2026-05-21T02:25:04.841Z",
+    "updatedAt": "2026-05-21T02:25:04.841Z",
+    "deletedAt": null
+  },
+  {
+    "id": 82,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 30,
+    "eu": 46.67,
+    "us": "12",
+    "uk": "11.5",
+    "createdAt": "2026-05-21T02:25:04.848Z",
+    "updatedAt": "2026-05-21T02:25:04.848Z",
+    "deletedAt": null
+  },
+  {
+    "id": 83,
+    "segment": "MALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 31,
+    "eu": 48,
+    "us": "13",
+    "uk": "12.5",
+    "createdAt": "2026-05-21T02:25:04.854Z",
+    "updatedAt": "2026-05-21T02:25:04.854Z",
+    "deletedAt": null
+  },
+  {
+    "id": 84,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 22,
+    "eu": 36,
+    "us": "5",
+    "uk": "3.5",
+    "createdAt": "2026-05-21T02:25:04.860Z",
+    "updatedAt": "2026-05-21T02:25:04.860Z",
+    "deletedAt": null
+  },
+  {
+    "id": 85,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 22.5,
+    "eu": 36.67,
+    "us": "5.5",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:04.867Z",
+    "updatedAt": "2026-05-21T02:25:04.867Z",
+    "deletedAt": null
+  },
+  {
+    "id": 86,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 23,
+    "eu": 37.33,
+    "us": "6",
+    "uk": "4.5",
+    "createdAt": "2026-05-21T02:25:04.873Z",
+    "updatedAt": "2026-05-21T02:25:04.873Z",
+    "deletedAt": null
+  },
+  {
+    "id": 87,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 23.5,
+    "eu": 38,
+    "us": "6.5",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:04.879Z",
+    "updatedAt": "2026-05-21T02:25:04.879Z",
+    "deletedAt": null
+  },
+  {
+    "id": 88,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 24,
+    "eu": 38.67,
+    "us": "7",
+    "uk": "5.5",
+    "createdAt": "2026-05-21T02:25:04.885Z",
+    "updatedAt": "2026-05-21T02:25:04.885Z",
+    "deletedAt": null
+  },
+  {
+    "id": 89,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 24.5,
+    "eu": 39.33,
+    "us": "7.5",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:04.891Z",
+    "updatedAt": "2026-05-21T02:25:04.891Z",
+    "deletedAt": null
+  },
+  {
+    "id": 90,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 25,
+    "eu": 40,
+    "us": "8",
+    "uk": "6.5",
+    "createdAt": "2026-05-21T02:25:04.898Z",
+    "updatedAt": "2026-05-21T02:25:04.898Z",
+    "deletedAt": null
+  },
+  {
+    "id": 91,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 25.5,
+    "eu": 40.67,
+    "us": "8.5",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:04.904Z",
+    "updatedAt": "2026-05-21T02:25:04.904Z",
+    "deletedAt": null
+  },
+  {
+    "id": 92,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 26,
+    "eu": 41.33,
+    "us": "9",
+    "uk": "7.5",
+    "createdAt": "2026-05-21T02:25:04.911Z",
+    "updatedAt": "2026-05-21T02:25:04.911Z",
+    "deletedAt": null
+  },
+  {
+    "id": 93,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 26.5,
+    "eu": 42,
+    "us": "9.5",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:04.920Z",
+    "updatedAt": "2026-05-21T02:25:04.920Z",
+    "deletedAt": null
+  },
+  {
+    "id": 94,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 27,
+    "eu": 42.67,
+    "us": "10",
+    "uk": "8.5",
+    "createdAt": "2026-05-21T02:25:04.929Z",
+    "updatedAt": "2026-05-21T02:25:04.929Z",
+    "deletedAt": null
+  },
+  {
+    "id": 95,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 27.5,
+    "eu": 43.33,
+    "us": "10.5",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:04.938Z",
+    "updatedAt": "2026-05-21T02:25:04.938Z",
+    "deletedAt": null
+  },
+  {
+    "id": 96,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 28,
+    "eu": 44,
+    "us": "11",
+    "uk": "9.5",
+    "createdAt": "2026-05-21T02:25:04.945Z",
+    "updatedAt": "2026-05-21T02:25:04.945Z",
+    "deletedAt": null
+  },
+  {
+    "id": 97,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 28.5,
+    "eu": 44.67,
+    "us": "11.5",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:04.956Z",
+    "updatedAt": "2026-05-21T02:25:04.956Z",
+    "deletedAt": null
+  },
+  {
+    "id": 98,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 29,
+    "eu": 45.33,
+    "us": "12",
+    "uk": "10.5",
+    "createdAt": "2026-05-21T02:25:04.963Z",
+    "updatedAt": "2026-05-21T02:25:04.963Z",
+    "deletedAt": null
+  },
+  {
+    "id": 99,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 29.5,
+    "eu": 46,
+    "us": "12.5",
+    "uk": "11",
+    "createdAt": "2026-05-21T02:25:04.970Z",
+    "updatedAt": "2026-05-21T02:25:04.970Z",
+    "deletedAt": null
+  },
+  {
+    "id": 100,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 30,
+    "eu": 46.67,
+    "us": "13",
+    "uk": "11.5",
+    "createdAt": "2026-05-21T02:25:04.976Z",
+    "updatedAt": "2026-05-21T02:25:04.976Z",
+    "deletedAt": null
+  },
+  {
+    "id": 101,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 2
+    },
+    "cm": 31,
+    "eu": 48,
+    "us": "14",
+    "uk": "12.5",
+    "createdAt": "2026-05-21T02:25:04.982Z",
+    "updatedAt": "2026-05-21T02:25:04.982Z",
+    "deletedAt": null
+  },
+  {
+    "id": 102,
+    "segment": "BABY",
+    "brand": {
+      "id": 2
+    },
+    "cm": 9,
+    "eu": 16,
+    "us": "1K",
+    "uk": "0.5",
+    "createdAt": "2026-05-21T02:25:04.988Z",
+    "updatedAt": "2026-05-21T02:25:04.988Z",
+    "deletedAt": null
+  },
+  {
+    "id": 103,
+    "segment": "BABY",
+    "brand": {
+      "id": 2
+    },
+    "cm": 10,
+    "eu": 17,
+    "us": "2K",
+    "uk": "1.5",
+    "createdAt": "2026-05-21T02:25:04.995Z",
+    "updatedAt": "2026-05-21T02:25:04.995Z",
+    "deletedAt": null
+  },
+  {
+    "id": 104,
+    "segment": "BABY",
+    "brand": {
+      "id": 2
+    },
+    "cm": 11,
+    "eu": 18,
+    "us": "3K",
+    "uk": "2.5",
+    "createdAt": "2026-05-21T02:25:05.001Z",
+    "updatedAt": "2026-05-21T02:25:05.001Z",
+    "deletedAt": null
+  },
+  {
+    "id": 105,
+    "segment": "BABY",
+    "brand": {
+      "id": 2
+    },
+    "cm": 12,
+    "eu": 19,
+    "us": "4K",
+    "uk": "3.5",
+    "createdAt": "2026-05-21T02:25:05.007Z",
+    "updatedAt": "2026-05-21T02:25:05.007Z",
+    "deletedAt": null
+  },
+  {
+    "id": 106,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 2
+    },
+    "cm": 12.5,
+    "eu": 20,
+    "us": "5K",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:05.014Z",
+    "updatedAt": "2026-05-21T02:25:05.014Z",
+    "deletedAt": null
+  },
+  {
+    "id": 107,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 2
+    },
+    "cm": 13,
+    "eu": 21,
+    "us": "6K",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:05.020Z",
+    "updatedAt": "2026-05-21T02:25:05.020Z",
+    "deletedAt": null
+  },
+  {
+    "id": 108,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 2
+    },
+    "cm": 14,
+    "eu": 22,
+    "us": "7K",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.027Z",
+    "updatedAt": "2026-05-21T02:25:05.027Z",
+    "deletedAt": null
+  },
+  {
+    "id": 109,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 2
+    },
+    "cm": 15,
+    "eu": 23.5,
+    "us": "8K",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:05.033Z",
+    "updatedAt": "2026-05-21T02:25:05.033Z",
+    "deletedAt": null
+  },
+  {
+    "id": 110,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 2
+    },
+    "cm": 16,
+    "eu": 25,
+    "us": "9K",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:05.039Z",
+    "updatedAt": "2026-05-21T02:25:05.039Z",
+    "deletedAt": null
+  },
+  {
+    "id": 111,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 2
+    },
+    "cm": 17,
+    "eu": 26,
+    "us": "10K",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:05.046Z",
+    "updatedAt": "2026-05-21T02:25:05.046Z",
+    "deletedAt": null
+  },
+  {
+    "id": 112,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 2
+    },
+    "cm": 18,
+    "eu": 27,
+    "us": "11K",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:05.053Z",
+    "updatedAt": "2026-05-21T02:25:05.053Z",
+    "deletedAt": null
+  },
+  {
+    "id": 113,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 2
+    },
+    "cm": 19,
+    "eu": 28,
+    "us": "12K",
+    "uk": "11",
+    "createdAt": "2026-05-21T02:25:05.059Z",
+    "updatedAt": "2026-05-21T02:25:05.059Z",
+    "deletedAt": null
+  },
+  {
+    "id": 114,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 2
+    },
+    "cm": 20,
+    "eu": 30,
+    "us": "13K",
+    "uk": "12",
+    "createdAt": "2026-05-21T02:25:05.066Z",
+    "updatedAt": "2026-05-21T02:25:05.066Z",
+    "deletedAt": null
+  },
+  {
+    "id": 115,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 2
+    },
+    "cm": 21,
+    "eu": 31,
+    "us": "1",
+    "uk": "13",
+    "createdAt": "2026-05-21T02:25:05.072Z",
+    "updatedAt": "2026-05-21T02:25:05.072Z",
+    "deletedAt": null
+  },
+  {
+    "id": 116,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 2
+    },
+    "cm": 22,
+    "eu": 32,
+    "us": "2",
+    "uk": "1",
+    "createdAt": "2026-05-21T02:25:05.078Z",
+    "updatedAt": "2026-05-21T02:25:05.078Z",
+    "deletedAt": null
+  },
+  {
+    "id": 117,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 2
+    },
+    "cm": 22.5,
+    "eu": 33,
+    "us": "3",
+    "uk": "2",
+    "createdAt": "2026-05-21T02:25:05.084Z",
+    "updatedAt": "2026-05-21T02:25:05.084Z",
+    "deletedAt": null
+  },
+  {
+    "id": 118,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 2
+    },
+    "cm": 23,
+    "eu": 34,
+    "us": "4",
+    "uk": "3",
+    "createdAt": "2026-05-21T02:25:05.091Z",
+    "updatedAt": "2026-05-21T02:25:05.091Z",
+    "deletedAt": null
+  },
+  {
+    "id": 119,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 2
+    },
+    "cm": 24,
+    "eu": 36,
+    "us": "5",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:05.098Z",
+    "updatedAt": "2026-05-21T02:25:05.098Z",
+    "deletedAt": null
+  },
+  {
+    "id": 120,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 2
+    },
+    "cm": 25,
+    "eu": 38,
+    "us": "6",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:05.106Z",
+    "updatedAt": "2026-05-21T02:25:05.106Z",
+    "deletedAt": null
+  },
+  {
+    "id": 121,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 22,
+    "eu": 36,
+    "us": "4",
+    "uk": "3.5",
+    "createdAt": "2026-05-21T02:25:05.114Z",
+    "updatedAt": "2026-05-21T02:25:05.114Z",
+    "deletedAt": null
+  },
+  {
+    "id": 122,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 22.5,
+    "eu": 36.5,
+    "us": "4.5",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:05.122Z",
+    "updatedAt": "2026-05-21T02:25:05.122Z",
+    "deletedAt": null
+  },
+  {
+    "id": 123,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 23,
+    "eu": 37,
+    "us": "5",
+    "uk": "4.5",
+    "createdAt": "2026-05-21T02:25:05.130Z",
+    "updatedAt": "2026-05-21T02:25:05.130Z",
+    "deletedAt": null
+  },
+  {
+    "id": 124,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 23.5,
+    "eu": 37.5,
+    "us": "5.5",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:05.137Z",
+    "updatedAt": "2026-05-21T02:25:05.137Z",
+    "deletedAt": null
+  },
+  {
+    "id": 125,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 24,
+    "eu": 38,
+    "us": "6",
+    "uk": "5.5",
+    "createdAt": "2026-05-21T02:25:05.144Z",
+    "updatedAt": "2026-05-21T02:25:05.144Z",
+    "deletedAt": null
+  },
+  {
+    "id": 126,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 24.5,
+    "eu": 39,
+    "us": "6.5",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.153Z",
+    "updatedAt": "2026-05-21T02:25:05.153Z",
+    "deletedAt": null
+  },
+  {
+    "id": 127,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 25,
+    "eu": 40,
+    "us": "7",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.160Z",
+    "updatedAt": "2026-05-21T02:25:05.160Z",
+    "deletedAt": null
+  },
+  {
+    "id": 128,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 25.5,
+    "eu": 40.5,
+    "us": "7.5",
+    "uk": "6.5",
+    "createdAt": "2026-05-21T02:25:05.167Z",
+    "updatedAt": "2026-05-21T02:25:05.167Z",
+    "deletedAt": null
+  },
+  {
+    "id": 129,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 26,
+    "eu": 41,
+    "us": "8",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:05.173Z",
+    "updatedAt": "2026-05-21T02:25:05.173Z",
+    "deletedAt": null
+  },
+  {
+    "id": 130,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 26.5,
+    "eu": 42,
+    "us": "8.5",
+    "uk": "7.5",
+    "createdAt": "2026-05-21T02:25:05.179Z",
+    "updatedAt": "2026-05-21T02:25:05.179Z",
+    "deletedAt": null
+  },
+  {
+    "id": 131,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 27,
+    "eu": 42.5,
+    "us": "9",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:05.201Z",
+    "updatedAt": "2026-05-21T02:25:05.201Z",
+    "deletedAt": null
+  },
+  {
+    "id": 132,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 27.5,
+    "eu": 43,
+    "us": "9.5",
+    "uk": "8.5",
+    "createdAt": "2026-05-21T02:25:05.207Z",
+    "updatedAt": "2026-05-21T02:25:05.207Z",
+    "deletedAt": null
+  },
+  {
+    "id": 133,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 28,
+    "eu": 44,
+    "us": "10",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:05.213Z",
+    "updatedAt": "2026-05-21T02:25:05.213Z",
+    "deletedAt": null
+  },
+  {
+    "id": 134,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 29,
+    "eu": 45,
+    "us": "11",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:05.220Z",
+    "updatedAt": "2026-05-21T02:25:05.220Z",
+    "deletedAt": null
+  },
+  {
+    "id": 135,
+    "segment": "MALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 30,
+    "eu": 46,
+    "us": "12",
+    "uk": "11",
+    "createdAt": "2026-05-21T02:25:05.226Z",
+    "updatedAt": "2026-05-21T02:25:05.226Z",
+    "deletedAt": null
+  },
+  {
+    "id": 136,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 22,
+    "eu": 36,
+    "us": "5.5",
+    "uk": "3.5",
+    "createdAt": "2026-05-21T02:25:05.233Z",
+    "updatedAt": "2026-05-21T02:25:05.233Z",
+    "deletedAt": null
+  },
+  {
+    "id": 137,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 22.5,
+    "eu": 36.5,
+    "us": "6",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:05.239Z",
+    "updatedAt": "2026-05-21T02:25:05.239Z",
+    "deletedAt": null
+  },
+  {
+    "id": 138,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 23,
+    "eu": 37,
+    "us": "6.5",
+    "uk": "4.5",
+    "createdAt": "2026-05-21T02:25:05.246Z",
+    "updatedAt": "2026-05-21T02:25:05.246Z",
+    "deletedAt": null
+  },
+  {
+    "id": 139,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 23.5,
+    "eu": 37.5,
+    "us": "7",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:05.253Z",
+    "updatedAt": "2026-05-21T02:25:05.253Z",
+    "deletedAt": null
+  },
+  {
+    "id": 140,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 24,
+    "eu": 38,
+    "us": "7.5",
+    "uk": "5.5",
+    "createdAt": "2026-05-21T02:25:05.259Z",
+    "updatedAt": "2026-05-21T02:25:05.259Z",
+    "deletedAt": null
+  },
+  {
+    "id": 141,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 24.5,
+    "eu": 39,
+    "us": "8",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.267Z",
+    "updatedAt": "2026-05-21T02:25:05.267Z",
+    "deletedAt": null
+  },
+  {
+    "id": 142,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 25,
+    "eu": 40,
+    "us": "8.5",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.273Z",
+    "updatedAt": "2026-05-21T02:25:05.273Z",
+    "deletedAt": null
+  },
+  {
+    "id": 143,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 25.5,
+    "eu": 40.5,
+    "us": "9",
+    "uk": "6.5",
+    "createdAt": "2026-05-21T02:25:05.280Z",
+    "updatedAt": "2026-05-21T02:25:05.280Z",
+    "deletedAt": null
+  },
+  {
+    "id": 144,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 26,
+    "eu": 41,
+    "us": "9.5",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:05.286Z",
+    "updatedAt": "2026-05-21T02:25:05.286Z",
+    "deletedAt": null
+  },
+  {
+    "id": 145,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 26.5,
+    "eu": 42,
+    "us": "10",
+    "uk": "7.5",
+    "createdAt": "2026-05-21T02:25:05.293Z",
+    "updatedAt": "2026-05-21T02:25:05.293Z",
+    "deletedAt": null
+  },
+  {
+    "id": 146,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 27,
+    "eu": 42.5,
+    "us": "10.5",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:05.299Z",
+    "updatedAt": "2026-05-21T02:25:05.299Z",
+    "deletedAt": null
+  },
+  {
+    "id": 147,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 28,
+    "eu": 44,
+    "us": "11.5",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:05.305Z",
+    "updatedAt": "2026-05-21T02:25:05.305Z",
+    "deletedAt": null
+  },
+  {
+    "id": 148,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 3
+    },
+    "cm": 29,
+    "eu": 45,
+    "us": "12.5",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:05.311Z",
+    "updatedAt": "2026-05-21T02:25:05.311Z",
+    "deletedAt": null
+  },
+  {
+    "id": 149,
+    "segment": "BABY",
+    "brand": {
+      "id": 3
+    },
+    "cm": 9,
+    "eu": 16,
+    "us": "1C",
+    "uk": "0.5",
+    "createdAt": "2026-05-21T02:25:05.318Z",
+    "updatedAt": "2026-05-21T02:25:05.318Z",
+    "deletedAt": null
+  },
+  {
+    "id": 150,
+    "segment": "BABY",
+    "brand": {
+      "id": 3
+    },
+    "cm": 10,
+    "eu": 17,
+    "us": "2C",
+    "uk": "1",
+    "createdAt": "2026-05-21T02:25:05.324Z",
+    "updatedAt": "2026-05-21T02:25:05.324Z",
+    "deletedAt": null
+  },
+  {
+    "id": 151,
+    "segment": "BABY",
+    "brand": {
+      "id": 3
+    },
+    "cm": 11,
+    "eu": 18.5,
+    "us": "3C",
+    "uk": "2",
+    "createdAt": "2026-05-21T02:25:05.331Z",
+    "updatedAt": "2026-05-21T02:25:05.331Z",
+    "deletedAt": null
+  },
+  {
+    "id": 152,
+    "segment": "BABY",
+    "brand": {
+      "id": 3
+    },
+    "cm": 12,
+    "eu": 19.5,
+    "us": "4C",
+    "uk": "3",
+    "createdAt": "2026-05-21T02:25:05.337Z",
+    "updatedAt": "2026-05-21T02:25:05.337Z",
+    "deletedAt": null
+  },
+  {
+    "id": 153,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 3
+    },
+    "cm": 12.5,
+    "eu": 20,
+    "us": "5C",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:05.343Z",
+    "updatedAt": "2026-05-21T02:25:05.343Z",
+    "deletedAt": null
+  },
+  {
+    "id": 154,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 3
+    },
+    "cm": 13,
+    "eu": 21,
+    "us": "6C",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:05.350Z",
+    "updatedAt": "2026-05-21T02:25:05.350Z",
+    "deletedAt": null
+  },
+  {
+    "id": 155,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 3
+    },
+    "cm": 14,
+    "eu": 22,
+    "us": "7C",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.356Z",
+    "updatedAt": "2026-05-21T02:25:05.356Z",
+    "deletedAt": null
+  },
+  {
+    "id": 156,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 3
+    },
+    "cm": 15,
+    "eu": 23.5,
+    "us": "8C",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:05.362Z",
+    "updatedAt": "2026-05-21T02:25:05.362Z",
+    "deletedAt": null
+  },
+  {
+    "id": 157,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 3
+    },
+    "cm": 16,
+    "eu": 25,
+    "us": "9C",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:05.368Z",
+    "updatedAt": "2026-05-21T02:25:05.368Z",
+    "deletedAt": null
+  },
+  {
+    "id": 158,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 3
+    },
+    "cm": 17,
+    "eu": 26,
+    "us": "10C",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:05.374Z",
+    "updatedAt": "2026-05-21T02:25:05.374Z",
+    "deletedAt": null
+  },
+  {
+    "id": 159,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 3
+    },
+    "cm": 18,
+    "eu": 27,
+    "us": "11C",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:05.381Z",
+    "updatedAt": "2026-05-21T02:25:05.381Z",
+    "deletedAt": null
+  },
+  {
+    "id": 160,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 3
+    },
+    "cm": 19,
+    "eu": 28,
+    "us": "12C",
+    "uk": "11",
+    "createdAt": "2026-05-21T02:25:05.388Z",
+    "updatedAt": "2026-05-21T02:25:05.388Z",
+    "deletedAt": null
+  },
+  {
+    "id": 161,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 3
+    },
+    "cm": 20,
+    "eu": 30,
+    "us": "13C",
+    "uk": "12",
+    "createdAt": "2026-05-21T02:25:05.394Z",
+    "updatedAt": "2026-05-21T02:25:05.394Z",
+    "deletedAt": null
+  },
+  {
+    "id": 162,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 3
+    },
+    "cm": 21,
+    "eu": 31,
+    "us": "1",
+    "uk": "13",
+    "createdAt": "2026-05-21T02:25:05.401Z",
+    "updatedAt": "2026-05-21T02:25:05.401Z",
+    "deletedAt": null
+  },
+  {
+    "id": 163,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 3
+    },
+    "cm": 22,
+    "eu": 32,
+    "us": "2",
+    "uk": "1",
+    "createdAt": "2026-05-21T02:25:05.408Z",
+    "updatedAt": "2026-05-21T02:25:05.408Z",
+    "deletedAt": null
+  },
+  {
+    "id": 164,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 3
+    },
+    "cm": 22.5,
+    "eu": 33,
+    "us": "3",
+    "uk": "2",
+    "createdAt": "2026-05-21T02:25:05.418Z",
+    "updatedAt": "2026-05-21T02:25:05.418Z",
+    "deletedAt": null
+  },
+  {
+    "id": 165,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 3
+    },
+    "cm": 23,
+    "eu": 34,
+    "us": "4",
+    "uk": "3",
+    "createdAt": "2026-05-21T02:25:05.424Z",
+    "updatedAt": "2026-05-21T02:25:05.424Z",
+    "deletedAt": null
+  },
+  {
+    "id": 166,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 3
+    },
+    "cm": 24,
+    "eu": 36,
+    "us": "5",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:05.431Z",
+    "updatedAt": "2026-05-21T02:25:05.431Z",
+    "deletedAt": null
+  },
+  {
+    "id": 167,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 3
+    },
+    "cm": 25,
+    "eu": 38,
+    "us": "6",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:05.437Z",
+    "updatedAt": "2026-05-21T02:25:05.437Z",
+    "deletedAt": null
+  },
+  {
+    "id": 168,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 22,
+    "eu": 36,
+    "us": "4",
+    "uk": "3.5",
+    "createdAt": "2026-05-21T02:25:05.443Z",
+    "updatedAt": "2026-05-21T02:25:05.443Z",
+    "deletedAt": null
+  },
+  {
+    "id": 169,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 22.5,
+    "eu": 36.5,
+    "us": "4.5",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:05.450Z",
+    "updatedAt": "2026-05-21T02:25:05.450Z",
+    "deletedAt": null
+  },
+  {
+    "id": 170,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 23,
+    "eu": 37.5,
+    "us": "5",
+    "uk": "4.5",
+    "createdAt": "2026-05-21T02:25:05.456Z",
+    "updatedAt": "2026-05-21T02:25:05.456Z",
+    "deletedAt": null
+  },
+  {
+    "id": 171,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 23.5,
+    "eu": 38,
+    "us": "5.5",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:05.462Z",
+    "updatedAt": "2026-05-21T02:25:05.462Z",
+    "deletedAt": null
+  },
+  {
+    "id": 172,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 24,
+    "eu": 38.5,
+    "us": "6",
+    "uk": "5.5",
+    "createdAt": "2026-05-21T02:25:05.468Z",
+    "updatedAt": "2026-05-21T02:25:05.468Z",
+    "deletedAt": null
+  },
+  {
+    "id": 173,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 24.5,
+    "eu": 39,
+    "us": "6.5",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.474Z",
+    "updatedAt": "2026-05-21T02:25:05.474Z",
+    "deletedAt": null
+  },
+  {
+    "id": 174,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 25,
+    "eu": 40,
+    "us": "7",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.480Z",
+    "updatedAt": "2026-05-21T02:25:05.480Z",
+    "deletedAt": null
+  },
+  {
+    "id": 175,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 25.5,
+    "eu": 40.5,
+    "us": "7.5",
+    "uk": "6.5",
+    "createdAt": "2026-05-21T02:25:05.486Z",
+    "updatedAt": "2026-05-21T02:25:05.486Z",
+    "deletedAt": null
+  },
+  {
+    "id": 176,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 26,
+    "eu": 41,
+    "us": "8",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:05.492Z",
+    "updatedAt": "2026-05-21T02:25:05.492Z",
+    "deletedAt": null
+  },
+  {
+    "id": 177,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 26.5,
+    "eu": 42,
+    "us": "8.5",
+    "uk": "7.5",
+    "createdAt": "2026-05-21T02:25:05.499Z",
+    "updatedAt": "2026-05-21T02:25:05.499Z",
+    "deletedAt": null
+  },
+  {
+    "id": 178,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 27,
+    "eu": 42.5,
+    "us": "9",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:05.505Z",
+    "updatedAt": "2026-05-21T02:25:05.505Z",
+    "deletedAt": null
+  },
+  {
+    "id": 179,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 27.5,
+    "eu": 43,
+    "us": "9.5",
+    "uk": "8.5",
+    "createdAt": "2026-05-21T02:25:05.511Z",
+    "updatedAt": "2026-05-21T02:25:05.511Z",
+    "deletedAt": null
+  },
+  {
+    "id": 180,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 28,
+    "eu": 44,
+    "us": "10",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:05.518Z",
+    "updatedAt": "2026-05-21T02:25:05.518Z",
+    "deletedAt": null
+  },
+  {
+    "id": 181,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 28.5,
+    "eu": 44.5,
+    "us": "10.5",
+    "uk": "9.5",
+    "createdAt": "2026-05-21T02:25:05.524Z",
+    "updatedAt": "2026-05-21T02:25:05.524Z",
+    "deletedAt": null
+  },
+  {
+    "id": 182,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 29,
+    "eu": 45,
+    "us": "11",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:05.530Z",
+    "updatedAt": "2026-05-21T02:25:05.530Z",
+    "deletedAt": null
+  },
+  {
+    "id": 183,
+    "segment": "MALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 30,
+    "eu": 46,
+    "us": "12",
+    "uk": "11",
+    "createdAt": "2026-05-21T02:25:05.537Z",
+    "updatedAt": "2026-05-21T02:25:05.537Z",
+    "deletedAt": null
+  },
+  {
+    "id": 184,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 22,
+    "eu": 36,
+    "us": "5.5",
+    "uk": "3.5",
+    "createdAt": "2026-05-21T02:25:05.542Z",
+    "updatedAt": "2026-05-21T02:25:05.542Z",
+    "deletedAt": null
+  },
+  {
+    "id": 185,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 22.5,
+    "eu": 36.5,
+    "us": "6",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:05.549Z",
+    "updatedAt": "2026-05-21T02:25:05.549Z",
+    "deletedAt": null
+  },
+  {
+    "id": 186,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 23,
+    "eu": 37.5,
+    "us": "6.5",
+    "uk": "4.5",
+    "createdAt": "2026-05-21T02:25:05.554Z",
+    "updatedAt": "2026-05-21T02:25:05.554Z",
+    "deletedAt": null
+  },
+  {
+    "id": 187,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 23.5,
+    "eu": 38,
+    "us": "7",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:05.560Z",
+    "updatedAt": "2026-05-21T02:25:05.560Z",
+    "deletedAt": null
+  },
+  {
+    "id": 188,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 24,
+    "eu": 38.5,
+    "us": "7.5",
+    "uk": "5.5",
+    "createdAt": "2026-05-21T02:25:05.590Z",
+    "updatedAt": "2026-05-21T02:25:05.590Z",
+    "deletedAt": null
+  },
+  {
+    "id": 189,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 24.5,
+    "eu": 39,
+    "us": "8",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.596Z",
+    "updatedAt": "2026-05-21T02:25:05.596Z",
+    "deletedAt": null
+  },
+  {
+    "id": 190,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 25,
+    "eu": 40,
+    "us": "8.5",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.602Z",
+    "updatedAt": "2026-05-21T02:25:05.602Z",
+    "deletedAt": null
+  },
+  {
+    "id": 191,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 25.5,
+    "eu": 40.5,
+    "us": "9",
+    "uk": "6.5",
+    "createdAt": "2026-05-21T02:25:05.608Z",
+    "updatedAt": "2026-05-21T02:25:05.608Z",
+    "deletedAt": null
+  },
+  {
+    "id": 192,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 26,
+    "eu": 41,
+    "us": "9.5",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:05.615Z",
+    "updatedAt": "2026-05-21T02:25:05.615Z",
+    "deletedAt": null
+  },
+  {
+    "id": 193,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 26.5,
+    "eu": 42,
+    "us": "10",
+    "uk": "7.5",
+    "createdAt": "2026-05-21T02:25:05.620Z",
+    "updatedAt": "2026-05-21T02:25:05.620Z",
+    "deletedAt": null
+  },
+  {
+    "id": 194,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 27,
+    "eu": 42.5,
+    "us": "10.5",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:05.626Z",
+    "updatedAt": "2026-05-21T02:25:05.626Z",
+    "deletedAt": null
+  },
+  {
+    "id": 195,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 28,
+    "eu": 44,
+    "us": "11.5",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:05.633Z",
+    "updatedAt": "2026-05-21T02:25:05.633Z",
+    "deletedAt": null
+  },
+  {
+    "id": 196,
+    "segment": "FEMALE",
+    "brand": {
+      "id": 4
+    },
+    "cm": 29,
+    "eu": 45,
+    "us": "12.5",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:05.639Z",
+    "updatedAt": "2026-05-21T02:25:05.639Z",
+    "deletedAt": null
+  },
+  {
+    "id": 197,
+    "segment": "BABY",
+    "brand": {
+      "id": 4
+    },
+    "cm": 9,
+    "eu": 16,
+    "us": "1C",
+    "uk": "0.5",
+    "createdAt": "2026-05-21T02:25:05.645Z",
+    "updatedAt": "2026-05-21T02:25:05.645Z",
+    "deletedAt": null
+  },
+  {
+    "id": 198,
+    "segment": "BABY",
+    "brand": {
+      "id": 4
+    },
+    "cm": 10,
+    "eu": 17,
+    "us": "2C",
+    "uk": "1",
+    "createdAt": "2026-05-21T02:25:05.652Z",
+    "updatedAt": "2026-05-21T02:25:05.652Z",
+    "deletedAt": null
+  },
+  {
+    "id": 199,
+    "segment": "BABY",
+    "brand": {
+      "id": 4
+    },
+    "cm": 11,
+    "eu": 18.5,
+    "us": "3C",
+    "uk": "2",
+    "createdAt": "2026-05-21T02:25:05.658Z",
+    "updatedAt": "2026-05-21T02:25:05.658Z",
+    "deletedAt": null
+  },
+  {
+    "id": 200,
+    "segment": "BABY",
+    "brand": {
+      "id": 4
+    },
+    "cm": 12,
+    "eu": 19.5,
+    "us": "4C",
+    "uk": "3",
+    "createdAt": "2026-05-21T02:25:05.664Z",
+    "updatedAt": "2026-05-21T02:25:05.664Z",
+    "deletedAt": null
+  },
+  {
+    "id": 201,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 4
+    },
+    "cm": 12.5,
+    "eu": 20,
+    "us": "5C",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:05.670Z",
+    "updatedAt": "2026-05-21T02:25:05.670Z",
+    "deletedAt": null
+  },
+  {
+    "id": 202,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 4
+    },
+    "cm": 13,
+    "eu": 21,
+    "us": "6C",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:05.676Z",
+    "updatedAt": "2026-05-21T02:25:05.676Z",
+    "deletedAt": null
+  },
+  {
+    "id": 203,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 4
+    },
+    "cm": 14,
+    "eu": 22,
+    "us": "7C",
+    "uk": "6",
+    "createdAt": "2026-05-21T02:25:05.682Z",
+    "updatedAt": "2026-05-21T02:25:05.682Z",
+    "deletedAt": null
+  },
+  {
+    "id": 204,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 4
+    },
+    "cm": 15,
+    "eu": 23.5,
+    "us": "8C",
+    "uk": "7",
+    "createdAt": "2026-05-21T02:25:05.688Z",
+    "updatedAt": "2026-05-21T02:25:05.688Z",
+    "deletedAt": null
+  },
+  {
+    "id": 205,
+    "segment": "TODDLER",
+    "brand": {
+      "id": 4
+    },
+    "cm": 16,
+    "eu": 25,
+    "us": "9C",
+    "uk": "8",
+    "createdAt": "2026-05-21T02:25:05.694Z",
+    "updatedAt": "2026-05-21T02:25:05.694Z",
+    "deletedAt": null
+  },
+  {
+    "id": 206,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 4
+    },
+    "cm": 17,
+    "eu": 26,
+    "us": "10C",
+    "uk": "9",
+    "createdAt": "2026-05-21T02:25:05.700Z",
+    "updatedAt": "2026-05-21T02:25:05.700Z",
+    "deletedAt": null
+  },
+  {
+    "id": 207,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 4
+    },
+    "cm": 18,
+    "eu": 27,
+    "us": "11C",
+    "uk": "10",
+    "createdAt": "2026-05-21T02:25:05.706Z",
+    "updatedAt": "2026-05-21T02:25:05.706Z",
+    "deletedAt": null
+  },
+  {
+    "id": 208,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 4
+    },
+    "cm": 19,
+    "eu": 28,
+    "us": "12C",
+    "uk": "11",
+    "createdAt": "2026-05-21T02:25:05.712Z",
+    "updatedAt": "2026-05-21T02:25:05.712Z",
+    "deletedAt": null
+  },
+  {
+    "id": 209,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 4
+    },
+    "cm": 20,
+    "eu": 30,
+    "us": "13C",
+    "uk": "12",
+    "createdAt": "2026-05-21T02:25:05.718Z",
+    "updatedAt": "2026-05-21T02:25:05.718Z",
+    "deletedAt": null
+  },
+  {
+    "id": 210,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 4
+    },
+    "cm": 21,
+    "eu": 31,
+    "us": "1",
+    "uk": "13",
+    "createdAt": "2026-05-21T02:25:05.724Z",
+    "updatedAt": "2026-05-21T02:25:05.724Z",
+    "deletedAt": null
+  },
+  {
+    "id": 211,
+    "segment": "LITTLE_KID",
+    "brand": {
+      "id": 4
+    },
+    "cm": 22,
+    "eu": 32,
+    "us": "2",
+    "uk": "1",
+    "createdAt": "2026-05-21T02:25:05.733Z",
+    "updatedAt": "2026-05-21T02:25:05.733Z",
+    "deletedAt": null
+  },
+  {
+    "id": 212,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 4
+    },
+    "cm": 22.5,
+    "eu": 33,
+    "us": "3",
+    "uk": "2",
+    "createdAt": "2026-05-21T02:25:05.740Z",
+    "updatedAt": "2026-05-21T02:25:05.740Z",
+    "deletedAt": null
+  },
+  {
+    "id": 213,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 4
+    },
+    "cm": 23,
+    "eu": 34,
+    "us": "4",
+    "uk": "3",
+    "createdAt": "2026-05-21T02:25:05.750Z",
+    "updatedAt": "2026-05-21T02:25:05.750Z",
+    "deletedAt": null
+  },
+  {
+    "id": 214,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 4
+    },
+    "cm": 24,
+    "eu": 36,
+    "us": "5",
+    "uk": "4",
+    "createdAt": "2026-05-21T02:25:05.756Z",
+    "updatedAt": "2026-05-21T02:25:05.756Z",
+    "deletedAt": null
+  },
+  {
+    "id": 215,
+    "segment": "YOUTH",
+    "brand": {
+      "id": 4
+    },
+    "cm": 25,
+    "eu": 38,
+    "us": "6",
+    "uk": "5",
+    "createdAt": "2026-05-21T02:25:05.762Z",
+    "updatedAt": "2026-05-21T02:25:05.762Z",
+    "deletedAt": null
+  }
+]

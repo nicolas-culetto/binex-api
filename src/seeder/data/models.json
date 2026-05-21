@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "Zapatillas VL Adidas Court Mercedes - AMG PETRONAS F1 Team",
+    "category": "TRAINING",
+    "brand": {
+      "id": 2
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.772Z",
+    "updatedAt": "2026-05-21T02:25:05.772Z",
+    "deletedAt": null
+  },
+  {
+    "id": 2,
+    "name": "Zapatillas Adidas Response 2",
+    "category": "RUNNING",
+    "brand": {
+      "id": 2
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.784Z",
+    "updatedAt": "2026-05-21T02:25:05.784Z",
+    "deletedAt": null
+  },
+  {
+    "id": 3,
+    "name": "SEELEY BR",
+    "category": "URBAN",
+    "brand": {
+      "id": 2
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.792Z",
+    "updatedAt": "2026-05-21T02:25:05.792Z",
+    "deletedAt": null
+  },
+  {
+    "id": 4,
+    "name": "Nike Pegasus 41",
+    "category": "RUNNING",
+    "brand": {
+      "id": 1
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.800Z",
+    "updatedAt": "2026-05-21T02:25:05.800Z",
+    "deletedAt": null
+  },
+  {
+    "id": 5,
+    "name": "Nike MC Trainer 3",
+    "category": "TRAINING",
+    "brand": {
+      "id": 1
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.807Z",
+    "updatedAt": "2026-05-21T02:25:05.807Z",
+    "deletedAt": null
+  },
+  {
+    "id": 6,
+    "name": "Nike Dunk Low Retro",
+    "category": "URBAN",
+    "brand": {
+      "id": 1
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.813Z",
+    "updatedAt": "2026-05-21T02:25:05.813Z",
+    "deletedAt": null
+  },
+  {
+    "id": 7,
+    "name": "Jordan Franchise",
+    "category": "FLIP_FLOP",
+    "brand": {
+      "id": 1
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.821Z",
+    "updatedAt": "2026-05-21T02:25:05.821Z",
+    "deletedAt": null
+  },
+  {
+    "id": 8,
+    "name": "Zapatillas Vans U OLD SKOOL",
+    "category": "URBAN",
+    "brand": {
+      "id": 4
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.828Z",
+    "updatedAt": "2026-05-21T02:25:05.828Z",
+    "deletedAt": null
+  },
+  {
+    "id": 9,
+    "name": "Zapatillas Vans U Knu Skool",
+    "category": "URBAN",
+    "brand": {
+      "id": 4
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.834Z",
+    "updatedAt": "2026-05-21T02:25:05.834Z",
+    "deletedAt": null
+  },
+  {
+    "id": 10,
+    "name": "ZAPATILLAS MAMBA II",
+    "category": "RUNNING",
+    "brand": {
+      "id": 3
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.839Z",
+    "updatedAt": "2026-05-21T02:25:05.839Z",
+    "deletedAt": null
+  },
+  {
+    "id": 11,
+    "name": "ZAPATILLAS X FORCER III",
+    "category": "URBAN",
+    "brand": {
+      "id": 3
+    },
+    "deleteReason": null,
+    "createdAt": "2026-05-21T02:25:05.843Z",
+    "updatedAt": "2026-05-21T02:25:05.843Z",
+    "deletedAt": null
+  }
+]

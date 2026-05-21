@@ -17,6 +17,7 @@ import { ClsModule } from 'nestjs-cls';
 import { SearchModule } from './search/search.module';
 import { StockModule } from './stock/stock.module';
 import { SizesModule } from './catalog/sizes/sizes.module';
+import { SeederModule } from './seeder/seeder.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { SizesModule } from './catalog/sizes/sizes.module';
       }),
     }),
     UsersModule,
+    SeederModule,
     AuthModule,
     SizesModule,
     CaslModule,

@@ -47,6 +47,10 @@ export class SizesService {
         return result;
     }
 
+    public async findAll(): Promise<Size[]> {
+        return await this.sizeRepository.find({ relations: ['brand'] });
+    }
+
     public async getSizes(getSizesDto: GetSizesDto): Promise<Size[]> {
         const result = await this.sizeRepository.createQueryBuilder("sizes")
         .innerJoinAndSelect("sizes.brand", "brand")
@@ -108,5 +112,9 @@ export class SizesService {
         this.logger.restoreOne(restored);
 
         return restored;
+    }
+
+    public async uploadData(data: any[]): Promise<void> {
+        await this.sizeRepository.insert(data);
     }
 }

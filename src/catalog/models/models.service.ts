@@ -57,18 +57,18 @@ export class ModelsService {
     }
 
     public async findAllDeleted(): Promise<Model[]> {
-        return await this.modelsRepository.find({ 
-            where:{ deletedAt: Not(IsNull()) }, 
+        return await this.modelsRepository.find({
+            where: { deletedAt: Not(IsNull()) },
             relations: ['brand'],
             withDeleted: true
         });
     }
 
     public async findOneDeleted(id: number): Promise<Model> {
-        const model = await this.modelsRepository.findOne({ 
-            where: { id, deletedAt: Not(IsNull()) }, 
-            relations: ['brand'], 
-            withDeleted: true 
+        const model = await this.modelsRepository.findOne({
+            where: { id, deletedAt: Not(IsNull()) },
+            relations: ['brand'],
+            withDeleted: true
         });
 
         if (!model) throw new NotFoundException("Model not found");
@@ -109,14 +109,14 @@ export class ModelsService {
     }
 
     private async removePermanently(ids: number[]): Promise<DeleteResult> {
-        const models = await this.modelsRepository.find({ 
-            where: { id: In(ids) }, 
-            withDeleted: true 
+        const models = await this.modelsRepository.find({
+            where: { id: In(ids) },
+            withDeleted: true
         });
 
         // cascade remove
         await this.modelSegmentsService.handleModelRestored(models, true);
-        
+
         // logger
         await this.loggerService.deletePermanentlyMany(models);
 
@@ -131,8 +131,8 @@ export class ModelsService {
     ): Promise<Model[]> {
         await this.modelsRepository.restore({ id: In(ids) });
         await this.modelsRepository.update({ id: In(ids) }, { deleteReason: null });
-        const restoredModels = await this.modelsRepository.findBy({ 
-            id: In(ids), 
+        const restoredModels = await this.modelsRepository.findBy({
+            id: In(ids),
         });
 
         // cascade restore
@@ -166,5 +166,9 @@ export class ModelsService {
             .getMany();
 
         return models.map(model => model.id);
+    }
+
+    public async uploadData(data: any[]): Promise<void> {
+        await this.modelsRepository.insert(data);
     }
 }

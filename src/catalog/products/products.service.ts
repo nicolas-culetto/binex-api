@@ -179,4 +179,8 @@ export class ProductsService {
             .getMany();
         return products.map(product => product.id);
     }
+
+    public async uploadData(data: any[]): Promise<void> {
+        await this.productsRepository.insert(data);
+    }
 }

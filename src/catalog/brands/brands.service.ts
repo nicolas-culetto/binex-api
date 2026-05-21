@@ -51,15 +51,15 @@ export class BrandsService {
     }
 
     public async findAllDeleted(): Promise<Brand[]> {
-        return await this.brandsRepository.find({ 
-            where: {deletedAt: Not(IsNull())}, 
+        return await this.brandsRepository.find({
+            where: { deletedAt: Not(IsNull()) },
             withDeleted: true
         });
     }
 
     public async findOneDeleted(id: number): Promise<Brand> {
-        const brand = await this.brandsRepository.findOne({ 
-            where: { id, deletedAt: Not(IsNull()) }, 
+        const brand = await this.brandsRepository.findOne({
+            where: { id, deletedAt: Not(IsNull()) },
             withDeleted: true
         });
 
@@ -123,5 +123,9 @@ export class BrandsService {
         this.loggerService.restoreOne(restoredBrand, deleteAll);
 
         return restoredBrand;
+    }
+
+    public async uploadData(data: any[]): Promise<void> {
+        await this.brandsRepository.insert(data);
     }
 }

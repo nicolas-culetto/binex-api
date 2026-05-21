@@ -15,7 +15,8 @@ import { CaslModule } from 'src/casl/casl.module';
     CatalogModule,
     CaslModule,
     LoggerModule
-  ]
+  ],
+  exports: [StockService]
 })
 
 export class StockModule {}

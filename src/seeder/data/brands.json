@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Nike",
+    "logoUrl": "https://res.cloudinary.com/dzxg0ystg/image/upload/v1778965028/binex/develop/brands/logo_nike.webp",
+    "createdAt": "2026-05-21T02:24:59.554Z",
+    "updatedAt": "2026-05-21T02:24:59.554Z",
+    "deletedAt": null
+  },
+  {
+    "id": 2,
+    "name": "Adidas",
+    "logoUrl": "https://res.cloudinary.com/dzxg0ystg/image/upload/v1778965030/binex/develop/brands/logo_adidas.webp",
+    "createdAt": "2026-05-21T02:25:02.090Z",
+    "updatedAt": "2026-05-21T02:25:02.090Z",
+    "deletedAt": null
+  },
+  {
+    "id": 3,
+    "name": "Topper",
+    "logoUrl": "https://res.cloudinary.com/dzxg0ystg/image/upload/v1778965031/binex/develop/brands/logo_topper.webp",
+    "createdAt": "2026-05-21T02:25:02.984Z",
+    "updatedAt": "2026-05-21T02:25:02.984Z",
+    "deletedAt": null
+  },
+  {
+    "id": 4,
+    "name": "Vans",
+    "logoUrl": "https://res.cloudinary.com/dzxg0ystg/image/upload/v1779137123/binex/develop/brands/logo_vans.webp",
+    "createdAt": "2026-05-21T02:25:04.225Z",
+    "updatedAt": "2026-05-21T02:25:04.225Z",
+    "deletedAt": null
+  }
+]
