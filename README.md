@@ -23,6 +23,15 @@ Order management
 $ npm install
 ```
 
+## Local Postgres Database
+```bash
+# Docker restart (delete all)
+$ docker-compose down -v
+
+# Docker up
+$ docker-compose up --build
+```
+
 ## Compile and run the project
 
 ```bash
@@ -34,6 +43,9 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+# load seed
+$ npm run start:seed
 ```
 
 ## Run tests
