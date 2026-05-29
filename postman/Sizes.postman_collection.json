@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "c82725db-aa7a-4bdb-b227-d1a4b8f14fb4",
+    "name": "Sizes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49262125",
+    "_collection_link": "https://go.postman.co/collection/49262125-c82725db-aa7a-4bdb-b227-d1a4b8f14fb4?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get By Brand",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/sizes/get-by-brand?brandId=1&segment=MALE",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "sizes",
+            "get-by-brand"
+          ],
+          "query": [
+            {
+              "key": "brandId",
+              "value": "1"
+            },
+            {
+              "key": "segment",
+              "value": "MALE"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Size",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"cm\": 1000\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{host}}:{{port}}/sizes/update/428",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "sizes",
+            "update",
+            "428"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Size",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\r\n        \"segment\": \"LITTLE_KID\",\r\n        \"brandId\": 4,\r\n        \"cm\": 17,\r\n        \"eu\": 26,\r\n        \"us\": \"10C\",\r\n        \"uk\": \"9\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{host}}:{{port}}/sizes/create",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "sizes",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove Size",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/sizes/delete/42",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "sizes",
+            "delete",
+            "42"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Restore Size",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/sizes/restore/42",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "sizes",
+            "restore",
+            "42"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

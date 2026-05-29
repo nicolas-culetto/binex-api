@@ -1,0 +1,110 @@
+{
+  "info": {
+    "_postman_id": "de690ef1-ebd6-4eb1-9ee5-2666cceb6e94",
+    "name": "Search",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49262125",
+    "_collection_link": "https://go.postman.co/collection/49262125-de690ef1-ebd6-4eb1-9ee5-2666cceb6e94?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Search Catalog",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/search?brandId=1&minPrice&maxPreice&modelName&category&offert&discount",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "search"
+          ],
+          "query": [
+            {
+              "key": "color",
+              "value": "RED",
+              "disabled": true
+            },
+            {
+              "key": "segment",
+              "value": "MALE",
+              "disabled": true
+            },
+            {
+              "key": "brandId",
+              "value": "1"
+            },
+            {
+              "key": "minPrice",
+              "value": null,
+              "type": "text"
+            },
+            {
+              "key": "maxPreice",
+              "value": null,
+              "type": "text"
+            },
+            {
+              "key": "modelName",
+              "value": null,
+              "type": "text"
+            },
+            {
+              "key": "category",
+              "value": null,
+              "type": "text"
+            },
+            {
+              "key": "offert",
+              "value": null,
+              "type": "text"
+            },
+            {
+              "key": "discount",
+              "value": null,
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

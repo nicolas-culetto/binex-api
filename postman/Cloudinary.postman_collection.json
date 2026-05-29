@@ -1,0 +1,105 @@
+{
+  "info": {
+    "_postman_id": "25474f0a-7445-4d53-8660-4cc298178a9c",
+    "name": "Cloudinary",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49262125",
+    "_collection_link": "https://go.postman.co/collection/49262125-25474f0a-7445-4d53-8660-4cc298178a9c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Upload Test",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "233c6e04-21ea-45aa-88fa-ca5ae3111e49",
+              "src": "postman-cloud:///1f134f44-dfe1-4dc0-923f-71fe0b765888"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://{{host}}:{{port}}/cloudinary/upload",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "cloudinary",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Test",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"url\": \"https://res.cloudinary.com/dzxg0ystg/image/upload/v1778965246/binex/develop/test/test.webp\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{host}}:{{port}}/cloudinary/remove",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "cloudinary",
+            "remove"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
