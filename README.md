@@ -98,31 +98,31 @@ $ npm run test:cov
 ```
 
 ## Postman Collections
-Auth collection
+### Auth collection
 [![Import Auth Collection](https://run.pstmn.io/button.svg)](https://mider2014-6714345.postman.co/workspace/binex-api~d41a00ea-a32b-4b37-8860-850fc3d3ae2a/collection/49262125-e5eec5d4-4442-4bb7-88f4-97ce9a2a0411?action=share&source=copy-link&creator=49262125)
 
-Brands collection
+### Brands collection
 [![Import Brand Collection](https://run.pstmn.io/button.svg)](https://mider2014-6714345.postman.co/workspace/binex-api~d41a00ea-a32b-4b37-8860-850fc3d3ae2a/collection/49262125-db485a98-1cf1-4a88-95bc-de98429f2384?action=share&source=copy-link&creator=49262125)
 
-Models collection
+### Models collection
 [![Import Models Collection](https://run.pstmn.io/button.svg)](https://mider2014-6714345.postman.co/workspace/binex-api~d41a00ea-a32b-4b37-8860-850fc3d3ae2a/collection/49262125-1a3676b4-eeb5-467f-abf4-5910c2bc1a3e?action=share&source=copy-link&creator=49262125)
 
-Model Segments collection
+### Model Segments collection
 [![Import Model Segments Collection](https://run.pstmn.io/button.svg)](https://mider2014-6714345.postman.co/workspace/binex-api~d41a00ea-a32b-4b37-8860-850fc3d3ae2a/collection/49262125-e996f0a0-c3c9-46bc-bd72-f4d0e51e16cd?action=share&source=copy-link&creator=49262125)
 
-Products collection
+### Products collection
 [![Import Products Collection](https://run.pstmn.io/button.svg)](https://mider2014-6714345.postman.co/workspace/binex-api~d41a00ea-a32b-4b37-8860-850fc3d3ae2a/collection/49262125-40154b82-7327-4abb-9d2a-1dea537e4ad6?action=share&source=copy-link&creator=49262125)
 
-Search collection
+### Search collection
 [![Import Search Collection](https://run.pstmn.io/button.svg)](https://mider2014-6714345.postman.co/workspace/binex-api~d41a00ea-a32b-4b37-8860-850fc3d3ae2a/collection/49262125-de690ef1-ebd6-4eb1-9ee5-2666cceb6e94?action=share&source=copy-link&creator=49262125)
 
-Stock collection
+### Stock collection
 [![Import Search Collection](https://run.pstmn.io/button.svg)](https://mider2014-6714345.postman.co/workspace/binex-api~d41a00ea-a32b-4b37-8860-850fc3d3ae2a/collection/49262125-243b3807-8894-4408-a6d3-739d93f4cd40?action=share&source=copy-link&creator=49262125)
 
-Users collection
+### Users collection
 [![Import Users Collection](https://run.pstmn.io/button.svg)](https://mider2014-6714345.postman.co/workspace/binex-api~d41a00ea-a32b-4b37-8860-850fc3d3ae2a/collection/49262125-afe2860b-de81-4a4f-90ad-4e2d7291131c?action=share&source=copy-link&creator=49262125)
 
-Cloudinary collection
+### Cloudinary collection
 [![Import Cloudinary Collection](https://run.pstmn.io/button.svg)](https://mider2014-6714345.postman.co/workspace/binex-api~d41a00ea-a32b-4b37-8860-850fc3d3ae2a/collection/49262125-25474f0a-7445-4d53-8660-4cc298178a9c?action=share&source=copy-link&creator=49262125)
 
 Or you can import them using the JSON files located in `./postman/`.
