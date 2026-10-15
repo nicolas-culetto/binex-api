@@ -1,0 +1,307 @@
+{
+  "info": {
+    "_postman_id": "40154b82-7327-4abb-9d2a-1dea537e4ad6",
+    "name": "Products",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49262125",
+    "_collection_link": "https://go.postman.co/collection/49262125-40154b82-7327-4abb-9d2a-1dea537e4ad6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "files",
+              "type": "file",
+              "uuid": "9c7efa89-efd9-4f52-8a61-d388cfdc267f",
+              "src": [
+                "postman-cloud:///1f134f44-db49-41a0-8f54-131e09f982be",
+                "postman-cloud:///1f134f44-e19e-4320-8035-2833676a97f7",
+                "postman-cloud:///1f134f44-dfe9-42f0-9536-ead72655fb47",
+                "postman-cloud:///1f134f44-dfe1-4dc0-923f-71fe0b765888"
+              ]
+            },
+            {
+              "key": "color",
+              "value": "BLUE",
+              "type": "text",
+              "uuid": "77a9ad44-95ee-45c7-b70d-ad933e85858d"
+            },
+            {
+              "key": "price",
+              "value": "200",
+              "type": "text",
+              "uuid": "d4a2eabf-7584-4070-8dde-06a7e2e2116e"
+            },
+            {
+              "key": "modelSegmentId",
+              "value": "10",
+              "type": "text",
+              "uuid": "9e9da075-f710-4191-af03-7a4fffa0cd4e"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://{{host}}:{{port}}/products/create",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "products",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/products/all",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "products",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Product By Id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/products/by-id/1",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "products",
+            "by-id",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Deleted Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/products/all-deleted",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "products",
+            "all-deleted"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Deleted Product By Id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{host}}:{{port}}/products/by-id-deleted/1",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "products",
+            "by-id-deleted",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Product",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{host}}:{{port}}/products/delete?ids=1&ids=2",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "products",
+            "delete"
+          ],
+          "query": [
+            {
+              "key": "ids",
+              "value": "1",
+              "type": "text"
+            },
+            {
+              "key": "ids",
+              "value": "2",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Product",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "files",
+              "type": "file",
+              "uuid": "31b170b7-8da0-4428-bcb9-729a4f135f35",
+              "src": "/C:/Users/Nicolas/OneDrive/Imágenes/redes/banner.jpg",
+              "disabled": true
+            },
+            {
+              "key": "imagesIndex[]",
+              "value": "0",
+              "type": "text",
+              "uuid": "809583dd-e00a-4d2f-9133-3a82194772a9",
+              "disabled": true
+            },
+            {
+              "key": "segment",
+              "value": "YOUTH",
+              "type": "text",
+              "uuid": "aae69df3-4fc0-4cef-9256-34d08ed19042"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://{{host}}:{{port}}/products/update/11",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "products",
+            "update",
+            "11"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Restore Product",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"ids\": [13]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{host}}:{{port}}/products/restore?ids=1&ids=2",
+          "protocol": "http",
+          "host": [
+            "{{host}}"
+          ],
+          "port": "{{port}}",
+          "path": [
+            "products",
+            "restore"
+          ],
+          "query": [
+            {
+              "key": "ids",
+              "value": "1"
+            },
+            {
+              "key": "ids",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
