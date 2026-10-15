@@ -5,6 +5,7 @@ import { Request } from 'express';
 import { ClsService } from 'nestjs-cls';
 import { IS_PUBLIC_KEY } from 'src/public/public.decorator';
 import { UsersService } from 'src/users/users.service';
+import { AUTH_COOKIE_NAME } from './cookie.config';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -27,7 +28,7 @@ export class AuthGuard implements CanActivate {
     }
     
     const request = context.switchToHttp().getRequest();
-    const token = this.extractTokenFromHeader(request);
+    const token = this.extractToken(request);
 
     if (!token) {
       throw new UnauthorizedException("Token not found");
@@ -50,8 +51,13 @@ export class AuthGuard implements CanActivate {
     return true;
   }
 
-  private extractTokenFromHeader(request: Request): string | undefined {
-    const [type, token] = request.headers.authorization?.split(' ') ?? [];
-    return type === 'Bearer' ? token : undefined;
+  private extractToken(request: Request): string | undefined {
+      // prioridad a la cookie
+      const fromCookie = request.cookies?.[AUTH_COOKIE_NAME];
+      if (fromCookie) return fromCookie;
+
+      // opcional: fallback a Bearer (útil para Postman, apps móviles, tests)
+      const [type, token] = request.headers.authorization?.split(' ') ?? [];
+      return type === 'Bearer' ? token : undefined;
   }
 }

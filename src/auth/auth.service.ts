@@ -3,7 +3,6 @@ import { UsersService } from 'src/users/users.service';
 import { SignInDto } from './dto/sign_in.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { NotFoundError } from 'rxjs';
 import { CreateUserDto } from 'src/users/dto/create.user.dto';
 import { User } from 'src/users/models/user.model';
 import { ConfigService } from '@nestjs/config';
@@ -16,8 +15,8 @@ export class AuthService implements OnApplicationBootstrap {
         private configService: ConfigService,
     ) {}
 
-    onApplicationBootstrap() {
-        this.createRootAdmin()
+    async onApplicationBootstrap() {
+        await this.createRootAdmin()
     }
 
     private async createRootAdmin(): Promise<void>{
@@ -77,12 +76,9 @@ export class AuthService implements OnApplicationBootstrap {
         return await this.genJwt(registeredUser);
     }
 
-    async genJwt(user: User) {
+    async genJwt(user: User): Promise<string> {
         const payload = { sub: user.id, email: user.email, isAdmin: user.isAdmin };
-
-        return {
-            access_token: await this.jwtService.signAsync(payload),
-        }
+        return await this.jwtService.signAsync(payload);
     }
 
     async getHash(password: string) {
