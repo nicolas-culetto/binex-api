@@ -19,9 +19,8 @@ Binex is a simulated footwear e-commerce that support a great variety of models,
 - Cookie-based authentication
 - Improve stock management system with stock status
 - Shopping cart system
-- Advanced order management system
-- Password reset system
 - Product search pagination
+- Custom roles and permissions management
 
 ## Architecture
 Controller → Service → Repository → Database
